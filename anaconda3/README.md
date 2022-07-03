@@ -24,3 +24,20 @@ $ conda env create --file py38-cu102.yaml
 ```
 
 一般它与`cudnn=7.6`搭配，所以制定这个环境中使用7.6版本
+
+## 在Anaconda3中配置不同的CUDA环境
+
+```
+$ conda activate 你的环境名
+$ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+$ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.h
+文件内容如下：
+CUDA_HOME=$CONDA_PREFIX
+export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+$ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
+$ nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.h
+文件内容如下：
+export LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | cut -d : -f 2-`
+```
+
+不同的CUDA环境有不同的装载路径，通过上面的方式可以结合`conda activate 你的环境名`与`conda deactivate`命令行自动的关联`LD_LIBRARY_PATH`，并正确装载`so`文件
