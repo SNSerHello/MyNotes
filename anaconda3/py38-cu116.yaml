@@ -1,0 +1,31 @@
+# conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch -c conda-forge
+# pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+name: py38-cu116
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - conda-build
+  - git
+  - llvmdev==10.0.0
+  - numpy
+  - pytest
+  - cython
+  - cmake
+  - bzip2
+  - make
+  - scipy
+  - pillow
+  - cudatoolkit-dev=11.6
+  - cudnn
+  - ipython
+  - pip
+  - python=3.8
+  - black
+  - opencv
+  - matplotlib
+  - pandas

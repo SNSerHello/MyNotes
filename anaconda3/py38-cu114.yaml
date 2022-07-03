@@ -1,0 +1,28 @@
+name: py38-cu114
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - conda-build
+  - git
+  - llvmdev==10.0.0
+  - numpy
+  - pytest
+  - cython
+  - cmake
+  - bzip2
+  - make
+  - scipy
+  - pillow
+  - cudatoolkit-dev=11.4
+  - cudnn
+  - ipython
+  - pip
+  - python=3.8
+  - black
+  - matplotlib
+  - pandas

@@ -1,0 +1,30 @@
+name: py36-cu92
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - conda-build
+  - git
+  - llvmdev==10.0.0
+  - numpy
+  - pytest
+  - cython
+  - cmake
+  - bzip2
+  - make
+  - scipy
+  - pillow
+  - cudatoolkit-dev=9.2
+  - cudnn
+  - ipython
+  - jedi==0.17.2
+  - pip
+  - python=3.6
+  - black
+  - opencv
+  - matplotlib
+  - pandas
