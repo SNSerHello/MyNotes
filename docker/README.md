@@ -64,7 +64,7 @@ $ sudo rm -rf /var/lib/docker.old
 
 ## 下载Docker images
 
-| Tensorflow                                                 | Pytorch                                             | Mxnet                                        | PaddlePaddle                                             |
+| Tensorflow v2.9.1                                          | Pytorch v1.13.0                                     | Mxnet v1.9.1                                 | PaddlePaddle v2.2.2                                      |
 | ---------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------- |
 | `sudo docker pull nvcr.io/nvidia/tensorflow:22.06-tf2-py3` | `sudo docker pull nvcr.io/nvidia/pytorch:22.06-py3` | `docker pull nvcr.io/nvidia/mxnet:22.06-py3` | `sudo docker pull nvcr.io/nvidia/paddlepaddle:22.06-py3` |
 
