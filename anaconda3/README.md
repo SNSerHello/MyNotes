@@ -41,3 +41,72 @@ export LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | cut -d : -f 2-`
 ```
 
 不同的CUDA环境有不同的装载路径，通过上面的方式可以结合`conda activate 你的环境名`与`conda deactivate`命令行自动的关联`LD_LIBRARY_PATH`，并正确装载`so`文件
+
+## 通过Anaconda3搭建theano环境
+
+在Ubuntu20.04LTS建议搭建python3.8+cuda11.3+cuda8.2+theano1.0.5，在Ubuntu18.04LTS建议搭建python3.6+cuda9.2+cuda7.1+theano1.0.4，详见下方配置文件。
+
+### a) Ubuntu20.04LTS
+
+```
+$ conda env create --file py38-theano.yaml
+```
+
+#### .theanorc
+
+```
+[global]
+floatX = float32
+device = cuda
+optimizer_including = cudnn
+
+[gcc]
+cxxflags = -I/media/samba/anaconda3/envs/py38-theano/include -L/media/samba/anaconda3/envs/py38-theano/lib -L/usr/lib/x86_64-linux-gnu -lrt -pthread -lresolv
+
+[gpuarray]
+preallocate = 0
+
+[dnn]
+enabled = True
+library_path = /media/samba/anaconda3/envs/py38-theano/lib
+include_path = /media/samba/anaconda3/envs/py38-theano/include
+
+[cuda]
+cuda = /media/samba/anaconda3/envs/py38-theano/bin
+
+[lib]
+cnmem = 0.5
+```
+
+### a) Ubuntu18.04LTS
+
+```
+$ conda env create --file py36-theano.yaml
+```
+
+#### .theanorc
+
+```
+[global]
+floatX = float32
+device = cuda
+optimizer_including = cudnn
+
+[gcc]
+cxxflags = -I/media/samba/anaconda3/envs/py36-theano/include -L/media/samba/anaconda3/envs/py36-theano/lib -L/media/samba/anaconda3/envs/py36-theano/lib64 -L/usr/lib/x86_64-linux-gnu -lrt -pthread -lresolv
+
+[gpuarray]
+preallocate = 0
+
+[dnn]
+enabled = True
+library_path = /media/samba/anaconda3/envs/py36-theano/lib
+include_path = /media/samba/anaconda3/envs/py36-theano/include
+
+[cuda]
+cuda = /media/samba/anaconda3/envs/py36-theano/bin
+
+[lib]
+cnmem = 0.5
+```
+
