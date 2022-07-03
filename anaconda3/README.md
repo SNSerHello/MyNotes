@@ -126,3 +126,22 @@ python3.8                /root/anaconda3/envs/python3.8
 $ conda activate python3.8/7/6
 ```
 
+在Anaconda中增加编译环境，一般的方式是安装 `conda-build`，它的好处在于能够自动的完成环境相关配置，比如说：库文件会被放在`$CONDA_PREFIX/lib下`，`LD_LIBRARY_PATH`能够自动的找到相关的路径等，但是更加自己的需求，安装对应的toolchain安装包，现在Anaconda支持如下：
+
+| macOS             | Linux               |
+| ----------------- | ------------------- |
+| ● clang_osx-64    | ●  gcc_linux-64     |
+| ● clangxx_osx-64  | ● gxx_linux-64      |
+| ● gfortran_osx-64 | ● gfortran_linux-64 |
+
+**如何安装？**
+
+```
+$ conda install gcc_linux-64 gxx_linux-64
+```
+
+
+
+## 参考
+
+- [Anaconda compiler tools](https://docs.conda.io/projects/conda-build/en/latest/resources/compiler-tools.html)
