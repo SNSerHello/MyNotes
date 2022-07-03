@@ -110,3 +110,19 @@ cuda = /media/samba/anaconda3/envs/py36-theano/bin
 cnmem = 0.5
 ```
 
+## 搭建Anaconda3的Docker编译环境
+
+针对python3.6，python3.7，python3.8的不同编译需求，笔者专门制作了一个docker的Anaconda3编译环境，可以编译TVM, PaddlePaddle等。cmake, make等常用的编译工具已经内在在这些选择中，进入后按照正常的方式即可对source codes进行编译。
+
+```
+$ sudo docker login
+$ sudo docker pull snser/anaconda3
+$ sudo docker run --rm -itv your_path:/workspace -w /workspace snser/anaconda3 /bin/bash
+$ conda env list
+base                  *  /root/anaconda3
+python3.6                /root/anaconda3/envs/python3.6
+python3.7                /root/anaconda3/envs/python3.7
+python3.8                /root/anaconda3/envs/python3.8
+$ conda activate python3.8/7/6
+```
+
