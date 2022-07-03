@@ -100,8 +100,40 @@ cnmem = 0.5
 
 在Ubuntu20.04LTS推荐使用python3.8+cuda11.3+cudnn8.2搭建环境，在Ubuntu18.04LTS推荐使用python3.6+cuda9.2+cudnn7.1搭建环境，这个不是必须的，我们可以在Ubuntu20.04LTS上使用python3.6+其他的搭配方法。如果Ubuntu上的GCC的版本比较高的话，我们可以使用Anaconda的toolchain来搭建编译环境，详见 [Anaconda3 README](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)。
 
+## 检查theano环境
+
+```
+from theano import function, config, shared, tensor as tt
+import numpy
+import time
+
+vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
+iters = 1000
+
+rng = numpy.random.RandomState(22)
+x = shared(numpy.asarray(rng.rand(vlen), config.floatX))
+f = function([], tt.exp(x))
+print(f.maker.fgraph.toposort())
+t0 = time.time()
+for i in range(iters):
+    r = f()
+t1 = time.time()
+print("Looping %d times took %f seconds" % (iters, t1 - t0))
+print("Result is %s" % (r,))
+if numpy.any(
+    [
+        isinstance(x.op, tt.elemwise.Elemwise) and ("Gpu" not in type(x.op).__name__)
+        for x in f.maker.fgraph.toposort()
+    ]
+):
+    print("Used the cpu")
+else:
+    print("Used the gpu")
+```
+
 
 
 ## 参考
 
 - [Anaconda3 README](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)
+- [Using the GPU](https://theano-pymc.readthedocs.io/en/latest/tutorial/using_gpu.html)
