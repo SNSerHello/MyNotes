@@ -1,0 +1,2 @@
+# MyNotes
+Notes for developers
