@@ -35,7 +35,7 @@ $ sudo vmware-installer -u vmware-player
 对于第一种方法，笔者没有验证，因为总有一个版本可以运行，并且不断尝试的时间代价很大。对于第二种方法，笔者尝试了一下，没有成功。从错误信息的，笔者猜想可能是3D Graphic的原因，所以将它disable后即可运行，如下所示：
 
 ```
-$ nano xxx.vmx
+$ nano 你的虚拟机.vmx
 mks.enable3d = "FALSE"
 ```
 
