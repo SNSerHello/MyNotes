@@ -14,3 +14,7 @@ Notes描述[Theano](https://github.com/SNSerHello/MyNotes/tree/main/theano)的�
 ## [VMWare](https://github.com/SNSerHello/MyNotes/tree/main/vmware)
 
 Notes描述[VMWare](https://github.com/SNSerHello/MyNotes/tree/main/vmware)的一些常见的方法。
+
+## [Ubuntu](https://github.com/SNSerHello/MyNotes/tree/main/ubuntu)
+
+Notes描述[Ubuntu](https://github.com/SNSerHello/MyNotes/tree/main/ubuntu)的一些常见的方法。
