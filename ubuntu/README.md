@@ -18,7 +18,7 @@ $ sudo reboot
 $ wget https://launchpad.net/ubuntu/+archive/primary/+files/backport-iwlwifi-dkms_9858-0ubuntu5_all.deb
 ```
 
-## Wifi6 AX210无线网卡驱动安装
+### Wifi6 AX210无线网卡驱动安装
 
 ```
 $ wget https://launchpad.net/ubuntu/+archive/primary/+files/backport-iwlwifi-dkms_8324-0ubuntu3~20.04.4_all.deb
