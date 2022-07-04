@@ -4,7 +4,7 @@
 
 现在新的主板往往会搭载无限网卡，但是Ubuntu20.04LTS无法正确安装这些网卡驱动，所以会导致无线网卡无法使用，那么如何处理呢？
 
-### Wifi6 AX211无限网卡驱动安装
+### Wifi6 AX211无线网卡驱动安装
 
 ```
 $ wget https://launchpad.net/ubuntu/+archive/primary/+files/backport-iwlwifi-dkms_9858-0ubuntu3_all.deb
@@ -18,7 +18,7 @@ $ sudo reboot
 $ wget https://launchpad.net/ubuntu/+archive/primary/+files/backport-iwlwifi-dkms_9858-0ubuntu5_all.deb
 ```
 
-## Wifi6 AX210无限网卡驱动安装
+## Wifi6 AX210无线网卡驱动安装
 
 ```
 $ wget https://launchpad.net/ubuntu/+archive/primary/+files/backport-iwlwifi-dkms_8324-0ubuntu3~20.04.4_all.deb
