@@ -19,6 +19,12 @@ $ sudo vmware-modconfig --console --install-all
 
 在成功完成上面的命令后，既可以运行VMWare Player。
 
+## 如何卸载VMWare Player？
+
+```
+$ sudo vmware-installer -u vmware-player
+```
+
 
 
 ## 参考
