@@ -51,7 +51,7 @@ Out[2]: True
 
 ```
 $ sudo service docker stop
-$ sudo nano /etc/docke/daemon.json
+$ sudo nano /etc/docker/daemon.json
 {
   "data-root": "/path/to/your/docker",
   ...
