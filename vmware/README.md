@@ -25,6 +25,20 @@ $ sudo vmware-modconfig --console --install-all
 $ sudo vmware-installer -u vmware-player
 ```
 
+## 在远程桌面中运行VMWare Player
+
+在远程桌面中运行VMWare会失败，大致的失败信息：`ISBRendererComm: Lost connection to mksSandbox (2878)`,从https://communities.vmware.com/的讨论中，有两种方法：
+
+- 降级VMWare Player，比如说从16.x -> 15.5.6
+- 在xxx.vmx文件中增加`mks.sandbox.socketTimeoutMS = "200000"`
+
+对于第一种方法，笔者没有验证，因为总有一个版本可以运行，并且不断尝试的时间代价很大。对于第二种方法，笔者尝试了一下，没有成功。从错误信息的，笔者猜想可能是3D Graphic的原因，所以将它disable后即可运行，如下所示：
+
+```
+$ nano xxx.vmx
+mks.enable3d = "FALSE"
+```
+
 
 
 ## 参考
@@ -33,3 +47,6 @@ $ sudo vmware-installer -u vmware-player
 - [VMware 16.2.3 not working on Ubuntu 22.04 LTS](https://communities.vmware.com/t5/VMware-Workstation-Pro/VMware-16-2-3-not-working-on-Ubuntu-22-04-LTS/td-p/2905535)
 - [Install VMware Workstation Player on Ubuntu 22.04 LTS](https://www.how2shout.com/linux/install-vmware-workstation-player-on-ubuntu-22-04-lts/)
 - [mkubecek/vmware-host-modules](https://github.com/mkubecek/vmware-host-modules)
+- [VM Crash 16.2.1 build-18811642](https://communities.vmware.com/t5/VMware-Workstation-Pro/VM-Crash-16-2-1-build-18811642/td-p/2877469)
+- [cant boot the vm anymore](https://communities.vmware.com/t5/VMware-Workstation-Pro/cant-boot-the-vm-anymore/td-p/2879014)
+- [VMware Workstation unrecoverable error: (mks) ISBRendererComm: Lost connection to mksSandbox (2878)" at end of disk shrink on Windows 10 host Fedora guest #561](https://github.com/vmware/open-vm-tools/issues/561)
