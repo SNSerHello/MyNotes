@@ -82,4 +82,12 @@ $ sudo rm -rf /var/lib/docker.old
 
 - [NVIDIA Support Matrix](https://docs.nvidia.com/deeplearning/frameworks/support-matrix/index.html)
 
-    
+- [Running PaddlePaddle](https://docs.nvidia.com/deeplearning/frameworks/paddle-paddle-release-notes/running.html#running)
+
+- [Running PyTorch](https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/running.html#running)
+
+- [Running TensorFlow](https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/running.html#running)
+
+- [Running NVIDIA Optimized Deep Learning Framework, powered by Apache MXNet](https://docs.nvidia.com/deeplearning/frameworks/mxnet-release-notes/running.html#running)
+
+  
