@@ -27,7 +27,7 @@ $ sudo vmware-installer -u vmware-player
 
 ## 在远程桌面中运行VMWare Player
 
-在远程桌面中运行VMWare会失败，大致的失败信息：`ISBRendererComm: Lost connection to mksSandbox (2878)`,从https://communities.vmware.com/的讨论中，有两种方法：
+在远程桌面中运行VMWare会失败，大致的失败信息：`ISBRendererComm: Lost connection to mksSandbox (2878)`,从[communities.vmware.com](https://communities.vmware.com)的讨论中，有两种方法：
 
 - 降级VMWare Player，比如说从16.x -> 15.5.6
 - 在xxx.vmx文件中增加`mks.sandbox.socketTimeoutMS = "200000"`
@@ -38,6 +38,8 @@ $ sudo vmware-installer -u vmware-player
 $ nano xxx.vmx
 mks.enable3d = "FALSE"
 ```
+
+上面的方法也可以在VMWare Player的图形界面中设置，个人根据自己爱好处理。
 
 
 
