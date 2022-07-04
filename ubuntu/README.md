@@ -26,6 +26,14 @@ $ sudo apt install ./backport-iwlwifi-dkms_8324-0ubuntu3~20.04.4_all.deb
 $ sudo reboot
 ```
 
+## Ubuntu Desktop Images
+
+- [ubuntu-22.04-desktop-amd64.iso](https://releases.ubuntu.com/22.04/ubuntu-22.04-desktop-amd64.iso)
+- [ubuntu-20.04.4-desktop-amd64.iso](https://releases.ubuntu.com/20.04/ubuntu-20.04.4-desktop-amd64.iso)
+- [ubuntu-18.04.6-desktop-amd64.iso](https://releases.ubuntu.com/18.04/ubuntu-18.04.6-desktop-amd64.iso)
+- [ubuntu-16.04.7-desktop-amd64.iso](https://releases.ubuntu.com/16.04/ubuntu-16.04.7-desktop-amd64.iso)
+- [ubuntu-14.04.6-desktop-amd64.iso](https://releases.ubuntu.com/14.04/ubuntu-14.04.6-desktop-amd64.iso)
+
 
 
 ## 参考
