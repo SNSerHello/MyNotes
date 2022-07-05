@@ -5,6 +5,7 @@ Theano曾经风靡一时，可惜后来因为大佬Yoshua Bengio进入谷歌后�
 ## 在Ubuntu20.04LTS中搭建theano环境
 
 ```
+$ sudo apt install libopenblas-dev
 $ conda env create --file py38-theano.yaml
 
 $ conda activate py38-theano
@@ -42,6 +43,9 @@ enabled = True
 library_path = /media/samba/anaconda3/envs/py38-theano/lib
 include_path = /media/samba/anaconda3/envs/py38-theano/include
 
+[blas]
+ldflags=-L/usr/lib/x86_64-linux-gnu -lopenblas -lpthread -lm
+
 [cuda]
 cuda = /media/samba/anaconda3/envs/py38-theano/bin
 
@@ -54,6 +58,7 @@ cnmem = 0.5
 ## 在Ubuntu18.04LTS中搭建theano环境
 
 ```
+$ sudo apt install libopenblas-dev
 $ conda env create --file py36-theano.yaml
 
 $ conda activate py36-theano
@@ -90,6 +95,9 @@ preallocate = 0
 enabled = True
 library_path = /media/samba/anaconda3/envs/py36-theano/lib
 include_path = /media/samba/anaconda3/envs/py36-theano/include
+
+[blas]
+ldflags=-L/usr/lib/x86_64-linux-gnu -lopenblas -lpthread -lm
 
 [cuda]
 cuda = /media/samba/anaconda3/envs/py36-theano/bin
