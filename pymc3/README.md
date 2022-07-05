@@ -38,6 +38,9 @@ enabled = True
 library_path = /media/samba/anaconda3/envs/py38-pymc3/lib
 include_path = /media/samba/anaconda3/envs/py38-pymc3/include
 
+[blas]
+ldflags=-L/usr/lib/x86_64-linux-gnu -lopenblas -lpthread -lm
+
 [cuda]
 cuda = /media/samba/anaconda3/envs/py38-pymc3/bin
 
