@@ -1,0 +1,33 @@
+[global]
+floatX = float32
+device = cuda
+optimizer_including = cudnn
+
+[gcc]
+cxxflags = -I/media/samba/anaconda3/envs/py36-theano/include -L/media/samba/anaconda3/envs/py36-theano/lib -L/media/samba/anaconda3/envs/py36-theano/lib64 -L/usr/lib/x86_64-linux-gnu -lrt -pthread -lresolv
+# cxxflags = -I/media/samba/anaconda3/envs/py38-theano/include -L/media/samba/anaconda3/envs/py38-theano/lib -L/usr/lib/x86_64-linux-gnu -lrt -pthread -lresolv
+# cxxflags = -I/media/samba/anaconda3/envs/py38-pymc3/include -L/media/samba/anaconda3/envs/py38-pymc3/lib -L/usr/lib/x86_64-linux-gnu -lrt -pthread -lresolv
+
+[gpuarray]
+preallocate = 0
+
+[dnn]
+enabled = True
+library_path = /media/samba/anaconda3/envs/py36-theano/lib
+include_path = /media/samba/anaconda3/envs/py36-theano/include
+# library_path = /media/samba/anaconda3/envs/py38-theano/lib
+# include_path = /media/samba/anaconda3/envs/py38-theano/include
+# library_path = /media/samba/anaconda3/envs/py38-pymc3/lib
+# include_path = /media/samba/anaconda3/envs/py38-pymc3/include
+
+[blas]
+ldflags=-L/usr/lib/x86_64-linux-gnu -lopenblas64 -lpthread -lm
+
+[cuda]
+cuda = /media/samba/anaconda3/envs/py36-theano/bin
+# cuda = /media/samba/anaconda3/envs/py38-theano/bin
+# cuda = /media/samba/anaconda3/envs/py38-pymc3/bin
+
+[lib]
+cnmem = 0.5
+

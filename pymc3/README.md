@@ -13,6 +13,8 @@ $ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.h
 文件内容如下：
 CUDA_HOME=$CONDA_PREFIX
 export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+rm ~/.theanorc
+cp ~/theanorc.pymc3 ~/.theanorc
 $ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
 $ nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.h
 文件内容如下：
