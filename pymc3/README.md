@@ -3,7 +3,9 @@
 ## Ubuntu20.04LTS
 
 ```
+$ sudo apt install libopenblas-dev
 $ conda env create --file py38-pymc3.yaml
+
 # 配置py38-pymc3环境变量
 $ conda activate py38-pymc3
 $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
