@@ -47,6 +47,53 @@ cnmem = 0.5
 
 
 
+## 检查pymc3环境
+
+```
+import os
+import arviz as az
+import bambi
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import pymc3 as pm
+import theano
+import xarray as xr
+from numpy.random import default_rng
+
+print(f"Running on PyMC3 v{pm.__version__}")
+
+# %config InlineBackend.figure_format = 'retina'
+# Initialize random number generator
+RANDOM_SEED = 8927
+rng = default_rng(RANDOM_SEED)
+az.style.use("arviz-darkgrid")
+
+size = 50
+true_intercept = 1
+true_slope = 2
+x = np.linspace(0, 1, size)
+y = true_intercept + x * true_slope + rng.normal(scale=0.5, size=size)
+data = pd.DataFrame({"x": x, "y": y})
+
+model = bambi.Model("y ~ x", data)
+fitted = model.fit(draws=1000)
+
+x_axis = xr.DataArray(np.linspace(0, 1, num=100), dims=["x_plot"])
+mu_pred = fitted.posterior["Intercept"] + fitted.posterior["x"] * x_axis
+mu_mean = mu_pred.mean(dim=("chain", "draw"))
+mu_plot = mu_pred.stack(sample=("chain", "draw"))
+random_subset = rng.permutation(np.arange(len(mu_plot.sample)))[:200]
+plt.scatter(x, y)
+plt.plot(x_axis, mu_plot.isel(sample=random_subset), color="black", alpha=0.025)
+plt.plot(x_axis, mu_mean, color="C1")
+plt.show()
+```
+
+
+
+
+
 ## 参考
 
 - [theano README](https://github.com/SNSerHello/MyNotes/tree/main/theano)
