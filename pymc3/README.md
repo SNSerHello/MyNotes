@@ -98,7 +98,7 @@ plt.plot(x_axis, mu_mean, color="C1")
 plt.show()
 ```
 
-![pymc3测试结果图](X:\Figure_1.png)
+![pymc3测试结果图](./pymc3测试结果图.png)
 
 ## pymc3 GPU加速问题解决列表
 
