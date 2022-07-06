@@ -98,6 +98,19 @@ plt.plot(x_axis, mu_mean, color="C1")
 plt.show()
 ```
 
+## pymc3 GPU加速问题解决列表
+
+- theano/gpuarray/\_\_init\_\_.py
+    解决：AttributeError: module 'theano.gpuarray.optdb' has no attribute 'add_tags'
+- theano/gpuarray/opt.py
+    解决：TypeError: local_gpua_elemwise() missing 1 required positional argument: 'outputs'
+- theano/gpuarray/opt.py
+    解决：TypeError: object of type 'generator' has no len()
+- theano/link/c/basic.py
+    解决：TypeError: ('The following error happened while compiling the node', GpuElemwise{exp,no_inplace}(<GpuArrayType<None>(float32, vector)>), '\n', "__hide() got an unexpected keyword argument 'c_compiler'")
+- theano/tensor/opt.py
+    解决：AttributeError: 'pygpu.gpuarray.GpuArray' object has no attribute 'flatten'
+
 
 
 
