@@ -98,6 +98,8 @@ plt.plot(x_axis, mu_mean, color="C1")
 plt.show()
 ```
 
+![pymc3测试结果图](X:\Figure_1.png)
+
 ## pymc3 GPU加速问题解决列表
 
 1. `theano/gpuarray/__init__.py`
