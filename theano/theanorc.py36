@@ -24,9 +24,12 @@ include_path = /media/samba/anaconda3/envs/py36-theano/include
 ldflags=-L/usr/lib/x86_64-linux-gnu -lopenblas64 -lpthread -lm
 
 [cuda]
-cuda = /media/samba/anaconda3/envs/py36-theano/bin
-# cuda = /media/samba/anaconda3/envs/py38-theano/bin
-# cuda = /media/samba/anaconda3/envs/py38-pymc3/bin
+root = /media/samba/anaconda3/envs/py36-theano
+include_path = /media/samba/anaconda3/envs/py36-theano/include
+# root = /media/samba/anaconda3/envs/py38-theano
+# include_path = /media/samba/anaconda3/envs/py38-theano/include
+# root = /media/samba/anaconda3/envs/py38-pymc3
+# include_path = /media/samba/anaconda3/envs/py38-pymc3/include
 
 [lib]
 cnmem = 0.5

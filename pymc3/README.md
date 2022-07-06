@@ -46,7 +46,8 @@ include_path = /media/samba/anaconda3/envs/py38-pymc3/include
 ldflags=-L/usr/lib/x86_64-linux-gnu -lopenblas -lpthread -lm
 
 [cuda]
-cuda = /media/samba/anaconda3/envs/py38-pymc3/bin
+root = /media/samba/anaconda3/envs/py38-pymc3
+include_path = /media/samba/anaconda3/envs/py38-pymc3/include
 
 [lib]
 cnmem = 0.5
