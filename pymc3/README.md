@@ -100,18 +100,60 @@ plt.show()
 
 ## pymc3 GPU加速问题解决列表
 
-- theano/gpuarray/\_\_init\_\_.py
-    解决：AttributeError: module 'theano.gpuarray.optdb' has no attribute 'add_tags'
-- theano/gpuarray/opt.py
+1. `theano/gpuarray/__init__.py`
+    解决：AttributeError: module 'theano.gpuarray.optdb' has no attribute 'add_tags'. `theano/gnuarray/optdb.py`与`theano.compile.optdb`在环境中被`import`混乱了，所以采用清晰的方法来使用，即`theano.compile.optdb`
+2. `theano/gpuarray/opt.py`
     解决：TypeError: local_gpua_elemwise() missing 1 required positional argument: 'outputs'
-- theano/gpuarray/opt.py
+3. `theano/gpuarray/opt.py`
     解决：TypeError: object of type 'generator' has no len()
-- theano/link/c/basic.py
+4. `theano/link/c/basic.py`
     解决：TypeError: ('The following error happened while compiling the node', GpuElemwise{exp,no_inplace}(<GpuArrayType<None>(float32, vector)>), '\n', "__hide() got an unexpected keyword argument 'c_compiler'")
-- theano/tensor/opt.py
+5. `theano/tensor/opt.py`
     解决：AttributeError: 'pygpu.gpuarray.GpuArray' object has no attribute 'flatten'
 
+**补充**：当前的问题是`GpuElemwise`中的方法没有在GPU中被实现，需要后继继续修改，当前的`workaround`的方法是`device = cpu`，暂时使用CPU方案。
 
+**CUDA运行出错样例**
+
+```
+from theano import function, config, shared, tensor as tt
+import numpy
+import time
+
+vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
+iters = 1000
+
+rng = numpy.random.RandomState(22)
+x = shared(numpy.asarray(rng.rand(vlen), config.floatX))
+f = function([], tt.exp(x))
+print(f.maker.fgraph.toposort())
+t0 = time.time()
+for i in range(iters):
+    r = f()
+t1 = time.time()
+print("Looping %d times took %f seconds" % (iters, t1 - t0))
+print("Result is %s" % (r,))
+if numpy.any(
+    [
+        isinstance(x.op, tt.elemwise.Elemwise) and ("Gpu" not in type(x.op).__name__)
+        for x in f.maker.fgraph.toposort()
+    ]
+):
+    print("Used the cpu")
+else:
+    print("Used the gpu")
+
+运行错误信息
+[GpuElemwise{exp,no_inplace}(<GpuArrayType<None>(float32, vector)>), HostFromGpu(gpuarray)(GpuElemwise{exp,no_inplace}.0)]
+NotImplementedError: No Python implementation is provided by this Op.
+Apply node that caused the error: GpuElemwise{exp,no_inplace}(<GpuArrayType<None>(float32, vector)>)
+Toposort index: 0
+Inputs types: [GpuArrayType<None>(float32, vector)]
+Inputs shapes: [(230400,)]
+Inputs strides: [(4,)]
+Inputs values: ['not shown']
+Outputs clients: [[HostFromGpu(gpuarray)(GpuElemwise{exp,no_inplace}.0)]]
+```
 
 
 
