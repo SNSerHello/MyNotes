@@ -1,0 +1,39 @@
+name: py38-pymc3
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - conda-build
+  - llvmdev=10.0
+  - git
+  - numpy
+  - pytest
+  - cython
+  - cmake
+  - bzip2
+  - make
+  - scipy
+  - pillow
+  - cudatoolkit=10.2
+  - cudnn=7.6
+  - theano
+  - theano-pymc
+  - pymc3
+  - graphviz
+  - xarray=0.16
+  - pyqt5
+  - bambi=0.7
+  - arviz=0.11
+  - typing-extensions=3.10
+  - ipython
+  - pip
+  - python=3.8
+  - black
+  - opencv
+  - matplotlib
+  - pandas
+  - mkl
