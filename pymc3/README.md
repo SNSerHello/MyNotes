@@ -9,14 +9,14 @@ $ conda env create --file py38-pymc3.yaml
 # 配置py38-pymc3环境变量
 $ conda activate py38-pymc3
 $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
-$ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.h
+$ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 文件内容如下：
 CUDA_HOME=$CONDA_PREFIX
 export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
 rm ~/.theanorc
 cp ~/theanorc.pymc3 ~/.theanorc
 $ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
-$ nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.h
+$ nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
 文件内容如下：
 export LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | cut -d : -f 2-`
 $ conda deactivate
