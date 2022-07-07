@@ -144,8 +144,11 @@ if numpy.any(
     print("Used the cpu")
 else:
     print("Used the gpu")
+```
 
-运行错误信息
+**运行错误信息**
+
+```
 [GpuElemwise{exp,no_inplace}(<GpuArrayType<None>(float32, vector)>), HostFromGpu(gpuarray)(GpuElemwise{exp,no_inplace}.0)]
 NotImplementedError: No Python implementation is provided by this Op.
 Apply node that caused the error: GpuElemwise{exp,no_inplace}(<GpuArrayType<None>(float32, vector)>)
