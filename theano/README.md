@@ -114,6 +114,56 @@ cnmem = 0.5
 
 在Ubuntu20.04LTS推荐使用python3.8+cuda11.3+cudnn8.2搭建环境，在Ubuntu18.04LTS推荐使用python3.6+cuda9.2+cudnn7.1搭建环境，这个不是必须的，我们可以在Ubuntu20.04LTS上使用python3.6+其他的搭配方法。如果Ubuntu上的GCC的版本比较高的话，我们可以使用Anaconda的toolchain来搭建编译环境，详见 [Anaconda3 README](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)。
 
+## 在Windows中搭建theano环境
+
+**前提条件**
+
+- `cuda_10.2.89_441.22_windows.exe`被安装到`G:\CUDAv10.2`
+- `Anaconda3-2020.11-Windows-x86_64.exe`被安装到`G:\Anaconda3`
+- `OpenBLAS`被安装到`C:\OpenBLAS`
+
+**安装py38-theano**
+
+```
+$ conda env create --file py38-theano-win.yaml
+$ cd G:\Anaconda3\envs\py38-theano\Library\bin
+$ ln -s nvrtc64_102_0.dll nvrtc64_70.dll
+$ ln -s cublas64_10.dll cublas64_70.dll
+```
+
+**.theanrc配置**
+
+```
+[global]
+floatX = float32
+device = cuda
+optimizer_including = cudnn
+
+[cuda]
+root = G:\CUDAv10.2\bin
+include_path = G:\CUDAv10.2\include
+
+[blas]
+ldflags = -LC:\OpenBLAS\bin -lopenblas -lpthread -lm
+
+[gpuarray]
+preallocate = 0
+
+[gcc]
+cxxflags = -IG:\CUDAv10.2\include -IG:\Anaconda3\envs\py38-theano\Library\include -IC:\OpenBLAS\include -LG:\Anaconda3\envs\py38-theano\Library\lib\x64 -LC:\OpenBLAS\lib
+
+[nvcc]
+flags = -LG:\Anaconda3\envs\py38-theano\Library\lib\x64 --machine=64
+
+[dnn]
+enabled = True
+library_path = G:\Anaconda3\envs\py38-theano\Library\lib\x64
+include_path = G:\Anaconda3\envs\py38-theano\Library\include
+
+[lib]
+cnmem = 0.5
+```
+
 ## 检查theano.config配置
 
 theano解析.theanorc后会存放到`theano.config`中，我们可以查看`theano.config`来检查配置是否正确，如下：
