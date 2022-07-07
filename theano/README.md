@@ -798,6 +798,9 @@ from theano import function, config, shared, tensor as tt
 import numpy
 import time
 
+import theano
+print("theano version: {}".format(theano.__version__))
+
 vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
 iters = 1000
 
