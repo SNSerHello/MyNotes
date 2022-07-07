@@ -1,0 +1,32 @@
+name: py38-theano
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - conda-build
+  - llvmdev=10.0
+  - git
+  - numpy
+  - pytest
+  - cython
+  - cmake
+  - bzip2
+  - make
+  - scipy
+  - pillow
+  - cudatoolkit-dev=11.3
+  - cudnn
+  - libgpuarray
+  - ipython
+  - pip
+  - python=3.8
+  - black
+  - opencv
+  - matplotlib
+  - pandas
+  - theano
+  - mkl
