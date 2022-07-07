@@ -8,7 +8,7 @@ channels:
 # The packages to install to the environment
 dependencies:
   - conda-build
-  - llvmdev=10.0
+  - llvmdev=11.0
   - git
   - numpy=1.21
   - pytest
