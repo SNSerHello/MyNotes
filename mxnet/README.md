@@ -94,7 +94,7 @@ mx.runtime.feature_list()
 
 ## 问题排查
 
-**问题1**
+### 问题1
 
 ```
 FileNotFoundError: Could not find module '%CONDA_PREFIX%\lib\site-packages\mxnet\libmxnet.dll' (or one of its dependencies). Try using the full path with constructor syntax.
@@ -112,6 +112,18 @@ $ cp %CONDA_PREFIX%\Library\bin\cudart64_102.dll %CONDA_PREFIX%\lib\site-package
 import os
 os.add_dll_directory(r'{}\Library\bin'.format(os.environ['CONDA_PREFIX']))
 import mxnet as mx
+```
+
+### 问题2
+
+在Windows下，`import mxnet`后无法退出。
+
+**解决方法**：在运行文件最后加入如下一段代码
+
+```
+import os, signal
+if os.sys.platform.startswith("win"):
+    os.kill(os.getpid(), signal.SIGTERM)
 ```
 
 
