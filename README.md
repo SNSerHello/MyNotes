@@ -23,3 +23,14 @@ Notes描述[pymc3](https://github.com/SNSerHello/MyNotes/tree/main/pymc3)的一�
 
 Notes描述[VMWare](https://github.com/SNSerHello/MyNotes/tree/main/vmware)的一些常见的方法。
 
+## [Mxnet](https://github.com/SNSerHello/MyNotes/tree/main/mxnet)
+
+Notes描述[Mxnet](https://github.com/SNSerHello/MyNotes/tree/main/mxnet)的一些常见的方法。
+
+## [Paddle](https://github.com/SNSerHello/MyNotes/tree/main/paddle)
+
+Notes描述[Paddle](https://github.com/SNSerHello/MyNotes/tree/main/paddle)的一些常见的方法。
+
+## [TVM](https://github.com/SNSerHello/MyNotes/tree/main/tvm)
+
+Notes描述[TVM](https://github.com/SNSerHello/MyNotes/tree/main/tvm)的一些常见的方法。
