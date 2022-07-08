@@ -66,3 +66,4 @@ $ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
 
 - [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)
 - [PaddlePaddle/Paddle-Lite](https://github.com/PaddlePaddle/Paddle-Lite)
+- [PaddlePaddle Docker Images](https://hub.docker.com/r/paddlepaddle/paddle/tags)
