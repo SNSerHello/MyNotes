@@ -22,6 +22,46 @@ import paddle
 paddle.utils.run_check()
 ```
 
+## PaddlePaddle Docker Images
+
+### v2.3.1-gpu-cuda11.2-cudnn8
+
+```
+$ sudo docker pull paddlepaddle/paddle:2.3.1-gpu-cuda11.2-cudnn8
+```
+
+### v2.3.1-gpu-cuda10.2-cudnn7
+
+```
+$ sudo docker pull paddlepaddle/paddle:2.3.1-gpu-cuda10.2-cudnn7
+```
+
+### v2.3.0-gpu-cuda11.2-cudnn8
+
+```
+$ sudo docker pull paddlepaddle/paddle:2.3.0-gpu-cuda11.2-cudnn8
+```
+
+### v2.3.0-gpu-cuda10.2-cudnn7
+
+```
+$ sudo docker pull paddlepaddle/paddle:2.3.0-gpu-cuda10.2-cudnn7
+```
+
+### v2.2.2-gpu-cuda11.2-cudnn8
+
+```
+$ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
+```
+
+### v2.2.2-gpu-cuda10.2-cudnn7
+
+```
+$ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
+```
+
+
+
 ## 参考
 
 - [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)
