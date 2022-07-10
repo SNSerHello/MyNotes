@@ -75,6 +75,8 @@ $ cp %CONDA_PREFIX%\Library\bin\cudnn64_7.dll %CONDA_PREFIX%\Lib\site-packages\o
 $ cp %CONDA_PREFIX%\Library\bin\cudart64_102.dll %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\cudart64_110.dll
 ```
 
+上面方法是拷贝相关文件到onnxruntime的dll目录中去，这样不会造成dll文件的污染。另外一种方法是在`%CONDA_PREFIX%\Library\bin`目录下面拷贝并重命名相关文件，即使日后onnxruntime更新后，也无需做此工作。从笔者的理解来看，如果出现这些情况，那么最好的方法是使用Anaconda3搭建`CUDA11.X+CUDNN8.X`环境来完成运行onnxruntime，而不是在`CUDA10.2+CUDNN7.6`的环境上修修补补，造成日后环境的认为复杂性，一旦出现问题，很难搞清楚是哪方面的问题。
+
 
 
 ## 参考
