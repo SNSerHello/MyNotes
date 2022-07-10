@@ -70,7 +70,9 @@ File Type: DLL
 现在我们的环境是`CUDA10.2+CUDNN7.6`，所以需要进行一定的修改才能运行
 
 ```
-
+$ cp %CONDA_PREFIX%\Library\bin\cublas64_10.dll %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\cublas64_11.dll
+$ cp %CONDA_PREFIX%\Library\bin\cudnn64_7.dll %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\cudnn64_8.dll
+$ cp %CONDA_PREFIX%\Library\bin\cudart64_102.dll %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\cudart64_110.dll
 ```
 
 
