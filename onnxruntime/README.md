@@ -81,5 +81,6 @@ $ cp %CONDA_PREFIX%\Library\bin\cudart64_102.dll %CONDA_PREFIX%\Lib\site-package
 
 ## 参考
 
+- [anaconda3](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)
 - [py38-cu102](https://github.com/SNSerHello/MyNotes/blob/main/anaconda3/py38-cu102.yaml)
 - [py38-cu113](https://github.com/SNSerHello/MyNotes/blob/main/anaconda3/py38-cu113.yaml)
