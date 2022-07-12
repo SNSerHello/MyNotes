@@ -5,7 +5,20 @@
 ### 1. 安装GCC v7版本
 
 ```bash
-sudo apt install libgcc-7-dev gcc-7 g++-7 gcc-7-locales g++-7-multilib gcc-7-doc gcc-7-multilib libstdc++-7-doc lib32stdc++6-7-dbg libx32stdc++6-7-dbg gfortran-7 libgfortran-7-dev gfortran-7-multilib gfortran-7-doc
+sudo apt install libgcc-7-dev \
+	gcc-7 \
+	g++-7 \
+	gcc-7-locales \
+	g++-7-multilib \
+	gcc-7-doc \
+	gcc-7-multilib \
+	libstdc++-7-doc \
+	lib32stdc++6-7-dbg \
+	libx32stdc++6-7-dbg \
+	gfortran-7 \
+	libgfortran-7-dev \
+	gfortran-7-multilib \
+	gfortran-7-doc
 ```
 
 ### 2. update-alternatives不同的GCC版本
