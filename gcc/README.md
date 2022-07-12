@@ -103,7 +103,7 @@ sudo update-alternatives --set x86_64-linux-gnu-cpp /usr/bin/x86_64-linux-gnu-cp
 
 #### 设置安装的GCC最高版本
 
-```
+```bash
 sudo update-alternatives --auto gcc
 sudo update-alternatives --auto g++
 sudo update-alternatives --auto cpp
