@@ -3,6 +3,10 @@
 
 Notes描述[Ubuntu](https://github.com/SNSerHello/MyNotes/tree/main/ubuntu)的一些常见的方法。
 
+## [GCC](https://github.com/SNSerHello/MyNotes/tree/main/gcc)
+
+Notes描述[GCC](https://github.com/SNSerHello/MyNotes/tree/main/gcc)的一些常见的方法。
+
 ## [Anaconda3](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)
 
 Notes描述[Anaconda3](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)的一些常见的方法。
