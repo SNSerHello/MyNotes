@@ -140,7 +140,7 @@ $ conda activate python3.8/7/6
 **如何安装？**
 
 ```
-$ conda install gcc_linux-64 gxx_linux-64
+$ conda install gcc_linux-64 gxx_linux-64 gfortran_linux-64 -c ananconda
 ```
 
 对于gcc/clang版本较高的系统，我们可以使用anaconda的toolchain来降低对于的版本达到所需兼容性，反之亦然。
