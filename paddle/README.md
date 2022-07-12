@@ -60,6 +60,18 @@ $ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
 $ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
 ```
 
+## PaddlePaddle编译
+
+### Anaconda3环境
+
+使用[py37-paddle-dev](https://github.com/SNSerHello/MyNotes/blob/main/paddle/py37-paddle-dev.yaml)可以搭建PaddlePaddle-GPU编译环境（CUDA10.1+CUDNN7.6，请参考：[Paddle-Lite](https://github.com/SNSerHello/Paddle-Lite)）部分，[py37-paddle](https://github.com/SNSerHello/MyNotes/blob/main/paddle/py37-paddle.yaml)搭建的环境可以安装官方发布的PaddlePaddle-GPU（CUDA10.2+CUDNN7.6）。因为没有`cudatoolkit-dev=10.2`，采用`cudatoolkit=10.2`后缺乏编译环境，所以无法编译。
+
+### Docker环境
+
+```
+$ sudo nvidia-docker run --rm -itv your_path/Paddle:/workspace -w /workspace paddlepaddle/paddle:2.3.1-gpu-cuda10.2-cudnn7 /bin/bash
+```
+
 
 
 ## 参考
