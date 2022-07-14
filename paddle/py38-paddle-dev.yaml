@@ -1,0 +1,35 @@
+name: py38-paddle-dev
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - conda-build
+  - git
+  - llvmdev==10.0
+  - numpy
+  - pytest
+  - cython
+  - cmake
+  - bzip2
+  - make
+  - scipy
+  - pillow
+  - cudatoolkit-dev=11.3
+  - cudnn
+  - nccl
+  - ipython
+  - pip
+  - python=3.8
+  - black
+  - opencv
+  - matplotlib
+  - pandas
+  - mkl
+  - protobuf
+#  - gcc_linux-64=7.5
+#  - gxx_linux-64=7.5
+#  - gfortran_linux-64=7.5
