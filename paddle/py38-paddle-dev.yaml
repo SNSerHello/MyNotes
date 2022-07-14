@@ -19,7 +19,7 @@ dependencies:
   - scipy
   - pillow
   - cudatoolkit-dev=11.3
-  - cudnn
+  - cudnn=8.2
   - nccl
   - ipython
   - pip
