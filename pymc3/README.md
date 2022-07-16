@@ -2,7 +2,7 @@
 
 ## Ubuntu20.04LTS
 
-```
+```bash
 $ sudo apt install libopenblas-dev
 $ conda env create --file py38-pymc3.yaml
 
@@ -11,8 +11,8 @@ $ conda activate py38-pymc3
 $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 $ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 文件内容如下：
-CUDA_HOME=$CONDA_PREFIX
-export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+export CUDA_ROOT=$CONDA_PREFIX
+export LD_LIBRARY_PATH=$CUDA_ROOT/lib:$LD_LIBRARY_PATH
 rm ~/.theanorc
 cp ~/theanorc.pymc3 ~/.theanorc
 $ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
@@ -63,7 +63,7 @@ cnmem = 0.5
 
 **安装py38-pymc3**
 
-```
+```bash
 $ conda env create --file py38-pymc3-win.yaml
 $ cd G:\Anaconda3\envs\py38-pymc3\Library\bin
 $ ln -s nvrtc64_102_0.dll nvrtc64_70.dll
@@ -105,7 +105,7 @@ cnmem = 0.5
 
 ## 检查pymc3环境
 
-```
+```python
 import os
 import arviz as az
 import bambi
@@ -165,7 +165,7 @@ plt.show()
 
 **CUDA运行出错样例**
 
-```
+```python
 from theano import function, config, shared, tensor as tt
 import numpy
 import time
