@@ -4,7 +4,7 @@
 
 安装好VMWare Player后需要安装它的模块配置软件，默认的方法会失败，看上去是因为Ubuntu22.04LTS太新，相关的配置文件比较就的原因，所以需要手工的安装，如下所示：
 
-```
+```bash
 $ sudo apt update
 $ sudo apt install build-essential
 $ sudo sh VMware-Player-Full-16.2.3-19376536.x86_64.bundle
@@ -21,7 +21,7 @@ $ sudo vmware-modconfig --console --install-all
 
 ## 如何卸载VMWare Player？
 
-```
+```bash
 $ sudo vmware-installer -u vmware-player
 ```
 
@@ -34,7 +34,7 @@ $ sudo vmware-installer -u vmware-player
 
 对于第一种方法，笔者没有验证，因为总有一个版本可以运行，并且不断尝试的时间代价很大。对于第二种方法，笔者尝试了一下，没有成功。从错误信息的，笔者猜想可能是3D Graphic的原因，所以将它disable后即可运行，如下所示：
 
-```
+```bash
 $ nano 你的虚拟机.vmx
 mks.enable3d = "FALSE"
 ```
