@@ -165,7 +165,7 @@ x86_64-linux-gnu-cpp --version
 
 #### 安装GCC v8
 
-```
+```bash
 sudo apt install gcc-8 \
 	g++-8 \
 	libstdc++-8-dev \
@@ -187,7 +187,7 @@ sudo apt install gcc-8 \
 
 #### update-alternatives for GCC v8
 
-```
+```bash
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 840
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 840
 sudo update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-8 840
@@ -211,7 +211,7 @@ sudo update-alternatives --install /usr/bin/x86_64-linux-gnu-cpp x86_64-linux-gn
 
 ### 设置GCC v8
 
-```
+```bash
 sudo update-alternatives --set gcc /usr/bin/gcc-8
 sudo update-alternatives --set g++ /usr/bin/g++-8
 sudo update-alternatives --set cpp /usr/bin/cpp-8
