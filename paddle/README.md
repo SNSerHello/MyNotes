@@ -4,7 +4,7 @@
 
 ## PaddlePaddle环境搭建
 
-```
+```bash
 $ conda env create --file py37-paddle.yaml
 $ conda activate py37-paddle
 $ pip3 install --upgrade paddlepaddle-gpu paddlelite
@@ -17,7 +17,7 @@ $ pip3 install --upgrade paddlepaddle-gpu paddlelite
 
 ## 检查PaddlePaddle环境
 
-```
+```python
 import paddle
 paddle.utils.run_check()
 ```
@@ -26,37 +26,37 @@ paddle.utils.run_check()
 
 ### v2.3.1-gpu-cuda11.2-cudnn8
 
-```
+```bash
 $ sudo docker pull paddlepaddle/paddle:2.3.1-gpu-cuda11.2-cudnn8
 ```
 
 ### v2.3.1-gpu-cuda10.2-cudnn7
 
-```
+```bash
 $ sudo docker pull paddlepaddle/paddle:2.3.1-gpu-cuda10.2-cudnn7
 ```
 
 ### v2.3.0-gpu-cuda11.2-cudnn8
 
-```
+```bash
 $ sudo docker pull paddlepaddle/paddle:2.3.0-gpu-cuda11.2-cudnn8
 ```
 
 ### v2.3.0-gpu-cuda10.2-cudnn7
 
-```
+```bash
 $ sudo docker pull paddlepaddle/paddle:2.3.0-gpu-cuda10.2-cudnn7
 ```
 
 ### v2.2.2-gpu-cuda11.2-cudnn8
 
-```
+```bash
 $ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
 ```
 
 ### v2.2.2-gpu-cuda10.2-cudnn7
 
-```
+```bash
 $ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
 ```
 
@@ -68,8 +68,12 @@ $ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
 
 ### Docker环境
 
-```
-$ sudo nvidia-docker run --rm -itv your_path/Paddle:/workspace -w /workspace paddlepaddle/paddle:2.3.1-gpu-cuda10.2-cudnn7 /bin/bash
+```bash
+$ sudo nvidia-docker run --rm \
+	-itv your_path/Paddle:/workspace \
+	-w /workspace \
+	paddlepaddle/paddle:2.3.1-gpu-cuda10.2-cudnn7 \
+	/bin/bash
 ```
 
 
