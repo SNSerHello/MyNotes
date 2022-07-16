@@ -4,7 +4,7 @@ Theano曾经风靡一时，可惜后来因为大佬Yoshua Bengio进入谷歌后�
 
 ## 在Ubuntu20.04LTS中搭建theano环境
 
-```
+```bash
 $ sudo apt install libopenblas-dev
 $ conda env create --file py38-theano.yaml
 
@@ -12,8 +12,8 @@ $ conda activate py38-theano
 $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 $ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 文件内容如下：
-CUDA_HOME=$CONDA_PREFIX
-export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+export CUDA_ROOT=$CONDA_PREFIX
+export LD_LIBRARY_PATH=$CUDA_ROOT/lib:$LD_LIBRARY_PATH
 rm ~/.theanorc
 cp ~/theanorc.py38 ~/.theanorc
 $ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
@@ -60,7 +60,7 @@ cnmem = 0.5
 
 ## 在Ubuntu18.04LTS中搭建theano环境
 
-```
+```bash
 $ sudo apt install libopenblas-dev
 $ conda env create --file py36-theano.yaml
 
@@ -68,8 +68,8 @@ $ conda activate py36-theano
 $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 $ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.h
 文件内容如下：
-CUDA_HOME=$CONDA_PREFIX
-export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+export CUDA_ROOT=$CONDA_PREFIX
+export LD_LIBRARY_PATH=$CUDA_ROOT/lib:$LD_LIBRARY_PATH
 rm ~/.theanorc
 cp ~/theanorc.py36 ~/.theanorc
 $ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
@@ -124,7 +124,7 @@ cnmem = 0.5
 
 **安装py38-theano**
 
-```
+```bash
 $ conda env create --file py38-theano-win.yaml
 $ cd G:\Anaconda3\envs\py38-theano\Library\bin
 $ ln -s nvrtc64_102_0.dll nvrtc64_70.dll
@@ -168,7 +168,7 @@ cnmem = 0.5
 
 theano解析.theanorc后会存放到`theano.config`中，我们可以查看`theano.config`来检查配置是否正确，如下：
 
-```
+```python
 $ conda activate py38-theano
 (py38-theano) $ ipython
 Python 3.8.13 (default, Mar 28 2022, 11:38:47)
@@ -793,7 +793,7 @@ ctc.root (<class 'str'>)
 
 ## 检查theano环境
 
-```
+```python
 from theano import function, config, shared, tensor as tt
 import numpy
 import time
