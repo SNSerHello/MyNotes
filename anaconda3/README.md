@@ -2,7 +2,7 @@
 
 ## 安装Anaconda3
 
-```
+```bash
 $ wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
 $ ./Anaconda3-2020.11-Linux-x86_64.sh
 $ conda activate base
@@ -14,7 +14,7 @@ $ conda update anaconda
 
 ## 搭建python3.8+cuda11.3环境
 
-```
+```bash
 $ conda env create --file py38-cu113.yaml
 ```
 
@@ -22,7 +22,7 @@ $ conda env create --file py38-cu113.yaml
 
 ## 搭建python3.8+cuda10.2环境
 
-```
+```bash
 $ conda env create --file py38-cu102.yaml
 ```
 
@@ -30,13 +30,13 @@ $ conda env create --file py38-cu102.yaml
 
 ## 在Anaconda3中配置不同的CUDA环境
 
-```
+```bash
 $ conda activate 你的环境名
 $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 $ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.h
 文件内容如下：
-CUDA_HOME=$CONDA_PREFIX
-export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+export CUDA_ROOT=$CONDA_PREFIX
+export LD_LIBRARY_PATH=$CUDA_ROOT/lib:$LD_LIBRARY_PATH
 $ mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
 $ nano $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.h
 文件内容如下：
@@ -51,7 +51,7 @@ export LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | cut -d : -f 2-`
 
 ### a) Ubuntu20.04LTS
 
-```
+```bash
 $ conda env create --file py38-theano.yaml
 ```
 
@@ -83,7 +83,7 @@ cnmem = 0.5
 
 ### a) Ubuntu18.04LTS
 
-```
+```bash
 $ conda env create --file py36-theano.yaml
 ```
 
@@ -117,7 +117,7 @@ cnmem = 0.5
 
 针对python3.6，python3.7，python3.8的不同编译需求，笔者专门制作了一个docker的Anaconda3编译环境，可以编译TVM, PaddlePaddle等。cmake, make等常用的编译工具已经内在在这些选择中，进入后按照正常的方式即可对source codes进行编译。
 
-```
+```bash
 $ sudo docker login
 $ sudo docker pull snser/anaconda3
 $ sudo docker run --rm -itv your_path:/workspace -w /workspace snser/anaconda3 /bin/bash
@@ -139,7 +139,7 @@ $ conda activate python3.8/7/6
 
 **如何安装？**
 
-```
+```bash
 $ conda install gcc_linux-64 gxx_linux-64 gfortran_linux-64 -c ananconda
 ```
 
