@@ -2,7 +2,7 @@
 
 ## Windows
 
-```
+```bash
 $ conda activate py38-cu102
 $ pip3 install --upgrade onnxruntime
 ```
@@ -11,7 +11,7 @@ $ pip3 install --upgrade onnxruntime
 
 ### 如何解决？
 
-```
+```bash
 $ conda activate py38-cu102
 # 假设环境中已经安装了VS2017
 $ "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017\Visual Studio Tools\VC\x64 Native Tools Command Prompt for VS 2017.lnk"
@@ -20,7 +20,7 @@ $ dumpbin /dependents %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\onnxrunt
 
 **运行结果**
 
-```
+```bash
 Microsoft (R) COFF/PE Dumper Version 14.16.27048.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
@@ -69,7 +69,7 @@ File Type: DLL
 
 现在我们的环境是`CUDA10.2+CUDNN7.6`，所以需要进行一定的修改才能运行
 
-```
+```bash
 $ cp %CONDA_PREFIX%\Library\bin\cublas64_10.dll %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\cublas64_11.dll
 $ cp %CONDA_PREFIX%\Library\bin\cudnn64_7.dll %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\cudnn64_8.dll
 $ cp %CONDA_PREFIX%\Library\bin\cudart64_102.dll %CONDA_PREFIX%\Lib\site-packages\onnxruntime\capi\cudart64_110.dll
