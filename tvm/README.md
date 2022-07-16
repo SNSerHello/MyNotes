@@ -2,7 +2,7 @@
 
 ## Ubuntu20.04LTS
 
-```
+```bash
 $ conda env create --file py38-tvm.yaml
 ```
 
