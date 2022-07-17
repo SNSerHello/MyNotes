@@ -1,6 +1,6 @@
 # BLAS笔记
 
-**BLAS**是Basic Linear Algebra Subprograms的缩写，即基本线性代数子程序，简介可以参考：https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms。它的函数分成3个levels，即
+**BLAS**是Basic Linear Algebra Subprograms的缩写，即基本线性代数子程序，简介可以参考：[Wiki BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)。它的函数分成3个levels，即
 
 - **Level1** (vector - vector)，计算y的线性代数表达式为：
   $$y \leftarrow \alpha x + y$$
