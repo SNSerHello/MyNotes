@@ -3,12 +3,12 @@
 ## Blas基本概念
 
 | **Level 1** | Vector operations, e.g. ![y = \alpha x + y](https://www.gnu.org/software/gsl/doc/html/_images/math/3a4ee7e5f509b73b93a60ae89de7ec45b5153ccb.png) |
-| ----------- | ------------------------------------------------------------ |
+| ----------- | :----------------------------------------------------------- |
 | **Level 2** | Matrix-vector operations, e.g. ![y = \alpha A x + \beta y](https://www.gnu.org/software/gsl/doc/html/_images/math/49298dd474df9a1f79945837753810102ec29708.png) |
 | **Level 3** | Matrix-matrix operations, e.g. ![C = \alpha A B + C](https://www.gnu.org/software/gsl/doc/html/_images/math/4d080773fb8002612a41ccb9d90f682c34cf0255.png) |
 
 | **DOT**  | scalar product, ![x^T y](https://www.gnu.org/software/gsl/doc/html/_images/math/ee24d7173f7f14b9fd8884785facae1b663a4521.png) |
-| -------- | ------------------------------------------------------------ |
+| -------- | :----------------------------------------------------------- |
 | **AXPY** | vector sum, ![\alpha x + y](https://www.gnu.org/software/gsl/doc/html/_images/math/ebdecdbe6bf281fe730824d1935dc9bbf77e6a4a.png) |
 | **MV**   | matrix-vector product, ![A x](https://www.gnu.org/software/gsl/doc/html/_images/math/e0386fd2d4cc02dc39b150be4ebdaf8bf99e45d4.png) |
 | **SV**   | matrix-vector solve, ![inv(A) x](https://www.gnu.org/software/gsl/doc/html/_images/math/1bf4147270885b9a9ffa8551a65ca70a13936808.png) |
@@ -16,7 +16,7 @@
 | **SM**   | matrix-matrix solve, ![inv(A) B](https://www.gnu.org/software/gsl/doc/html/_images/math/88b04b9d592846e553d2fc9b269068dd5aa701c5.png) |
 
 | **GE** | general           |
-| ------ | ----------------- |
+| ------ | :---------------- |
 | **GB** | general band      |
 | **SY** | symmetric         |
 | **SB** | symmetric band    |
@@ -29,7 +29,7 @@
 | **TP** | triangular packed |
 
 | **S** | single real    |
-| ----- | -------------- |
+| ----- | :------------- |
 | **D** | double real    |
 | **C** | single complex |
 | **Z** | double complex |
