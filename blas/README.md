@@ -69,7 +69,8 @@ $$
 
 $$
 \begin{split}\left[\begin{array}{c}
-   x\\y
+   x\\
+   y
 \end{array}\right]
 \leftarrow
 \left[\begin{array}{c}
