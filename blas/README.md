@@ -62,7 +62,7 @@ $$
 #### 补充：ℓp-norm距离
 
 $$
-\|x\|_p=\left(\sum_{i=1}^n|x_i|^p\right)^{1/p}
+\|x\|_{p}=\left(\sum_{i=1}^{n}|x_i|^p\right)^{1/p}
 $$
 
 ### rot
