@@ -106,9 +106,13 @@ $$
 ### rotmg
 
 $$
-\begin{split}\begin{bmatrix}x1 \\ 0\end{bmatrix}=
-H
-\begin{bmatrix}x1\sqrt{d1} \\ y1\sqrt{d2}\end{bmatrix}\end{split}
+\begin{split}\begin{bmatrix}
+x1 \\
+0
+\end{bmatrix}=H\begin{bmatrix}
+x1\sqrt{d1} \\
+y1\sqrt{d2}
+\end{bmatrix}\end{split}
 $$
 
 ### scal
