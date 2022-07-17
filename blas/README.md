@@ -3,24 +3,13 @@
 **BLAS**是Basic Linear Algebra Subprograms的缩写，即基本线性代数子程序，简介可以参考：https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms。它的函数分成3个levels，即
 
 - **Level1** (vector - vector)，计算y的线性代数表达式为：
-  $$
-  y \leftarrow \alpha x + y
-  $$
-
+  $$y \leftarrow \alpha x + y$$
 - **Level2** (matrix - vector)，计算y的线性代数表达式为：
-  $$
-  y \leftarrow \alpha A x + \beta y
-  $$
+  $$y \leftarrow \alpha A x + \beta y$$
   或者求解x向量
-  $$
-  T x = y
-  $$
-  
-
+  $$T x = y$$
 - **Level3** (matrix - matrix)，线性代数表达式为：
-  $$
-  C \leftarrow \alpha AB + \beta C
-  $$
+  $$C \leftarrow \alpha AB + \beta C$$
 
 BLAS有很多实现方案，常见的如下所示
 
@@ -74,12 +63,12 @@ zdotu：双精度复数计算，无向量共轭计算
 
 | 常见操作 | 说明                           |
 | -------- | :----------------------------- |
-| **DOT**  | scalar product, `x^T y`        |
-| **AXPY** | vector sum, `ax + y`           |
-| **MV**   | matrix-vector product,`Ax`     |
-| **SV**   | matrix-vector solve, `inv(A)x` |
-| **MM**   | matrix-matrix product, `AB`    |
-| **SM**   | matrix-matrix solve, `inv(A)B` |
+| **DOT**  | scalar product, $x^T y$      |
+| **AXPY** | vector sum, $ax + y$           |
+| **MV**   | matrix-vector product,$Ax$     |
+| **SV**   | matrix-vector solve, $A^{-1}x$ |
+| **MM**   | matrix-matrix product, $AB$    |
+| **SM**   | matrix-matrix solve, $A^{-1}B$ |
 
 | 常见缩写 | 说明                       |
 | -------- | :------------------------- |
