@@ -82,9 +82,17 @@ $$
 ### rotg
 
 $$
-\begin{split}\begin{bmatrix}c & s \\ -s & c\end{bmatrix}.
-\begin{bmatrix}a \\ b\end{bmatrix}
-=\begin{bmatrix}r \\ 0\end{bmatrix}\end{split}
+\begin{split}\begin{bmatrix}
+c & s \\
+-s & c
+\end{bmatrix}.
+\begin{bmatrix}
+a \\
+b
+\end{bmatrix}=\begin{bmatrix}
+r \\
+0
+\end{bmatrix}\end{split}
 $$
 
 ### rotm
