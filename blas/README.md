@@ -61,7 +61,7 @@ $$
 
 #### 补充：ℓp-norm距离
 
-$$
+$$ {mathjax}
 \|x\|_{p}=\left(\sum_{i=1}^{n}|x_i|^p\right)^{1/p}
 $$
 
