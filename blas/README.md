@@ -61,7 +61,7 @@ $$
 
 #### 补充：ℓp-norm距离
 
-$$ {mathjax}
+$$
 \|x\|_{p}=\left(\sum_{i=1}^{n}|x_i|^p\right)^{1/p}
 $$
 
@@ -479,4 +479,6 @@ $$
 - [Norm (mathematics)](https://en.wikipedia.org/wiki/Norm_(mathematics))
 - [Hermitian matrix](https://en.wikipedia.org/wiki/Hermitian_matrix)
 - [Packed Storage](https://www.netlib.org/lapack/lug/node123.html#:~:text=For%20complex%20Hermitian%20matrices%2C%20packing,the%20upper%20triangle%20by%20rows.)
+- [Netlib BLAS Manual](http://netlib.org/blas/)
+- [Wiki BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
 
