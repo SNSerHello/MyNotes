@@ -723,6 +723,20 @@ $$
 
 **gemm3m**是**gemm**的性能版本，采用高斯reduction算法后，性能提高25%。
 
+### symm
+
+$$
+C \leftarrow \alpha \ AB + \beta C
+$$
+
+或者
+
+$$
+C \leftarrow \alpha \ BA + \beta C
+$$
+
+AB还是BA是更加参数来进行选择
+
 
 
 ## 参考
