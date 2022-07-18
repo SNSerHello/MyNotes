@@ -676,6 +676,7 @@ $$
 $$
 \mathcal{op}(A) x = b
 $$
+
 **tpsv**，**trsv**与**tbsv**计算公式一致，只是
 
 - tpsv的A矩阵是三角包装矩阵
