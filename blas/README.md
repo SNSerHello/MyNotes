@@ -482,12 +482,12 @@ zdotu：双精度复数计算，无向量共轭计算
 
 ## 参考
 
-- [oneMKL](https://oneapi-src.github.io/oneMKL/domains/blas/blas.html)
-- [Wolfram Basic Linear Algebra](https://reference.wolfram.com/language/LowLevelLinearAlgebra/guide/BLASGuide.html)
 - [Norm (mathematics)](https://en.wikipedia.org/wiki/Norm_(mathematics))
 - [Hermitian matrix](https://en.wikipedia.org/wiki/Hermitian_matrix)
 - [Packed Storage](https://www.netlib.org/lapack/lug/node123.html#:~:text=For%20complex%20Hermitian%20matrices%2C%20packing,the%20upper%20triangle%20by%20rows.)
-- [Netlib BLAS Manual](http://netlib.org/blas/)
+- [MKL BLAS](https://oneapi-src.github.io/oneMKL/domains/blas/blas.html)
+- [Wolfram BLAS](https://reference.wolfram.com/language/LowLevelLinearAlgebra/guide/BLASGuide.html)
+- [Netlib BLAS](http://netlib.org/blas/)
 - [Wiki BLAS](https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms)
 - [GSL BLAS](https://www.gnu.org/software/gsl/doc/html/blas.html)
 - [GSL BLAS APIs](https://www.gnu.org/software/gsl/doc/html/cblas.html)
