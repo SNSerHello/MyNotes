@@ -540,6 +540,12 @@ x
 \end{pmatrix}
 $$
 
+### gbmv
+
+$$
+y = \alpha \; \mathcal{op}(A) x + \beta y
+$$
+
 
 
 ## 参考
