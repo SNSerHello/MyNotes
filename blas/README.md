@@ -482,13 +482,35 @@ zdotu：双精度复数计算，无向量共轭计算
 
 - 当x，y为实数的时候
 
-  ![rot real](images/rot_real.jpg)
+  $$
+  \begin{pmatrix}
+  x_i\\
+  y_i
+  \end{pmatrix} \leftarrow \begin{pmatrix}
+  c & s\\
+  -s & c
+  \end{pmatrix} \begin{pmatrix}
+  x_i\\
+  y_i
+  \end{pmatrix}
+  $$
 
 - 当x，y为复数的时候
 
-  ![rot complex](images/rot_complex.jpg)
+  $$
+  \begin{pmatrix}
+  x_i\\
+  y_i
+  \end{pmatrix} \leftarrow \begin{pmatrix}
+  c & s\\
+  -\bar{s} & c
+  \end{pmatrix} \begin{pmatrix}
+  x_i\\
+  y_i
+  \end{pmatrix}
+  $$
 
-其中: ![rot params](images/rot_params.jpg)
+其中: $c = \cos(\alpha), s = \sin(\alpha)$
 
 ### rotg
 
