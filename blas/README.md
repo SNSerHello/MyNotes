@@ -504,6 +504,12 @@ zdotu：双精度复数计算，无向量共轭计算
 
 其中：![rotg params](images/rotg_params.jpg)
 
+### rotmg
+
+已知x1，y1，d1，d2，求H矩阵
+
+![rotmg](images/rotmg.jpg)
+
 
 
 ## 参考
