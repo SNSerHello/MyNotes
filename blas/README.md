@@ -792,6 +792,19 @@ $$
 X\ \mathcal{op}(A) = \alpha B
 $$
 
+### syrkx
+
+$$
+C \leftarrow \alpha \ \mathcal{op}(A) \mathcal{op}(B)^T + \beta C
+$$
+
+其中：$\alpha$和$\beta$是标量，C是对称矩阵，A和B是普通矩阵
+
+**herkx**与**syrkx**的计算公式一致，只是**syrkx**的C矩阵是对称矩阵，**herkx**的C矩阵是Hermitian矩阵，即
+
+$$
+C \leftarrow \alpha \ \mathcal{op}(A) \mathcal{op}(B)^H + \beta C
+$$
 
 
 ## 参考
