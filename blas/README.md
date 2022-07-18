@@ -747,9 +747,13 @@ $$
 
 **syrkx**与**syrk**的计算公式一致，只是在op()选择的时候有所区别
 
+### syr2k
 
+$$
+C \leftarrow \alpha \left(\mathcal{op}(A)\mathcal{op}(B)^T + \mathcal{op}(B)\mathcal{op}(A)^T\right) + \beta C
+$$
 
-
+其中：$\alpha$和$\beta$是标量，A是对称矩阵，B和C是普通矩阵
 
 
 
