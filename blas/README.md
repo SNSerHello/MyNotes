@@ -528,6 +528,17 @@ $$
 result = \sum_{i=1}^{n} x_i y_i
 $$
 
+### swap
+
+$$
+\begin{pmatrix}
+x\\
+y
+\end{pmatrix} \leftarrow \begin{pmatrix}
+y\\x
+\end{pmatrix}
+$$
+
 
 
 ## 参考
