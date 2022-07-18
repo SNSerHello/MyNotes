@@ -546,10 +546,10 @@ $$
 y = \alpha \ \mathcal{op}(A) x + \beta y
 $$
 
-gbmv，sbmv与gemv的计算公式一致，只是
+gbmv与gemv的计算公式一致，只是
 
 - gbmv中A矩阵是带状矩阵
-- sbmv中A矩阵是对称矩阵
+- gemv中A矩阵是普通矩阵
 
 ### tbmv
 
@@ -557,7 +557,11 @@ $$
 x = \mathcal{op}(A) x
 $$
 
-其中A为三角带状矩阵
+tpmv，trmv与tbmv的计算公式一致，只是
+
+- trmv的A矩阵为三角矩阵
+- tpmv的A矩阵为三角包装矩阵
+- tbmv的A矩阵为三角带状矩阵
 
 ### hemv
 
@@ -567,10 +571,14 @@ $$
 
 其中: A为Hermitian矩阵
 
-hbmv，hpmv的计算公式与hemv公式一致，只是
+hbmv，sbmv，spmv，hpmv与hemv计算公式一致，只是
 
 - hbmv的A矩阵为Hermitian带状矩阵
+- sbmv的A矩阵为对称带状矩阵
+- spmv的A矩阵为对称包装矩阵
 - hpmv的A矩阵为Hermitian包装矩阵
+- symv的A矩阵为对称矩阵
+- hemv的A矩阵为Hermitian矩阵
 
 ### ger
 
@@ -586,7 +594,27 @@ $$
 
 共轭转置与普通转置的关系是：$y^H=conjg(y^T)$
 
+### spr
 
+$$
+A \leftarrow \alpha x x^T + A
+$$
+
+syr与spr计算公式一致，只是
+
+- syr的A矩阵为对称矩阵
+- spr的A矩阵为对称包装矩阵
+
+### spr2
+
+$$
+A \leftarrow \alpha \left(xy^T + yx^T\right) + A
+$$
+
+syr2与spr2计算公式一致，只是
+
+- syr2的A矩阵为对称矩阵
+- spr2的A矩阵为对称包装矩阵
 
 
 
