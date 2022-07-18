@@ -559,7 +559,18 @@ $$
 
 其中A为三角带状矩阵
 
+### hemv
 
+$$
+y = \alpha A x + \beta y
+$$
+
+其中: A为Hermitian矩阵
+
+hbmv，hpmv的计算公式与hemv公式一致，只是
+
+- hbmv的A矩阵为Hermitian带状矩阵
+- hpmv的A矩阵为Hermitian包装矩阵
 
 
 
