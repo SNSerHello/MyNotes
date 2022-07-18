@@ -93,242 +93,248 @@ zdotu：双精度复数计算，无向量共轭计算
 
 ## BLAS APIs
 
-| 函数名              | CLBlast |
-| ------------------- | ------- |
-| srotg               | ×       |
-| drotg               | ×       |
-| srotmg              | ×       |
-| drotmg              | ×       |
-| srot                | ×       |
-| drot                | ×       |
-| srotm               | ×       |
-| drotm               | ×       |
-| sswap               | √       |
-| dswap               | √       |
-| cswap               | √       |
-| zswap               | √       |
-| hswap               | √       |
-| sscal               | √       |
-| dscal               | √       |
-| cscal               | √       |
-| zscal               | √       |
-| hscal               | √       |
-| scopy               | √       |
-| dcopy               | √       |
-| ccopy               | √       |
-| zcopy               | √       |
-| hcopy               | √       |
-| saxpy               | √       |
-| daxpy               | √       |
-| caxpy               | √       |
-| zaxpy               | √       |
-| haxpy               | √       |
-| sdot                | √       |
-| ddot                | √       |
-| hdot                | √       |
-| cdotu               | √       |
-| zdotu               | √       |
-| cdotc               | √       |
-| zdotc               | √       |
-| snrm2               | √       |
-| dnrm2               | √       |
-| scnrm2              | √       |
-| dznrm2              | √       |
-| hnrm2               | √       |
-| sasum               | √       |
-| dasum               | √       |
-| casum               | √       |
-| dzasum              | √       |
-| hasum               | √       |
-| ssum                | √       |
-| dsum                | √       |
-| scsum               | √       |
-| dzsum               | √       |
-| hsum                | √       |
-| samax               | √       |
-| damax               | √       |
-| camax               | √       |
-| zamax               | √       |
-| hamax               | √       |
-| samin               | √       |
-| damin               | √       |
-| camin               | √       |
-| zamin               | √       |
-| hamin               | √       |
-| smax                | √       |
-| dmax                | √       |
-| cmax                | √       |
-| zmax                | √       |
-| hmax                | √       |
-| smin                | √       |
-| dmin                | √       |
-| cmin                | √       |
-| zmin                | √       |
-| hmin                | √       |
-| sgemv               | √       |
-| dgemv               | √       |
-| cgemv               | √       |
-| zgemv               | √       |
-| hgemv               | √       |
-| sgbmv               | √       |
-| dgbmv               | √       |
-| cgbmv               | √       |
-| zgbmv               | √       |
-| hgbmv               | √       |
-| chemv               | √       |
-| zhemv               | √       |
-| chbmv               | √       |
-| zhbmv               | √       |
-| chpmv               | √       |
-| zhpmv               | √       |
-| ssymv               | √       |
-| dsymv               | √       |
-| hsymv               | √       |
-| ssbmv               | √       |
-| dsbmv               | √       |
-| hsbmv               | √       |
-| sspmv               | √       |
-| dspmv               | √       |
-| hspmv               | √       |
-| strmv               | √       |
-| dtrmv               | √       |
-| ctrmv               | √       |
-| ztrmv               | √       |
-| htrmv               | √       |
-| stbmv               | √       |
-| dtbmv               | √       |
-| ctbmv               | √       |
-| ztbmv               | √       |
-| htbmv               | √       |
-| stpmv               | √       |
-| dtpmv               | √       |
-| ctpmv               | √       |
-| ztpmv               | √       |
-| htpmv               | √       |
-| strsv               | √       |
-| dtrsv               | √       |
-| ctrsv               | √       |
-| ztrsv               | √       |
-| stbsv               | √       |
-| dtbsv               | √       |
-| ctbsv               | √       |
-| ztbsv               | √       |
-| stpsv               | √       |
-| dtpsv               | √       |
-| ctpsv               | √       |
-| ztpsv               | √       |
-| sger                | √       |
-| dger                | √       |
-| hger                | √       |
-| cgeru               | √       |
-| zgeru               | √       |
-| cgerc               | √       |
-| zgerc               | √       |
-| cher                | √       |
-| zher                | √       |
-| chpr                | √       |
-| zhpr                | √       |
-| cher2               | √       |
-| zher2               | √       |
-| chpr2               | √       |
-| zhpr2               | √       |
-| ssyr                | √       |
-| dsyr                | √       |
-| hsyr                | √       |
-| sspr                | √       |
-| dspr                | √       |
-| hspr                | √       |
-| ssyr2               | √       |
-| dsyr2               | √       |
-| hsyr2               | √       |
-| sspr2               | √       |
-| dspr2               | √       |
-| hspr2               | √       |
-| sgemm               | √       |
-| dgemm               | √       |
-| cgemm               | √       |
-| zgemm               | √       |
-| hgemm               | √       |
-| ssymm               | √       |
-| dsymm               | √       |
-| csymm               | √       |
-| zsymm               | √       |
-| hsymm               | √       |
-| chemm               | √       |
-| zhemm               | √       |
-| ssyrk               | √       |
-| dsyrk               | √       |
-| csyrk               | √       |
-| zsyrk               | √       |
-| hsyrk               | √       |
-| cherk               | √       |
-| zherk               | √       |
-| ssyr2k              | √       |
-| dsyr2k              | √       |
-| csyr2k              | √       |
-| zsyr2k              | √       |
-| hsyr2k              | √       |
-| cher2k              | √       |
-| zher2k              | √       |
-| strmm               | √       |
-| dtrmm               | √       |
-| ctrmm               | √       |
-| ztrmm               | √       |
-| htrmm               | √       |
-| strsm               | √       |
-| dtrsm               | √       |
-| ctrsm               | √       |
-| ztrsm               | √       |
-| shad                | √       |
-| dhad                | √       |
-| chad                | √       |
-| zhad                | √       |
-| somatcopy           | √       |
-| domatcopy           | √       |
-| comatcopy           | √       |
-| zomatcopy           | √       |
-| homatcopy           | √       |
-| sim2col             | √       |
-| dim2col             | √       |
-| cim2col             | √       |
-| zim2col             | √       |
-| him2col             | √       |
-| scol2im             | √       |
-| dcol2im             | √       |
-| ccol2im             | √       |
-| zcol2im             | √       |
-| hcol2im             | √       |
-| sconvgem            | √       |
-| dconvgemm           | √       |
-| hconvgemm           | √       |
-| saxpybatched        | √       |
-| daxpybatched        | √       |
-| caxpybatched        | √       |
-| zaxpybatched        | √       |
-| haxpybatched        | √       |
-| sgemmbatched        | √       |
-| dgemmbatched        | √       |
-| cgemmbatched        | √       |
-| zgemmbatched        | √       |
-| hgemmbatched        | √       |
-| sgemmstridedbatched | √       |
-| dgemmstridedbatched | √       |
-| cgemmstridedbatched | √       |
-| zgemmstridedbatched | √       |
-| hgemmstridedbatched | √       |
-| sgemmwithtempbuffer | √       |
-| dgemmwithtempbuffer | √       |
-| cgemmwithtempbuffer | √       |
-| zgemmwithtempbuffer | √       |
-| hgemmwithtempbuffer | √       |
-| sgemmtempbuffersize | √       |
-| dgemmtempbuffersize | √       |
-| cgemmtempbuffersize | √       |
-| zgemmtempbuffersize | √       |
-| hgemmtempbuffersize | √       |
-| clearcached         | √       |
-| fillcache           | √       |
-| overrideparameters  | √       |
+| Level  | 函数名              | CLBlast |
+| ------ | ------------------- | ------- |
+| Level1 | srotg               | ×       |
+| Level1 | drotg               | ×       |
+| Level1 | srotmg              | ×       |
+| Level1 | drotmg              | ×       |
+| Level1 | srot                | ×       |
+| Level1 | drot                | ×       |
+| Level1 | srotm               | ×       |
+| Level1 | drotm               | ×       |
+| Level1 | sswap               | √       |
+| Level1 | dswap               | √       |
+| Level1 | cswap               | √       |
+| Level1 | zswap               | √       |
+| Level1 | hswap               | √       |
+| Level1 | sscal               | √       |
+| Level1 | dscal               | √       |
+| Level1 | cscal               | √       |
+| Level1 | zscal               | √       |
+| Level1 | hscal               | √       |
+| Level1 | scopy               | √       |
+| Level1 | dcopy               | √       |
+| Level1 | ccopy               | √       |
+| Level1 | zcopy               | √       |
+| Level1 | hcopy               | √       |
+| Level1 | saxpy               | √       |
+| Level1 | daxpy               | √       |
+| Level1 | caxpy               | √       |
+| Level1 | zaxpy               | √       |
+| Level1 | haxpy               | √       |
+| Level1 | sdot                | √       |
+| Level1 | ddot                | √       |
+| Level1 | hdot                | √       |
+| Level1 | cdotu               | √       |
+| Level1 | zdotu               | √       |
+| Level1 | cdotc               | √       |
+| Level1 | zdotc               | √       |
+| Level1 | snrm2               | √       |
+| Level1 | dnrm2               | √       |
+| Level1 | scnrm2              | √       |
+| Level1 | dznrm2              | √       |
+| Level1 | hnrm2               | √       |
+| Level1 | sasum               | √       |
+| Level1 | dasum               | √       |
+| Level1 | casum               | √       |
+| Level1 | dzasum              | √       |
+| Level1 | hasum               | √       |
+| Level1 | ssum                | √       |
+| Level1 | dsum                | √       |
+| Level1 | scsum               | √       |
+| Level1 | dzsum               | √       |
+| Level1 | hsum                | √       |
+| Level1 | samax               | √       |
+| Level1 | damax               | √       |
+| Level1 | camax               | √       |
+| Level1 | zamax               | √       |
+| Level1 | hamax               | √       |
+| Level1 | samin               | √       |
+| Level1 | damin               | √       |
+| Level1 | camin               | √       |
+| Level1 | zamin               | √       |
+| Level1 | hamin               | √       |
+| Level1 | smax                | √       |
+| Level1 | dmax                | √       |
+| Level1 | cmax                | √       |
+| Level1 | zmax                | √       |
+| Level1 | hmax                | √       |
+| Level1 | smin                | √       |
+| Level1 | dmin                | √       |
+| Level1 | cmin                | √       |
+| Level1 | zmin                | √       |
+| Level1 | hmin                | √       |
+| Level2 | sgemv               | √       |
+| Level2 | dgemv               | √       |
+| Level2 | cgemv               | √       |
+| Level2 | zgemv               | √       |
+| Level2 | hgemv               | √       |
+| Level2 | sgbmv               | √       |
+| Level2 | dgbmv               | √       |
+| Level2 | cgbmv               | √       |
+| Level2 | zgbmv               | √       |
+| Level2 | hgbmv               | √       |
+| Level2 | chemv               | √       |
+| Level2 | zhemv               | √       |
+| Level2 | chbmv               | √       |
+| Level2 | zhbmv               | √       |
+| Level2 | chpmv               | √       |
+| Level2 | zhpmv               | √       |
+| Level2 | ssymv               | √       |
+| Level2 | dsymv               | √       |
+| Level2 | hsymv               | √       |
+| Level2 | ssbmv               | √       |
+| Level2 | dsbmv               | √       |
+| Level2 | hsbmv               | √       |
+| Level2 | sspmv               | √       |
+| Level2 | dspmv               | √       |
+| Level2 | hspmv               | √       |
+| Level2 | strmv               | √       |
+| Level2 | dtrmv               | √       |
+| Level2 | ctrmv               | √       |
+| Level2 | ztrmv               | √       |
+| Level2 | htrmv               | √       |
+| Level2 | stbmv               | √       |
+| Level2 | dtbmv               | √       |
+| Level2 | ctbmv               | √       |
+| Level2 | ztbmv               | √       |
+| Level2 | htbmv               | √       |
+| Level2 | stpmv               | √       |
+| Level2 | dtpmv               | √       |
+| Level2 | ctpmv               | √       |
+| Level2 | ztpmv               | √       |
+| Level2 | htpmv               | √       |
+| Level2 | strsv               | √       |
+| Level2 | dtrsv               | √       |
+| Level2 | ctrsv               | √       |
+| Level2 | ztrsv               | √       |
+| Level2 | stbsv               | √       |
+| Level2 | dtbsv               | √       |
+| Level2 | ctbsv               | √       |
+| Level2 | ztbsv               | √       |
+| Level2 | stpsv               | √       |
+| Level2 | dtpsv               | √       |
+| Level2 | ctpsv               | √       |
+| Level2 | ztpsv               | √       |
+| Level2 | sger                | √       |
+| Level2 | dger                | √       |
+| Level2 | hger                | √       |
+| Level2 | cgeru               | √       |
+| Level2 | zgeru               | √       |
+| Level2 | cgerc               | √       |
+| Level2 | zgerc               | √       |
+| Level2 | cher                | √       |
+| Level2 | zher                | √       |
+| Level2 | chpr                | √       |
+| Level2 | zhpr                | √       |
+| Level2 | cher2               | √       |
+| Level2 | zher2               | √       |
+| Level2 | chpr2               | √       |
+| Level2 | zhpr2               | √       |
+| Level2 | ssyr                | √       |
+| Level2 | dsyr                | √       |
+| Level2 | hsyr                | √       |
+| Level2 | sspr                | √       |
+| Level2 | dspr                | √       |
+| Level2 | hspr                | √       |
+| Level2 | ssyr2               | √       |
+| Level2 | dsyr2               | √       |
+| Level2 | hsyr2               | √       |
+| Level2 | sspr2               | √       |
+| Level2 | dspr2               | √       |
+| Level2 | hspr2               | √       |
+| Level3 | sgemm               | √       |
+| Level3 | dgemm               | √       |
+| Level3 | cgemm               | √       |
+| Level3 | zgemm               | √       |
+| Level3 | hgemm               | √       |
+| Level3 | ssymm               | √       |
+| Level3 | dsymm               | √       |
+| Level3 | csymm               | √       |
+| Level3 | zsymm               | √       |
+| Level3 | hsymm               | √       |
+| Level3 | chemm               | √       |
+| Level3 | zhemm               | √       |
+| Level3 | ssyrk               | √       |
+| Level3 | dsyrk               | √       |
+| Level3 | csyrk               | √       |
+| Level3 | zsyrk               | √       |
+| Level3 | hsyrk               | √       |
+| Level3 | cherk               | √       |
+| Level3 | zherk               | √       |
+| Level3 | ssyr2k              | √       |
+| Level3 | dsyr2k              | √       |
+| Level3 | csyr2k              | √       |
+| Level3 | zsyr2k              | √       |
+| Level3 | hsyr2k              | √       |
+| Level3 | cher2k              | √       |
+| Level3 | zher2k              | √       |
+| Level3 | strmm               | √       |
+| Level3 | dtrmm               | √       |
+| Level3 | ctrmm               | √       |
+| Level3 | ztrmm               | √       |
+| Level3 | htrmm               | √       |
+| Level3 | strsm               | √       |
+| Level3 | dtrsm               | √       |
+| Level3 | ctrsm               | √       |
+| Level3 | ztrsm               | √       |
+| Levelx | shad                | √       |
+| Levelx | dhad                | √       |
+| Levelx | chad                | √       |
+| Levelx | zhad                | √       |
+| Levelx | somatcopy           | √       |
+| Levelx | domatcopy           | √       |
+| Levelx | comatcopy           | √       |
+| Levelx | zomatcopy           | √       |
+| Levelx | homatcopy           | √       |
+| Levelx | sim2col             | √       |
+| Levelx | dim2col             | √       |
+| Levelx | cim2col             | √       |
+| Levelx | zim2col             | √       |
+| Levelx | him2col             | √       |
+| Levelx | scol2im             | √       |
+| Levelx | dcol2im             | √       |
+| Levelx | ccol2im             | √       |
+| Levelx | zcol2im             | √       |
+| Levelx | hcol2im             | √       |
+| Levelx | sconvgem            | √       |
+| Levelx | dconvgemm           | √       |
+| Levelx | hconvgemm           | √       |
+| Levelx | saxpybatched        | √       |
+| Levelx | daxpybatched        | √       |
+| Levelx | caxpybatched        | √       |
+| Levelx | zaxpybatched        | √       |
+| Levelx | haxpybatched        | √       |
+| Levelx | sgemmbatched        | √       |
+| Levelx | dgemmbatched        | √       |
+| Levelx | cgemmbatched        | √       |
+| Levelx | zgemmbatched        | √       |
+| Levelx | hgemmbatched        | √       |
+| Levelx | sgemmstridedbatched | √       |
+| Levelx | dgemmstridedbatched | √       |
+| Levelx | cgemmstridedbatched | √       |
+| Levelx | zgemmstridedbatched | √       |
+| Levelx | hgemmstridedbatched | √       |
+| Levelx | sgemmwithtempbuffer | √       |
+| Levelx | dgemmwithtempbuffer | √       |
+| Levelx | cgemmwithtempbuffer | √       |
+| Levelx | zgemmwithtempbuffer | √       |
+| Levelx | hgemmwithtempbuffer | √       |
+| Levelx | sgemmtempbuffersize | √       |
+| Levelx | dgemmtempbuffersize | √       |
+| Levelx | cgemmtempbuffersize | √       |
+| Levelx | zgemmtempbuffersize | √       |
+| Levelx | hgemmtempbuffersize | √       |
+| Levelx | clearcached         | √       |
+| Levelx | fillcache           | √       |
+| Levelx | overrideparameters  | √       |
+
+**注释**：
+
+- ×表示未实现
+- √表示已实现
+- Levelx表示自定义扩展，一般考虑性能提高，比如说支持batched功能等
 
 
 
