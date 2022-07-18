@@ -748,6 +748,7 @@ $$
 其中：$\alpha$和$\beta$是标量，A是对称矩阵，B和C是普通矩阵
 
 **herk**与**syrk**的计算公式一致，**syrk**的A矩阵是对称矩阵，**herk**的A矩阵是Hermitian矩阵，并且**herk**对op(A)做共轭转置，即
+
 $$
 C \leftarrow \alpha \ \mathcal{op}(A) \mathcal{op}(A)^H + \beta C
 $$
