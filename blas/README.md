@@ -508,7 +508,15 @@ zdotu：双精度复数计算，无向量共轭计算
 
 已知x1，y1，d1，d2，求H矩阵
 
-![rotmg](images/rotmg.jpg)
+$$
+\begin{pmatrix}
+x_1\\
+0
+\end{pmatrix} = H \begin{pmatrix}
+x_1 \sqrt{d_1}\\
+y_1 \sqrt{d_2}
+\end{pmatrix}
+$$
 
 ### scal
 
