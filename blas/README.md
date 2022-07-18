@@ -93,383 +93,383 @@ zdotu：双精度复数计算，无向量共轭计算
 
 ## BLAS APIs
 
-| Level  | 函数名                | CLBlast | OpenBLAS | cuBLAS | clBLAS |
-| ------ | --------------------- | ------- | -------- | ------ | ------ |
-| Level1 | srotg                 | ×       | √        | √      | √      |
-| Level1 | drotg                 | ×       | √        | √      | √      |
-| Level1 | crotg                 | ×       | √        | √      | √      |
-| Level1 | zrotg                 | ×       | √        | √      | √      |
-| Level1 | srotmg                | ×       | √        | √      | √      |
-| Level1 | drotmg                | ×       | √        | √      | √      |
-| Level1 | srot                  | ×       | √        | √      | √      |
-| Level1 | drot                  | ×       | √        | √      | √      |
-| Level1 | crot                  | ×       | ×        | √      | ×      |
-| Level1 | zrot                  | ×       | ×        | √      | ×      |
-| Level1 | csrot                 | ×       | √        | √      | √      |
-| Level1 | zdrot                 | ×       | √        | √      | √      |
-| Level1 | srotm                 | ×       | √        | √      | √      |
-| Level1 | drotm                 | ×       | √        | √      | √      |
-| Level1 | sswap                 | √       | √        | √      | √      |
-| Level1 | dswap                 | √       | √        | √      | √      |
-| Level1 | cswap                 | √       | √        | √      | √      |
-| Level1 | zswap                 | √       | √        | √      | √      |
-| Level1 | hswap                 | √       | ×        | ×      | ×      |
-| Level1 | sscal                 | √       | √        | √      | √      |
-| Level1 | dscal                 | √       | √        | √      | √      |
-| Level1 | cscal                 | √       | √        | √      | √      |
-| Level1 | zscal                 | √       | √        | √      | √      |
-| Level1 | hscal                 | √       | ×        | ×      | ×      |
-| Level1 | csscal                | ×       | √        | √      | √      |
-| Level1 | zdscal                | ×       | √        | √      | √      |
-| Level1 | scopy                 | √       | √        | √      | √      |
-| Level1 | dcopy                 | √       | √        | √      | √      |
-| Level1 | ccopy                 | √       | √        | √      | √      |
-| Level1 | zcopy                 | √       | √        | √      | √      |
-| Level1 | hcopy                 | √       | ×        | ×      | ×      |
-| Level1 | saxpy                 | √       | √        | √      | √      |
-| Level1 | daxpy                 | √       | √        | √      | √      |
-| Level1 | caxpy                 | √       | √        | √      | √      |
-| Level1 | zaxpy                 | √       | √        | √      | √      |
-| Level1 | haxpy                 | √       | ×        | ×      | ×      |
-| Level1 | dsdot                 | ×       | √        | ×      | ×      |
-| Level1 | sdsdot                | ×       | √        | ×      | ×      |
-| Level1 | sdot                  | √       | √        | √      | √      |
-| Level1 | ddot                  | √       | √        | √      | √      |
-| Level1 | hdot                  | √       | ×        | ×      | ×      |
-| Level1 | cdotu                 | √       | √        | √      | √      |
-| Level1 | zdotu                 | √       | √        | √      | √      |
-| Level1 | cdotc                 | √       | √        | √      | √      |
-| Level1 | zdotc                 | √       | √        | √      | √      |
-| Level1 | cdotu_sub             | ×       | √        | ×      | ×      |
-| Level1 | cdotc_sub             | ×       | √        | ×      | ×      |
-| Level1 | zdotu_sub             | ×       | √        | ×      | ×      |
-| Level1 | zdotc_sub             | ×       | √        | ×      | ×      |
-| Level1 | snrm2                 | √       | √        | √      | √      |
-| Level1 | dnrm2                 | √       | √        | √      | √      |
-| Level1 | scnrm2                | √       | √        | √      | √      |
-| Level1 | dznrm2                | √       | √        | √      | √      |
-| Level1 | hnrm2                 | √       | ×        | ×      | ×      |
-| Level1 | sasum                 | √       | √        | √      | √      |
-| Level1 | dasum                 | √       | √        | √      | √      |
-| Level1 | scasum                | √       | √        | √      | √      |
-| Level1 | dzasum                | √       | √        | √      | √      |
-| Level1 | hasum                 | √       | ×        | ×      | ×      |
-| Level1 | ssum                  | √       | √        | ×      | ×      |
-| Level1 | dsum                  | √       | √        | ×      | ×      |
-| Level1 | scsum                 | √       | √        | ×      | ×      |
-| Level1 | dzsum                 | √       | √        | ×      | ×      |
-| Level1 | hsum                  | √       | ×        | ×      | ×      |
-| Level1 | samax                 | ×       | ×        | ×      | √      |
-| Level1 | damax                 | ×       | ×        | ×      | √      |
-| Level1 | scamax                | ×       | ×        | ×      | √      |
-| Level1 | dzamax                | ×       | ×        | ×      | √      |
-| Level1 | isamax                | √       | √        | √      | √      |
-| Level1 | idamax                | √       | √        | √      | √      |
-| Level1 | icamax                | √       | √        | √      | √      |
-| Level1 | izamax                | √       | √        | √      | √      |
-| Level1 | ihamax                | √       | ×        | ×      | ×      |
-| Level1 | samin                 | ×       | ×        | ×      | ×      |
-| Level1 | damin                 | ×       | ×        | ×      | ×      |
-| Level1 | camin                 | ×       | ×        | ×      | ×      |
-| Level1 | zamin                 | ×       | ×        | ×      | ×      |
-| Level1 | isamin                | √       | √        | √      | ×      |
-| Level1 | idamin                | √       | √        | √      | ×      |
-| Level1 | icamin                | √       | √        | √      | ×      |
-| Level1 | izamin                | √       | √        | √      | ×      |
-| Level1 | ihamin                | √       | ×        | ×      | ×      |
-| Level1 | smax                  | ×       | ×        | ×      | ×      |
-| Level1 | dmax                  | ×       | ×        | ×      | ×      |
-| Level1 | cmax                  | ×       | ×        | ×      | ×      |
-| Level1 | zmax                  | ×       | ×        | ×      | ×      |
-| Level1 | ismax                 | √       | √        | ×      | ×      |
-| Level1 | idmax                 | √       | √        | ×      | ×      |
-| Level1 | icmax                 | √       | √        | ×      | ×      |
-| Level1 | izmax                 | √       | √        | ×      | ×      |
-| Level1 | ihmax                 | √       | ×        | ×      | ×      |
-| Level1 | smin                  | ×       | ×        | ×      | ×      |
-| Level1 | dmin                  | ×       | ×        | ×      | ×      |
-| Level1 | cmin                  | ×       | ×        | ×      | ×      |
-| Level1 | zmin                  | ×       | ×        | ×      | ×      |
-| Level1 | ismin                 | √       | √        | ×      | ×      |
-| Level1 | idmin                 | √       | √        | ×      | ×      |
-| Level1 | icmin                 | √       | √        | ×      | ×      |
-| Level1 | izmin                 | √       | √        | ×      | ×      |
-| Level1 | ihmin                 | √       | ×        | ×      | ×      |
-| Level2 | sgemv                 | √       | √        | √      | √      |
-| Level2 | dgemv                 | √       | √        | √      | √      |
-| Level2 | cgemv                 | √       | √        | √      | √      |
-| Level2 | zgemv                 | √       | √        | √      | √      |
-| Level2 | hgemv                 | √       | ×        | ×      | ×      |
-| Level2 | sgbmv                 | √       | √        | √      | √      |
-| Level2 | dgbmv                 | √       | √        | √      | √      |
-| Level2 | cgbmv                 | √       | √        | √      | √      |
-| Level2 | zgbmv                 | √       | √        | √      | √      |
-| Level2 | hgbmv                 | √       | ×        | ×      | ×      |
-| Level2 | chemv                 | √       | √        | √      | √      |
-| Level2 | zhemv                 | √       | √        | √      | √      |
-| Level2 | chbmv                 | √       | √        | √      | √      |
-| Level2 | zhbmv                 | √       | √        | √      | √      |
-| Level2 | chpmv                 | √       | √        | √      | √      |
-| Level2 | zhpmv                 | √       | √        | √      | √      |
-| Level2 | ssymv                 | √       | √        | √      | √      |
-| Level2 | dsymv                 | √       | √        | √      | √      |
-| Level2 | csymv                 | ×       | ×        | √      | √      |
-| Level2 | zsymv                 | ×       | ×        | √      | √      |
-| Level2 | hsymv                 | √       | ×        | ×      | ×      |
-| Level2 | ssbmv                 | √       | √        | √      | √      |
-| Level2 | dsbmv                 | √       | √        | √      | √      |
-| Level2 | hsbmv                 | √       | ×        | ×      | ×      |
-| Level2 | sspmv                 | √       | √        | √      | √      |
-| Level2 | dspmv                 | √       | √        | √      | √      |
-| Level2 | hspmv                 | √       | ×        | ×      | ×      |
-| Level2 | strmv                 | √       | √        | √      | √      |
-| Level2 | dtrmv                 | √       | √        | √      | √      |
-| Level2 | ctrmv                 | √       | √        | √      | √      |
-| Level2 | ztrmv                 | √       | √        | √      | √      |
-| Level2 | htrmv                 | √       | ×        | √      | ×      |
-| Level2 | stbmv                 | √       | √        | √      | √      |
-| Level2 | dtbmv                 | √       | √        | √      | √      |
-| Level2 | ctbmv                 | √       | √        | √      | √      |
-| Level2 | ztbmv                 | √       | √        | √      | √      |
-| Level2 | htbmv                 | √       | ×        | ×      | ×      |
-| Level2 | stpmv                 | √       | √        | √      | √      |
-| Level2 | dtpmv                 | √       | √        | √      | √      |
-| Level2 | ctpmv                 | √       | √        | √      | √      |
-| Level2 | ztpmv                 | √       | √        | √      | √      |
-| Level2 | htpmv                 | √       | ×        | ×      | ×      |
-| Level2 | strsv                 | √       | √        | √      | √      |
-| Level2 | dtrsv                 | √       | √        | √      | √      |
-| Level2 | ctrsv                 | √       | √        | √      | √      |
-| Level2 | ztrsv                 | √       | √        | √      | √      |
-| Level2 | stbsv                 | √       | √        | ×      | √      |
-| Level2 | dtbsv                 | √       | √        | ×      | √      |
-| Level2 | ctbsv                 | √       | √        | ×      | √      |
-| Level2 | ztbsv                 | √       | √        | ×      | √      |
-| Level2 | stpsv                 | √       | √        | √      | √      |
-| Level2 | dtpsv                 | √       | √        | √      | √      |
-| Level2 | ctpsv                 | √       | √        | √      | √      |
-| Level2 | ztpsv                 | √       | √        | √      | √      |
-| Level2 | sger                  | √       | √        | √      | √      |
-| Level2 | dger                  | √       | √        | √      | √      |
-| Level2 | hger                  | √       | ×        | ×      | ×      |
-| Level2 | cgeru                 | √       | √        | √      | √      |
-| Level2 | zgeru                 | √       | √        | √      | √      |
-| Level2 | cgerc                 | √       | √        | √      | √      |
-| Level2 | zgerc                 | √       | √        | √      | √      |
-| Level2 | cher                  | √       | √        | √      | √      |
-| Level2 | zher                  | √       | √        | √      | √      |
-| Level2 | chpr                  | √       | √        | √      | √      |
-| Level2 | zhpr                  | √       | √        | √      | √      |
-| Level2 | cher2                 | √       | √        | √      | √      |
-| Level2 | zher2                 | √       | √        | √      | √      |
-| Level2 | chpr2                 | √       | √        | √      | √      |
-| Level2 | zhpr2                 | √       | √        | √      | √      |
-| Level2 | ssyr                  | √       | √        | √      | √      |
-| Level2 | dsyr                  | √       | √        | √      | √      |
-| Level2 | csyr                  | ×       | ×        | √      | ×      |
-| Level2 | zsyr                  | ×       | ×        | √      | ×      |
-| Level2 | hsyr                  | √       | ×        | ×      | ×      |
-| Level2 | sspr                  | √       | √        | √      | √      |
-| Level2 | dspr                  | √       | √        | √      | √      |
-| Level2 | hspr                  | √       | ×        | ×      | ×      |
-| Level2 | ssyr2                 | √       | √        | √      | √      |
-| Level2 | dsyr2                 | √       | √        | √      | √      |
-| Level2 | csyr2                 | ×       | ×        | √      | √      |
-| Level2 | zsyr2                 | ×       | ×        | √      | √      |
-| Level2 | hsyr2                 | √       | ×        | ×      | ×      |
-| Level2 | sspr2                 | √       | √        | √      | √      |
-| Level2 | dspr2                 | √       | √        | √      | √      |
-| Level2 | hspr2                 | √       | ×        | ×      | ×      |
-| Level2 | sgemvbatched          | ×       | ×        | √      | ×      |
-| Level2 | dgemvbatched          | ×       | ×        | √      | ×      |
-| Level2 | cgemvbatched          | ×       | ×        | √      | ×      |
-| Level2 | zgemvbatched          | ×       | ×        | √      | ×      |
-| Level2 | hshgemvbatched        | ×       | ×        | √      | ×      |
-| Level2 | hssgemvbatched        | ×       | ×        | √      | ×      |
-| Level2 | tstgemvbatched        | ×       | ×        | √      | ×      |
-| Level2 | tssgemvbatched        | ×       | ×        | √      | ×      |
-| Level2 | sgemvstridebatched    | ×       | ×        | √      | ×      |
-| Level2 | dgemvstridebatched    | ×       | ×        | √      | ×      |
-| Level2 | cgemvstridebatched    | ×       | ×        | √      | ×      |
-| Level2 | zgemvstridebatched    | ×       | ×        | √      | ×      |
-| Level2 | hshgemvstridebatched  | ×       | ×        | √      | ×      |
-| Level2 | hssgemvstridebatched  | ×       | ×        | √      | ×      |
-| Level2 | tstgemvstridebatched  | ×       | ×        | √      | ×      |
-| Level2 | tssgemvstridebatched  | ×       | ×        | √      | ×      |
-| Level3 | sgemm                 | √       | √        | √      | √      |
-| Level3 | dgemm                 | √       | √        | √      | √      |
-| Level3 | cgemm                 | √       | √        | √      | √      |
-| Level3 | zgemm                 | √       | √        | √      | √      |
-| Level3 | hgemm                 | √       | ×        | √      | ×      |
-| Level3 | cgemm3m               | ×       | √        | √      | ×      |
-| Level3 | zgemm3m               | ×       | √        | √      | ×      |
-| Level3 | ssymm                 | √       | √        | √      | √      |
-| Level3 | dsymm                 | √       | √        | √      | √      |
-| Level3 | csymm                 | √       | √        | √      | √      |
-| Level3 | zsymm                 | √       | √        | √      | √      |
-| Level3 | hsymm                 | √       | ×        | ×      | ×      |
-| Level3 | chemm                 | √       | √        | √      | √      |
-| Level3 | zhemm                 | √       | √        | √      | √      |
-| Level3 | ssyrk                 | √       | √        | √      | √      |
-| Level3 | dsyrk                 | √       | √        | √      | √      |
-| Level3 | csyrk                 | √       | √        | √      | √      |
-| Level3 | zsyrk                 | √       | √        | √      | √      |
-| Level3 | hsyrk                 | √       | ×        | ×      | ×      |
-| Level3 | ssyrkx                | ×       | ×        | √      | ×      |
-| Level3 | dsyrkx                | ×       | ×        | √      | ×      |
-| Level3 | csyrkx                | ×       | ×        | √      | ×      |
-| Level3 | zsyrkx                | ×       | ×        | √      | ×      |
-| Level3 | cherk                 | √       | √        | √      | √      |
-| Level3 | zherk                 | √       | √        | √      | √      |
-| Level3 | cherkx                | ×       | ×        | √      | ×      |
-| Level3 | zherkx                | ×       | ×        | √      | ×      |
-| Level3 | ssyr2k                | √       | √        | √      | √      |
-| Level3 | dsyr2k                | √       | √        | √      | √      |
-| Level3 | csyr2k                | √       | √        | √      | √      |
-| Level3 | zsyr2k                | √       | √        | √      | √      |
-| Level3 | hsyr2k                | √       | ×        | ×      | ×      |
-| Level3 | cher2k                | √       | √        | √      | √      |
-| Level3 | zher2k                | √       | √        | √      | √      |
-| Level3 | strmm                 | √       | √        | √      | √      |
-| Level3 | dtrmm                 | √       | √        | √      | √      |
-| Level3 | ctrmm                 | √       | √        | √      | √      |
-| Level3 | ztrmm                 | √       | √        | √      | √      |
-| Level3 | htrmm                 | √       | ×        | ×      | ×      |
-| Level3 | strsm                 | √       | √        | √      | √      |
-| Level3 | dtrsm                 | √       | √        | √      | √      |
-| Level3 | ctrsm                 | √       | √        | √      | √      |
-| Level3 | ztrsm                 | √       | √        | √      | √      |
-| Level3 | strsmbatched          | ×       | ×        | √      | ×      |
-| Level3 | dtrsmbatched          | ×       | ×        | √      | ×      |
-| Level3 | ctrsmbatched          | ×       | ×        | √      | ×      |
-| Level3 | ztrsmbatched          | ×       | ×        | √      | ×      |
-| Level3 | xerbla                | ×       | √        | ×      | ×      |
-| Levelx | saxpby                | ×       | √        | ×      | ×      |
-| Levelx | daxpby                | ×       | √        | ×      | ×      |
-| Levelx | caxpby                | ×       | √        | ×      | ×      |
-| Levelx | zaxpby                | ×       | √        | ×      | ×      |
-| Levelx | shad                  | √       | ×        | ×      | ×      |
-| Levelx | dhad                  | √       | ×        | ×      | ×      |
-| Levelx | chad                  | √       | ×        | ×      | ×      |
-| Levelx | zhad                  | √       | ×        | ×      | ×      |
-| Levelx | somatcopy             | √       | √        | ×      | ×      |
-| Levelx | domatcopy             | √       | √        | ×      | ×      |
-| Levelx | comatcopy             | √       | √        | ×      | ×      |
-| Levelx | zomatcopy             | √       | √        | ×      | ×      |
-| Levelx | homatcopy             | √       | ×        | ×      | ×      |
-| Levelx | simatcopy             | ×       | √        | ×      | ×      |
-| Levelx | dimatcopy             | ×       | √        | ×      | ×      |
-| Levelx | cimatcopy             | ×       | √        | ×      | ×      |
-| Levelx | zimatcopy             | ×       | √        | ×      | ×      |
-| Levelx | himatcopy             | ×       | ×        | ×      | ×      |
-| Levelx | sgeadd                | ×       | √        | ×      | ×      |
-| Levelx | dgeadd                | ×       | √        | ×      | ×      |
-| Levelx | cgeadd                | ×       | √        | ×      | ×      |
-| Levelx | zgeadd                | ×       | √        | ×      | ×      |
-| Levelx | sbstobf16             | ×       | √        | ×      | ×      |
-| Levelx | sbdtobf16             | ×       | √        | ×      | ×      |
-| Levelx | sbf16tos              | ×       | √        | ×      | ×      |
-| Levelx | dbf16tod              | ×       | √        | ×      | ×      |
-| Levelx | sbdot                 | ×       | √        | ×      | ×      |
-| Levelx | sbgemv                | ×       | √        | ×      | ×      |
-| Levelx | sbgemm                | ×       | √        | ×      | ×      |
-| Levelx | sim2col               | √       | ×        | ×      | ×      |
-| Levelx | dim2col               | √       | ×        | ×      | ×      |
-| Levelx | cim2col               | √       | ×        | ×      | ×      |
-| Levelx | zim2col               | √       | ×        | ×      | ×      |
-| Levelx | him2col               | √       | ×        | ×      | ×      |
-| Levelx | scol2im               | √       | ×        | ×      | ×      |
-| Levelx | dcol2im               | √       | ×        | ×      | ×      |
-| Levelx | ccol2im               | √       | ×        | ×      | ×      |
-| Levelx | zcol2im               | √       | ×        | ×      | ×      |
-| Levelx | hcol2im               | √       | ×        | ×      | ×      |
-| Levelx | sconvgem              | √       | ×        | ×      | ×      |
-| Levelx | dconvgemm             | √       | ×        | ×      | ×      |
-| Levelx | hconvgemm             | √       | ×        | ×      | ×      |
-| Levelx | saxpybatched          | √       | ×        | ×      | ×      |
-| Levelx | daxpybatched          | √       | ×        | ×      | ×      |
-| Levelx | caxpybatched          | √       | ×        | ×      | ×      |
-| Levelx | zaxpybatched          | √       | ×        | ×      | ×      |
-| Levelx | haxpybatched          | √       | ×        | ×      | ×      |
-| Levelx | sgemmbatched          | √       | ×        | √      | ×      |
-| Levelx | dgemmbatched          | √       | ×        | √      | ×      |
-| Levelx | cgemmbatched          | √       | ×        | √      | ×      |
-| Levelx | zgemmbatched          | √       | ×        | √      | ×      |
-| Levelx | hgemmbatched          | √       | ×        | √      | ×      |
-| Levelx | sgemmstridedbatched   | √       | ×        | √      | ×      |
-| Levelx | dgemmstridedbatched   | √       | ×        | √      | ×      |
-| Levelx | cgemmstridedbatched   | √       | ×        | √      | ×      |
-| Levelx | zgemmstridedbatched   | √       | ×        | √      | ×      |
-| Levelx | hgemmstridedbatched   | √       | ×        | √      | ×      |
-| Levelx | cgemm3mstridedbatched | ×       | ×        | √      | ×      |
-| Levelx | sgemmwithtempbuffer   | √       | ×        | ×      | ×      |
-| Levelx | dgemmwithtempbuffer   | √       | ×        | ×      | ×      |
-| Levelx | cgemmwithtempbuffer   | √       | ×        | ×      | ×      |
-| Levelx | zgemmwithtempbuffer   | √       | ×        | ×      | ×      |
-| Levelx | hgemmwithtempbuffer   | √       | ×        | ×      | ×      |
-| Levelx | sgemmtempbuffersize   | √       | ×        | ×      | ×      |
-| Levelx | dgemmtempbuffersize   | √       | ×        | ×      | ×      |
-| Levelx | cgemmtempbuffersize   | √       | ×        | ×      | ×      |
-| Levelx | zgemmtempbuffersize   | √       | ×        | ×      | ×      |
-| Levelx | hgemmtempbuffersize   | √       | ×        | ×      | ×      |
-| Levelx | clearcached           | √       | ×        | ×      | ×      |
-| Levelx | fillcache             | √       | ×        | ×      | ×      |
-| Levelx | overrideparameters    | √       | ×        | ×      | ×      |
-| Levelx | sgeam                 | ×       | ×        | √      | ×      |
-| Levelx | dgeam                 | ×       | ×        | √      | ×      |
-| Levelx | cgeam                 | ×       | ×        | √      | ×      |
-| Levelx | zgeam                 | ×       | ×        | √      | ×      |
-| Levelx | sdgmm                 | ×       | ×        | √      | ×      |
-| Levelx | ddgmm                 | ×       | ×        | √      | ×      |
-| Levelx | cdgmm                 | ×       | ×        | √      | ×      |
-| Levelx | zdgmm                 | ×       | ×        | √      | ×      |
-| Levelx | sgetrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | dgetrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | cgetrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | zgetrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | sgetrsbatched         | ×       | ×        | √      | ×      |
-| Levelx | dgetrsbatched         | ×       | ×        | √      | ×      |
-| Levelx | cgetrsbatched         | ×       | ×        | √      | ×      |
-| Levelx | zgetrsbatched         | ×       | ×        | √      | ×      |
-| Levelx | sgetribatched         | ×       | ×        | √      | ×      |
-| Levelx | dgetribatched         | ×       | ×        | √      | ×      |
-| Levelx | cgetribatched         | ×       | ×        | √      | ×      |
-| Levelx | zgetribatched         | ×       | ×        | √      | ×      |
-| Levelx | smatinvbatched        | ×       | ×        | √      | ×      |
-| Levelx | dmatinvbatched        | ×       | ×        | √      | ×      |
-| Levelx | cmatinvbatched        | ×       | ×        | √      | ×      |
-| Levelx | zmatinvbatched        | ×       | ×        | √      | ×      |
-| Levelx | sgeqrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | dgeqrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | cgeqrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | zgeqrfbatched         | ×       | ×        | √      | ×      |
-| Levelx | sgelsbatched          | ×       | ×        | √      | ×      |
-| Levelx | dgelsbatched          | ×       | ×        | √      | ×      |
-| Levelx | cgelsbatched          | ×       | ×        | √      | ×      |
-| Levelx | zgelsbatched          | ×       | ×        | √      | ×      |
-| Levelx | stpttr                | ×       | ×        | √      | ×      |
-| Levelx | dtpttr                | ×       | ×        | √      | ×      |
-| Levelx | ctpttr                | ×       | ×        | √      | ×      |
-| Levelx | ztpttr                | ×       | ×        | √      | ×      |
-| Levelx | strttp                | ×       | ×        | √      | ×      |
-| Levelx | dtrttp                | ×       | ×        | √      | ×      |
-| Levelx | ctrttp                | ×       | ×        | √      | ×      |
-| Levelx | ztrttp                | ×       | ×        | √      | ×      |
-| Levelx | sgemmex               | ×       | ×        | √      | ×      |
-| Levelx | cgemmex               | ×       | ×        | √      | ×      |
-| Levelx | gemmex                | ×       | ×        | √      | ×      |
-| Levelx | gemmbatchedex         | ×       | ×        | √      | ×      |
-| Levelx | gemmstridedbatchedex  | ×       | ×        | √      | ×      |
-| Levelx | csyrkex               | ×       | ×        | √      | ×      |
-| Levelx | csyrk3mex             | ×       | ×        | √      | ×      |
-| Levelx | cherkex               | ×       | ×        | √      | ×      |
-| Levelx | cherk3mex             | ×       | ×        | √      | ×      |
-| Levelx | nrm2ex                | ×       | ×        | √      | ×      |
-| Levelx | axpyex                | ×       | ×        | √      | ×      |
-| Levelx | dotex                 | ×       | ×        | √      | ×      |
-| Levelx | dotcex                | ×       | ×        | √      | ×      |
-| Levelx | rotex                 | ×       | ×        | √      | ×      |
-| Levelx | scalex                | ×       | ×        | √      | ×      |
+| Level  | 函数名                | CLBlast | OpenBLAS | cuBLAS | clBLAS | GSL BLAS |
+| ------ | --------------------- | ------- | -------- | ------ | ------ | -------- |
+| Level1 | srotg                 | ×       | √        | √      | √      | √        |
+| Level1 | drotg                 | ×       | √        | √      | √      | √        |
+| Level1 | crotg                 | ×       | √        | √      | √      | ×        |
+| Level1 | zrotg                 | ×       | √        | √      | √      | ×        |
+| Level1 | srotmg                | ×       | √        | √      | √      | √        |
+| Level1 | drotmg                | ×       | √        | √      | √      | √        |
+| Level1 | srot                  | ×       | √        | √      | √      | √        |
+| Level1 | drot                  | ×       | √        | √      | √      | √        |
+| Level1 | crot                  | ×       | ×        | √      | ×      | ×        |
+| Level1 | zrot                  | ×       | ×        | √      | ×      | ×        |
+| Level1 | csrot                 | ×       | √        | √      | √      | ×        |
+| Level1 | zdrot                 | ×       | √        | √      | √      | ×        |
+| Level1 | srotm                 | ×       | √        | √      | √      | √        |
+| Level1 | drotm                 | ×       | √        | √      | √      | √        |
+| Level1 | sswap                 | √       | √        | √      | √      | √        |
+| Level1 | dswap                 | √       | √        | √      | √      | √        |
+| Level1 | cswap                 | √       | √        | √      | √      | √        |
+| Level1 | zswap                 | √       | √        | √      | √      | √        |
+| Level1 | hswap                 | √       | ×        | ×      | ×      | ×        |
+| Level1 | sscal                 | √       | √        | √      | √      | √        |
+| Level1 | dscal                 | √       | √        | √      | √      | √        |
+| Level1 | cscal                 | √       | √        | √      | √      | √        |
+| Level1 | zscal                 | √       | √        | √      | √      | √        |
+| Level1 | hscal                 | √       | ×        | ×      | ×      | ×        |
+| Level1 | csscal                | ×       | √        | √      | √      | √        |
+| Level1 | zdscal                | ×       | √        | √      | √      | √        |
+| Level1 | scopy                 | √       | √        | √      | √      | √        |
+| Level1 | dcopy                 | √       | √        | √      | √      | √        |
+| Level1 | ccopy                 | √       | √        | √      | √      | √        |
+| Level1 | zcopy                 | √       | √        | √      | √      | √        |
+| Level1 | hcopy                 | √       | ×        | ×      | ×      | ×        |
+| Level1 | saxpy                 | √       | √        | √      | √      | √        |
+| Level1 | daxpy                 | √       | √        | √      | √      | √        |
+| Level1 | caxpy                 | √       | √        | √      | √      | √        |
+| Level1 | zaxpy                 | √       | √        | √      | √      | √        |
+| Level1 | haxpy                 | √       | ×        | ×      | ×      | ×        |
+| Level1 | dsdot                 | ×       | √        | ×      | ×      | √        |
+| Level1 | sdsdot                | ×       | √        | ×      | ×      | √        |
+| Level1 | sdot                  | √       | √        | √      | √      | √        |
+| Level1 | ddot                  | √       | √        | √      | √      | √        |
+| Level1 | hdot                  | √       | ×        | ×      | ×      | ×        |
+| Level1 | cdotu                 | √       | √        | √      | √      | ×        |
+| Level1 | zdotu                 | √       | √        | √      | √      | ×        |
+| Level1 | cdotc                 | √       | √        | √      | √      | ×        |
+| Level1 | zdotc                 | √       | √        | √      | √      | ×        |
+| Level1 | cdotu_sub             | ×       | √        | ×      | ×      | √        |
+| Level1 | cdotc_sub             | ×       | √        | ×      | ×      | √        |
+| Level1 | zdotu_sub             | ×       | √        | ×      | ×      | √        |
+| Level1 | zdotc_sub             | ×       | √        | ×      | ×      | √        |
+| Level1 | snrm2                 | √       | √        | √      | √      | √        |
+| Level1 | dnrm2                 | √       | √        | √      | √      | √        |
+| Level1 | scnrm2                | √       | √        | √      | √      | √        |
+| Level1 | dznrm2                | √       | √        | √      | √      | √        |
+| Level1 | hnrm2                 | √       | ×        | ×      | ×      | ×        |
+| Level1 | sasum                 | √       | √        | √      | √      | √        |
+| Level1 | dasum                 | √       | √        | √      | √      | √        |
+| Level1 | scasum                | √       | √        | √      | √      | √        |
+| Level1 | dzasum                | √       | √        | √      | √      | √        |
+| Level1 | hasum                 | √       | ×        | ×      | ×      | ×        |
+| Level1 | ssum                  | √       | √        | ×      | ×      | ×        |
+| Level1 | dsum                  | √       | √        | ×      | ×      | ×        |
+| Level1 | scsum                 | √       | √        | ×      | ×      | ×        |
+| Level1 | dzsum                 | √       | √        | ×      | ×      | ×        |
+| Level1 | hsum                  | √       | ×        | ×      | ×      | ×        |
+| Level1 | samax                 | ×       | ×        | ×      | √      | ×        |
+| Level1 | damax                 | ×       | ×        | ×      | √      | ×        |
+| Level1 | scamax                | ×       | ×        | ×      | √      | ×        |
+| Level1 | dzamax                | ×       | ×        | ×      | √      | ×        |
+| Level1 | isamax                | √       | √        | √      | √      | √        |
+| Level1 | idamax                | √       | √        | √      | √      | √        |
+| Level1 | icamax                | √       | √        | √      | √      | √        |
+| Level1 | izamax                | √       | √        | √      | √      | √        |
+| Level1 | ihamax                | √       | ×        | ×      | ×      | ×        |
+| Level1 | samin                 | ×       | ×        | ×      | ×      | ×        |
+| Level1 | damin                 | ×       | ×        | ×      | ×      | ×        |
+| Level1 | camin                 | ×       | ×        | ×      | ×      | ×        |
+| Level1 | zamin                 | ×       | ×        | ×      | ×      | ×        |
+| Level1 | isamin                | √       | √        | √      | ×      | ×        |
+| Level1 | idamin                | √       | √        | √      | ×      | ×        |
+| Level1 | icamin                | √       | √        | √      | ×      | ×        |
+| Level1 | izamin                | √       | √        | √      | ×      | ×        |
+| Level1 | ihamin                | √       | ×        | ×      | ×      | ×        |
+| Level1 | smax                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | dmax                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | cmax                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | zmax                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | ismax                 | √       | √        | ×      | ×      | ×        |
+| Level1 | idmax                 | √       | √        | ×      | ×      | ×        |
+| Level1 | icmax                 | √       | √        | ×      | ×      | ×        |
+| Level1 | izmax                 | √       | √        | ×      | ×      | ×        |
+| Level1 | ihmax                 | √       | ×        | ×      | ×      | ×        |
+| Level1 | smin                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | dmin                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | cmin                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | zmin                  | ×       | ×        | ×      | ×      | ×        |
+| Level1 | ismin                 | √       | √        | ×      | ×      | ×        |
+| Level1 | idmin                 | √       | √        | ×      | ×      | ×        |
+| Level1 | icmin                 | √       | √        | ×      | ×      | ×        |
+| Level1 | izmin                 | √       | √        | ×      | ×      | ×        |
+| Level1 | ihmin                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | sgemv                 | √       | √        | √      | √      | √        |
+| Level2 | dgemv                 | √       | √        | √      | √      | √        |
+| Level2 | cgemv                 | √       | √        | √      | √      | √        |
+| Level2 | zgemv                 | √       | √        | √      | √      | √        |
+| Level2 | hgemv                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | sgbmv                 | √       | √        | √      | √      | √        |
+| Level2 | dgbmv                 | √       | √        | √      | √      | √        |
+| Level2 | cgbmv                 | √       | √        | √      | √      | √        |
+| Level2 | zgbmv                 | √       | √        | √      | √      | √        |
+| Level2 | hgbmv                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | chemv                 | √       | √        | √      | √      | √        |
+| Level2 | zhemv                 | √       | √        | √      | √      | √        |
+| Level2 | chbmv                 | √       | √        | √      | √      | √        |
+| Level2 | zhbmv                 | √       | √        | √      | √      | √        |
+| Level2 | chpmv                 | √       | √        | √      | √      | √        |
+| Level2 | zhpmv                 | √       | √        | √      | √      | √        |
+| Level2 | ssymv                 | √       | √        | √      | √      | √        |
+| Level2 | dsymv                 | √       | √        | √      | √      | √        |
+| Level2 | csymv                 | ×       | ×        | √      | √      | ×        |
+| Level2 | zsymv                 | ×       | ×        | √      | √      | ×        |
+| Level2 | hsymv                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | ssbmv                 | √       | √        | √      | √      | √        |
+| Level2 | dsbmv                 | √       | √        | √      | √      | √        |
+| Level2 | hsbmv                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | sspmv                 | √       | √        | √      | √      | √        |
+| Level2 | dspmv                 | √       | √        | √      | √      | √        |
+| Level2 | hspmv                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | strmv                 | √       | √        | √      | √      | √        |
+| Level2 | dtrmv                 | √       | √        | √      | √      | √        |
+| Level2 | ctrmv                 | √       | √        | √      | √      | √        |
+| Level2 | ztrmv                 | √       | √        | √      | √      | √        |
+| Level2 | htrmv                 | √       | ×        | √      | ×      | ×        |
+| Level2 | stbmv                 | √       | √        | √      | √      | √        |
+| Level2 | dtbmv                 | √       | √        | √      | √      | √        |
+| Level2 | ctbmv                 | √       | √        | √      | √      | √        |
+| Level2 | ztbmv                 | √       | √        | √      | √      | √        |
+| Level2 | htbmv                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | stpmv                 | √       | √        | √      | √      | √        |
+| Level2 | dtpmv                 | √       | √        | √      | √      | √        |
+| Level2 | ctpmv                 | √       | √        | √      | √      | √        |
+| Level2 | ztpmv                 | √       | √        | √      | √      | √        |
+| Level2 | htpmv                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | strsv                 | √       | √        | √      | √      | √        |
+| Level2 | dtrsv                 | √       | √        | √      | √      | √        |
+| Level2 | ctrsv                 | √       | √        | √      | √      | √        |
+| Level2 | ztrsv                 | √       | √        | √      | √      | √        |
+| Level2 | stbsv                 | √       | √        | ×      | √      | √        |
+| Level2 | dtbsv                 | √       | √        | ×      | √      | √        |
+| Level2 | ctbsv                 | √       | √        | ×      | √      | √        |
+| Level2 | ztbsv                 | √       | √        | ×      | √      | √        |
+| Level2 | stpsv                 | √       | √        | √      | √      | √        |
+| Level2 | dtpsv                 | √       | √        | √      | √      | √        |
+| Level2 | ctpsv                 | √       | √        | √      | √      | √        |
+| Level2 | ztpsv                 | √       | √        | √      | √      | √        |
+| Level2 | sger                  | √       | √        | √      | √      | √        |
+| Level2 | dger                  | √       | √        | √      | √      | √        |
+| Level2 | hger                  | √       | ×        | ×      | ×      | ×        |
+| Level2 | cgeru                 | √       | √        | √      | √      | √        |
+| Level2 | zgeru                 | √       | √        | √      | √      | √        |
+| Level2 | cgerc                 | √       | √        | √      | √      | √        |
+| Level2 | zgerc                 | √       | √        | √      | √      | √        |
+| Level2 | cher                  | √       | √        | √      | √      | √        |
+| Level2 | zher                  | √       | √        | √      | √      | √        |
+| Level2 | chpr                  | √       | √        | √      | √      | √        |
+| Level2 | zhpr                  | √       | √        | √      | √      | √        |
+| Level2 | cher2                 | √       | √        | √      | √      | √        |
+| Level2 | zher2                 | √       | √        | √      | √      | √        |
+| Level2 | chpr2                 | √       | √        | √      | √      | √        |
+| Level2 | zhpr2                 | √       | √        | √      | √      | √        |
+| Level2 | ssyr                  | √       | √        | √      | √      | √        |
+| Level2 | dsyr                  | √       | √        | √      | √      | √        |
+| Level2 | csyr                  | ×       | ×        | √      | ×      | ×        |
+| Level2 | zsyr                  | ×       | ×        | √      | ×      | ×        |
+| Level2 | hsyr                  | √       | ×        | ×      | ×      | ×        |
+| Level2 | sspr                  | √       | √        | √      | √      | √        |
+| Level2 | dspr                  | √       | √        | √      | √      | √        |
+| Level2 | hspr                  | √       | ×        | ×      | ×      | ×        |
+| Level2 | ssyr2                 | √       | √        | √      | √      | √        |
+| Level2 | dsyr2                 | √       | √        | √      | √      | √        |
+| Level2 | csyr2                 | ×       | ×        | √      | √      | ×        |
+| Level2 | zsyr2                 | ×       | ×        | √      | √      | ×        |
+| Level2 | hsyr2                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | sspr2                 | √       | √        | √      | √      | √        |
+| Level2 | dspr2                 | √       | √        | √      | √      | √        |
+| Level2 | hspr2                 | √       | ×        | ×      | ×      | ×        |
+| Level2 | sgemvbatched          | ×       | ×        | √      | ×      | ×        |
+| Level2 | dgemvbatched          | ×       | ×        | √      | ×      | ×        |
+| Level2 | cgemvbatched          | ×       | ×        | √      | ×      | ×        |
+| Level2 | zgemvbatched          | ×       | ×        | √      | ×      | ×        |
+| Level2 | hshgemvbatched        | ×       | ×        | √      | ×      | ×        |
+| Level2 | hssgemvbatched        | ×       | ×        | √      | ×      | ×        |
+| Level2 | tstgemvbatched        | ×       | ×        | √      | ×      | ×        |
+| Level2 | tssgemvbatched        | ×       | ×        | √      | ×      | ×        |
+| Level2 | sgemvstridebatched    | ×       | ×        | √      | ×      | ×        |
+| Level2 | dgemvstridebatched    | ×       | ×        | √      | ×      | ×        |
+| Level2 | cgemvstridebatched    | ×       | ×        | √      | ×      | ×        |
+| Level2 | zgemvstridebatched    | ×       | ×        | √      | ×      | ×        |
+| Level2 | hshgemvstridebatched  | ×       | ×        | √      | ×      | ×        |
+| Level2 | hssgemvstridebatched  | ×       | ×        | √      | ×      | ×        |
+| Level2 | tstgemvstridebatched  | ×       | ×        | √      | ×      | ×        |
+| Level2 | tssgemvstridebatched  | ×       | ×        | √      | ×      | ×        |
+| Level3 | sgemm                 | √       | √        | √      | √      | √        |
+| Level3 | dgemm                 | √       | √        | √      | √      | √        |
+| Level3 | cgemm                 | √       | √        | √      | √      | √        |
+| Level3 | zgemm                 | √       | √        | √      | √      | √        |
+| Level3 | hgemm                 | √       | ×        | √      | ×      | ×        |
+| Level3 | cgemm3m               | ×       | √        | √      | ×      | ×        |
+| Level3 | zgemm3m               | ×       | √        | √      | ×      | ×        |
+| Level3 | ssymm                 | √       | √        | √      | √      | √        |
+| Level3 | dsymm                 | √       | √        | √      | √      | √        |
+| Level3 | csymm                 | √       | √        | √      | √      | √        |
+| Level3 | zsymm                 | √       | √        | √      | √      | √        |
+| Level3 | hsymm                 | √       | ×        | ×      | ×      | ×        |
+| Level3 | chemm                 | √       | √        | √      | √      | √        |
+| Level3 | zhemm                 | √       | √        | √      | √      | √        |
+| Level3 | ssyrk                 | √       | √        | √      | √      | √        |
+| Level3 | dsyrk                 | √       | √        | √      | √      | √        |
+| Level3 | csyrk                 | √       | √        | √      | √      | √        |
+| Level3 | zsyrk                 | √       | √        | √      | √      | √        |
+| Level3 | hsyrk                 | √       | ×        | ×      | ×      | ×        |
+| Level3 | ssyrkx                | ×       | ×        | √      | ×      | ×        |
+| Level3 | dsyrkx                | ×       | ×        | √      | ×      | ×        |
+| Level3 | csyrkx                | ×       | ×        | √      | ×      | ×        |
+| Level3 | zsyrkx                | ×       | ×        | √      | ×      | ×        |
+| Level3 | cherk                 | √       | √        | √      | √      | √        |
+| Level3 | zherk                 | √       | √        | √      | √      | √        |
+| Level3 | cherkx                | ×       | ×        | √      | ×      | ×        |
+| Level3 | zherkx                | ×       | ×        | √      | ×      | ×        |
+| Level3 | ssyr2k                | √       | √        | √      | √      | √        |
+| Level3 | dsyr2k                | √       | √        | √      | √      | √        |
+| Level3 | csyr2k                | √       | √        | √      | √      | √        |
+| Level3 | zsyr2k                | √       | √        | √      | √      | √        |
+| Level3 | hsyr2k                | √       | ×        | ×      | ×      | ×        |
+| Level3 | cher2k                | √       | √        | √      | √      | √        |
+| Level3 | zher2k                | √       | √        | √      | √      | √        |
+| Level3 | strmm                 | √       | √        | √      | √      | √        |
+| Level3 | dtrmm                 | √       | √        | √      | √      | √        |
+| Level3 | ctrmm                 | √       | √        | √      | √      | √        |
+| Level3 | ztrmm                 | √       | √        | √      | √      | √        |
+| Level3 | htrmm                 | √       | ×        | ×      | ×      | ×        |
+| Level3 | strsm                 | √       | √        | √      | √      | √        |
+| Level3 | dtrsm                 | √       | √        | √      | √      | √        |
+| Level3 | ctrsm                 | √       | √        | √      | √      | √        |
+| Level3 | ztrsm                 | √       | √        | √      | √      | √        |
+| Level3 | strsmbatched          | ×       | ×        | √      | ×      | ×        |
+| Level3 | dtrsmbatched          | ×       | ×        | √      | ×      | ×        |
+| Level3 | ctrsmbatched          | ×       | ×        | √      | ×      | ×        |
+| Level3 | ztrsmbatched          | ×       | ×        | √      | ×      | ×        |
+| Level3 | xerbla                | ×       | √        | ×      | ×      | √        |
+| Levelx | saxpby                | ×       | √        | ×      | ×      | ×        |
+| Levelx | daxpby                | ×       | √        | ×      | ×      | ×        |
+| Levelx | caxpby                | ×       | √        | ×      | ×      | ×        |
+| Levelx | zaxpby                | ×       | √        | ×      | ×      | ×        |
+| Levelx | shad                  | √       | ×        | ×      | ×      | ×        |
+| Levelx | dhad                  | √       | ×        | ×      | ×      | ×        |
+| Levelx | chad                  | √       | ×        | ×      | ×      | ×        |
+| Levelx | zhad                  | √       | ×        | ×      | ×      | ×        |
+| Levelx | somatcopy             | √       | √        | ×      | ×      | ×        |
+| Levelx | domatcopy             | √       | √        | ×      | ×      | ×        |
+| Levelx | comatcopy             | √       | √        | ×      | ×      | ×        |
+| Levelx | zomatcopy             | √       | √        | ×      | ×      | ×        |
+| Levelx | homatcopy             | √       | ×        | ×      | ×      | ×        |
+| Levelx | simatcopy             | ×       | √        | ×      | ×      | ×        |
+| Levelx | dimatcopy             | ×       | √        | ×      | ×      | ×        |
+| Levelx | cimatcopy             | ×       | √        | ×      | ×      | ×        |
+| Levelx | zimatcopy             | ×       | √        | ×      | ×      | ×        |
+| Levelx | himatcopy             | ×       | ×        | ×      | ×      | ×        |
+| Levelx | sgeadd                | ×       | √        | ×      | ×      | ×        |
+| Levelx | dgeadd                | ×       | √        | ×      | ×      | ×        |
+| Levelx | cgeadd                | ×       | √        | ×      | ×      | ×        |
+| Levelx | zgeadd                | ×       | √        | ×      | ×      | ×        |
+| Levelx | sbstobf16             | ×       | √        | ×      | ×      | ×        |
+| Levelx | sbdtobf16             | ×       | √        | ×      | ×      | ×        |
+| Levelx | sbf16tos              | ×       | √        | ×      | ×      | ×        |
+| Levelx | dbf16tod              | ×       | √        | ×      | ×      | ×        |
+| Levelx | sbdot                 | ×       | √        | ×      | ×      | ×        |
+| Levelx | sbgemv                | ×       | √        | ×      | ×      | ×        |
+| Levelx | sbgemm                | ×       | √        | ×      | ×      | ×        |
+| Levelx | sim2col               | √       | ×        | ×      | ×      | ×        |
+| Levelx | dim2col               | √       | ×        | ×      | ×      | ×        |
+| Levelx | cim2col               | √       | ×        | ×      | ×      | ×        |
+| Levelx | zim2col               | √       | ×        | ×      | ×      | ×        |
+| Levelx | him2col               | √       | ×        | ×      | ×      | ×        |
+| Levelx | scol2im               | √       | ×        | ×      | ×      | ×        |
+| Levelx | dcol2im               | √       | ×        | ×      | ×      | ×        |
+| Levelx | ccol2im               | √       | ×        | ×      | ×      | ×        |
+| Levelx | zcol2im               | √       | ×        | ×      | ×      | ×        |
+| Levelx | hcol2im               | √       | ×        | ×      | ×      | ×        |
+| Levelx | sconvgem              | √       | ×        | ×      | ×      | ×        |
+| Levelx | dconvgemm             | √       | ×        | ×      | ×      | ×        |
+| Levelx | hconvgemm             | √       | ×        | ×      | ×      | ×        |
+| Levelx | saxpybatched          | √       | ×        | ×      | ×      | ×        |
+| Levelx | daxpybatched          | √       | ×        | ×      | ×      | ×        |
+| Levelx | caxpybatched          | √       | ×        | ×      | ×      | ×        |
+| Levelx | zaxpybatched          | √       | ×        | ×      | ×      | ×        |
+| Levelx | haxpybatched          | √       | ×        | ×      | ×      | ×        |
+| Levelx | sgemmbatched          | √       | ×        | √      | ×      | ×        |
+| Levelx | dgemmbatched          | √       | ×        | √      | ×      | ×        |
+| Levelx | cgemmbatched          | √       | ×        | √      | ×      | ×        |
+| Levelx | zgemmbatched          | √       | ×        | √      | ×      | ×        |
+| Levelx | hgemmbatched          | √       | ×        | √      | ×      | ×        |
+| Levelx | sgemmstridedbatched   | √       | ×        | √      | ×      | ×        |
+| Levelx | dgemmstridedbatched   | √       | ×        | √      | ×      | ×        |
+| Levelx | cgemmstridedbatched   | √       | ×        | √      | ×      | ×        |
+| Levelx | zgemmstridedbatched   | √       | ×        | √      | ×      | ×        |
+| Levelx | hgemmstridedbatched   | √       | ×        | √      | ×      | ×        |
+| Levelx | cgemm3mstridedbatched | ×       | ×        | √      | ×      | ×        |
+| Levelx | sgemmwithtempbuffer   | √       | ×        | ×      | ×      | ×        |
+| Levelx | dgemmwithtempbuffer   | √       | ×        | ×      | ×      | ×        |
+| Levelx | cgemmwithtempbuffer   | √       | ×        | ×      | ×      | ×        |
+| Levelx | zgemmwithtempbuffer   | √       | ×        | ×      | ×      | ×        |
+| Levelx | hgemmwithtempbuffer   | √       | ×        | ×      | ×      | ×        |
+| Levelx | sgemmtempbuffersize   | √       | ×        | ×      | ×      | ×        |
+| Levelx | dgemmtempbuffersize   | √       | ×        | ×      | ×      | ×        |
+| Levelx | cgemmtempbuffersize   | √       | ×        | ×      | ×      | ×        |
+| Levelx | zgemmtempbuffersize   | √       | ×        | ×      | ×      | ×        |
+| Levelx | hgemmtempbuffersize   | √       | ×        | ×      | ×      | ×        |
+| Levelx | clearcached           | √       | ×        | ×      | ×      | ×        |
+| Levelx | fillcache             | √       | ×        | ×      | ×      | ×        |
+| Levelx | overrideparameters    | √       | ×        | ×      | ×      | ×        |
+| Levelx | sgeam                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | dgeam                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | cgeam                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | zgeam                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | sdgmm                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | ddgmm                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | cdgmm                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | zdgmm                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | sgetrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | dgetrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | cgetrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | zgetrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | sgetrsbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | dgetrsbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | cgetrsbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | zgetrsbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | sgetribatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | dgetribatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | cgetribatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | zgetribatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | smatinvbatched        | ×       | ×        | √      | ×      | ×        |
+| Levelx | dmatinvbatched        | ×       | ×        | √      | ×      | ×        |
+| Levelx | cmatinvbatched        | ×       | ×        | √      | ×      | ×        |
+| Levelx | zmatinvbatched        | ×       | ×        | √      | ×      | ×        |
+| Levelx | sgeqrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | dgeqrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | cgeqrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | zgeqrfbatched         | ×       | ×        | √      | ×      | ×        |
+| Levelx | sgelsbatched          | ×       | ×        | √      | ×      | ×        |
+| Levelx | dgelsbatched          | ×       | ×        | √      | ×      | ×        |
+| Levelx | cgelsbatched          | ×       | ×        | √      | ×      | ×        |
+| Levelx | zgelsbatched          | ×       | ×        | √      | ×      | ×        |
+| Levelx | stpttr                | ×       | ×        | √      | ×      | ×        |
+| Levelx | dtpttr                | ×       | ×        | √      | ×      | ×        |
+| Levelx | ctpttr                | ×       | ×        | √      | ×      | ×        |
+| Levelx | ztpttr                | ×       | ×        | √      | ×      | ×        |
+| Levelx | strttp                | ×       | ×        | √      | ×      | ×        |
+| Levelx | dtrttp                | ×       | ×        | √      | ×      | ×        |
+| Levelx | ctrttp                | ×       | ×        | √      | ×      | ×        |
+| Levelx | ztrttp                | ×       | ×        | √      | ×      | ×        |
+| Levelx | sgemmex               | ×       | ×        | √      | ×      | ×        |
+| Levelx | cgemmex               | ×       | ×        | √      | ×      | ×        |
+| Levelx | gemmex                | ×       | ×        | √      | ×      | ×        |
+| Levelx | gemmbatchedex         | ×       | ×        | √      | ×      | ×        |
+| Levelx | gemmstridedbatchedex  | ×       | ×        | √      | ×      | ×        |
+| Levelx | csyrkex               | ×       | ×        | √      | ×      | ×        |
+| Levelx | csyrk3mex             | ×       | ×        | √      | ×      | ×        |
+| Levelx | cherkex               | ×       | ×        | √      | ×      | ×        |
+| Levelx | cherk3mex             | ×       | ×        | √      | ×      | ×        |
+| Levelx | nrm2ex                | ×       | ×        | √      | ×      | ×        |
+| Levelx | axpyex                | ×       | ×        | √      | ×      | ×        |
+| Levelx | dotex                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | dotcex                | ×       | ×        | √      | ×      | ×        |
+| Levelx | rotex                 | ×       | ×        | √      | ×      | ×        |
+| Levelx | scalex                | ×       | ×        | √      | ×      | ×        |
 
 **注释**：
 
