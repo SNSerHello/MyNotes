@@ -543,10 +543,10 @@ $$
 ### gemv
 
 $$
-y = \alpha \ \mathcal{op}(A) x + \beta y
+y \leftarrow \alpha \ \mathcal{op}(A) x + \beta y
 $$
 
-gbmv与gemv的计算公式一致，只是
+**gbmv**与**gemv**的计算公式一致，只是
 
 - gbmv中A矩阵是带状矩阵
 - gemv中A矩阵是普通矩阵
@@ -554,10 +554,10 @@ gbmv与gemv的计算公式一致，只是
 ### tbmv
 
 $$
-x = \mathcal{op}(A) x
+x \leftarrow \mathcal{op}(A) x
 $$
 
-tpmv，trmv与tbmv的计算公式一致，只是
+**tpmv**，**trmv**与**tbmv**的计算公式一致，只是
 
 - trmv的A矩阵为三角矩阵
 - tpmv的A矩阵为三角包装矩阵
@@ -566,12 +566,12 @@ tpmv，trmv与tbmv的计算公式一致，只是
 ### hemv
 
 $$
-y = \alpha A x + \beta y
+y \leftarrow \alpha A x + \beta y
 $$
 
 其中: A为Hermitian矩阵
 
-hbmv，sbmv，spmv，hpmv与hemv计算公式一致，只是
+**hbmv**，**sbmv**，**spmv**，**hpmv**与**hemv**计算公式一致，只是
 
 - hbmv的A矩阵为Hermitian带状矩阵
 - sbmv的A矩阵为对称带状矩阵
@@ -600,7 +600,7 @@ $$
 A \leftarrow \alpha x x^T + A
 $$
 
-syr与spr计算公式一致，只是
+**syr**与spr计算公式一致，只是
 
 - syr的A矩阵为对称矩阵
 - spr的A矩阵为对称包装矩阵
@@ -611,7 +611,7 @@ $$
 A \leftarrow \alpha \left(xy^T + yx^T\right) + A
 $$
 
-syr2与spr2计算公式一致，只是
+**syr2**与**spr2**计算公式一致，只是
 
 - syr2的A矩阵为对称矩阵
 - spr2的A矩阵为对称包装矩阵
@@ -623,11 +623,41 @@ syr2与spr2计算公式一致，只是
 $$
 \mathcal{op}(A) x = b
 $$
-tpmv，trsv与tbsv计算公式一致，只是
+**tpsv**，**trsv**与**tbsv**计算公式一致，只是
 
-- tpmv的A矩阵是三角包装矩阵
+- tpsv的A矩阵是三角包装矩阵
 - trsv的A矩阵是三角矩阵
 - tbsv的A矩阵是三角带状矩阵
+
+### tpmv
+
+$$
+x \leftarrow \mathcal{op}(A) x
+$$
+
+**trmv**与**tpmv**计算公式一致，只是
+
+- trmv的A矩阵是三角矩阵
+- tpmv的A矩阵是三角包装矩阵
+
+### her
+
+$$
+A \leftarrow \alpha x x^H + A
+$$
+
+其中：A矩阵是Hermitian矩阵
+
+### her2
+
+$$
+A \leftarrow \alpha x y^H + \bar{\alpha} y x^H + A
+$$
+
+**hpr2**与**her2**计算公式一致，只是
+
+- hpr2的A矩阵是Hermitian包装矩阵
+- her2的A矩阵是Hermitian矩阵
 
 
 
