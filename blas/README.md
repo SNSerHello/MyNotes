@@ -543,7 +543,7 @@ $$
 ### gbmv
 
 $$
-y = \alpha \; \mathcal{op}(A) x + \beta y
+y = \alpha \ \mathcal{op}(A) x + \beta y
 $$
 
 
