@@ -579,9 +579,11 @@ A \leftarrow \alpha xy^T + A
 $$
 
 用户也可根据需求进行共轭转置（以H上标记作共轭转置），即
+
 $$
-A \leftarrow \alpha xy^H + A
+A \leftarrow \alpha xy^{H} + A
 $$
+
 共轭转置与普通转置的关系是：$y^H=conjg(y^T)$
 
 
