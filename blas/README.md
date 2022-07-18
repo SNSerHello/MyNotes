@@ -737,6 +737,22 @@ $$
 
 AB还是BA是更加参数来进行选择
 
+### syrk
+
+$$
+C \leftarrow \alpha \ \mathcal{op}(A) \mathcal{op}(A)^T + \beta C
+$$
+
+其中：$\alpha$和$\beta$是标量，A是对称矩阵，B和C是普通矩阵
+
+**syrkx**与**syrk**的计算公式一致，只是在op()选择的时候有所区别
+
+
+
+
+
+
+
 
 
 ## 参考
