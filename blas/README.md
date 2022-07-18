@@ -540,11 +540,26 @@ x
 \end{pmatrix}
 $$
 
-### gbmv
+### gemv
 
 $$
 y = \alpha \ \mathcal{op}(A) x + \beta y
 $$
+
+gbmv，sbmv与gemv的计算公式一致，只是
+
+- gbmv中A矩阵是带状矩阵
+- sbmv中A矩阵是对称矩阵
+
+### tbmv
+
+$$
+x = \mathcal{op}(A) x
+$$
+
+其中A为三角带状矩阵
+
+
 
 
 
