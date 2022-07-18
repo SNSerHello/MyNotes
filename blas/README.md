@@ -522,6 +522,12 @@ $$
 y \leftarrow alpha * x + y
 $$
 
+### dot
+
+$$
+result = \sum_{i=1}^{n} x_i y_i
+$$
+
 
 
 ## 参考
