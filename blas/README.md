@@ -535,7 +535,8 @@ $$
 x\\
 y
 \end{pmatrix} \leftarrow \begin{pmatrix}
-y\\x
+y\\
+x
 \end{pmatrix}
 $$
 
