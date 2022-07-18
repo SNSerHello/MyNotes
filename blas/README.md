@@ -737,6 +737,8 @@ $$
 
 AB还是BA是更加参数来进行选择
 
+**hemm**与**symm**计算公式一致，只是hemm的A矩阵是Hermitian矩阵，而symmc的A矩阵是对称矩阵。
+
 ### syrk
 
 $$
@@ -745,7 +747,10 @@ $$
 
 其中：$\alpha$和$\beta$是标量，A是对称矩阵，B和C是普通矩阵
 
-**syrkx**与**syrk**的计算公式一致，只是在op()选择的时候有所区别
+**herk**与**syrk**的计算公式一致，**syrk**的A矩阵是对称矩阵，**herk**的A矩阵是Hermitian矩阵，并且**herk**对op(A)做共轭转置，即
+$$
+C \leftarrow \alpha \ \mathcal{op}(A) \mathcal{op}(A)^H + \beta C
+$$
 
 ### syr2k
 
@@ -755,7 +760,37 @@ $$
 
 其中：$\alpha$和$\beta$是标量，A是对称矩阵，B和C是普通矩阵
 
+**her2k**与**syr2k**的计算公式一致，只是**her2k**的A矩阵是Hermitian矩阵，**syr2k**的A矩阵是对称矩阵，并且**her2k**对op(A)和op(B)做共轭转置，即
 
+$$
+C \leftarrow \alpha \left(\mathcal{op}(A)\mathcal{op}(B)^H + \mathcal{op}(B)\mathcal{op}(A)^H\right) + \beta C
+$$
+
+### trmm
+
+$$
+C \leftarrow \alpha \ \mathcal{op}(A) B
+$$
+
+或者
+
+$$
+C \leftarrow \alpha B \ \mathcal{op}(A)
+$$
+
+### trsm
+
+解方程
+
+$$
+\mathcal{op}(A) X = \alpha B
+$$
+
+或者
+
+$$
+X\ \mathcal{op}(A) = \alpha B
+$$
 
 
 
