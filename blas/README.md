@@ -490,6 +490,20 @@ zdotu：双精度复数计算，无向量共轭计算
 
 其中: ![rot params](images/rot_params.jpg)
 
+### rotg
+
+已知a，b，求c，s
+
+- 当x，y为实数的时候
+
+  ![rotg real](images/rotg_real.jpg)
+
+- 当x，y为复数的时候
+
+  ![rotg complex](images/rotg_complex.jpg)
+
+其中：![rotg params](images/rotg_params.jpg)
+
 
 
 ## 参考
