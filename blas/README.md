@@ -713,6 +713,16 @@ $$
 - hpr2的A矩阵是Hermitian包装矩阵
 - her2的A矩阵是Hermitian矩阵
 
+### gemm
+
+$$
+C \leftarrow \alpha \ \mathcal{op}(A) \ \mathcal{op}(B) + \beta C
+$$
+
+其中：$\alpha$和$\beta$是标量，A，B，C是普通矩阵
+
+**gemm3m**是**gemm**的性能版本，采用高斯reduction算法后，性能提高25%。
+
 
 
 ## 参考
