@@ -510,6 +510,12 @@ zdotu：双精度复数计算，无向量共轭计算
 
 ![rotmg](images/rotmg.jpg)
 
+### scal
+
+$$
+x \leftarrow alpha * x
+$$
+
 
 
 ## 参考
