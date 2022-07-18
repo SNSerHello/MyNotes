@@ -478,6 +478,18 @@ zdotu：双精度复数计算，无向量共轭计算
 - Levelx表示自定义扩展，一般考虑性能提高，比如说支持batched功能等
 - OpenBLAS支持bfloat16
 
+### rot
+
+- 当x，y为实数的时候
+
+  ![rot real](images/rot_real.jpg)
+
+- 当x，y为复数的时候
+
+  ![rot complex](images/rot_complex.jpg)
+
+其中: ![rot params](images/rot_params.jpg)
+
 
 
 ## 参考
