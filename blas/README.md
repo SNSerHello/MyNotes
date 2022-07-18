@@ -616,6 +616,19 @@ syr2与spr2计算公式一致，只是
 - syr2的A矩阵为对称矩阵
 - spr2的A矩阵为对称包装矩阵
 
+### tbsv
+
+解线性方程
+
+$$
+\mathcal{op}(A) x = b
+$$
+tpmv，trsv与tbsv计算公式一致，只是
+
+- tpmv的A矩阵是三角包装矩阵
+- trsv的A矩阵是三角矩阵
+- tbsv的A矩阵是三角带状矩阵
+
 
 
 ## 参考
