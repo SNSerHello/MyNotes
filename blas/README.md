@@ -572,6 +572,20 @@ hbmv，hpmv的计算公式与hemv公式一致，只是
 - hbmv的A矩阵为Hermitian带状矩阵
 - hpmv的A矩阵为Hermitian包装矩阵
 
+### ger
+
+$$
+A \leftarrow \alpha xy^T + A
+$$
+
+用户也可根据需求进行共轭转置（以H上标记作共轭转置），即
+$$
+A \leftarrow \alpha xy^H + A
+$$
+共轭转置与普通转置的关系是：$y^H=conjg(y^T)$
+
+
+
 
 
 ## 参考
