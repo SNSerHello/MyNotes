@@ -477,6 +477,11 @@ zdotu：双精度复数计算，无向量共轭计算
 - √表示已实现
 - Levelx表示自定义扩展，一般考虑性能提高，比如说支持batched功能等
 - OpenBLAS支持bfloat16
+- GSL BLAS还支持稀疏矩阵计算，详见：[GSL Sparse BLAS Support](https://www.gnu.org/software/gsl/doc/html/spblas.html)，它支持两个函数
+  - gsl_spblas_dgemv: $y \leftarrow \alpha \ \mathcal{op}(A) x + \beta y$
+  - gsl_spblas_dgemm: $C \leftarrow \alpha \ \mathcal{op}(A) \ \mathcal{op}(B) + \beta C$
+
+
 
 ### rot
 
