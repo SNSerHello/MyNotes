@@ -517,6 +517,7 @@ zdotu：双精度复数计算，无向量共轭计算
 已知a，b，求c，s
 
 - 当x，y为实数的时候
+
   $$
   \begin{pmatrix}
   c & s\\
