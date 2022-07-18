@@ -516,6 +516,12 @@ $$
 x \leftarrow alpha * x
 $$
 
+### axpy
+
+$$
+y \leftarrow alpha * x + y
+$$
+
 
 
 ## 参考
