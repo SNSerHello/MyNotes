@@ -169,9 +169,9 @@ imagination_nna_sdk
 
 在`imagination_nna\CMakeLists.txt`中，定义了它的设备名`set(DEVICE_NAME imagination_nna)`,这个设备名被使用在
 
-- 生成的`Imagination NNA`设备的动态库为`libimagination_nna.so`，详细参考：`imagination_nna\CMakeLists.txt`
+- 生成的`Imagination NNA`设备的动态库`libimagination_nna.so`，详细参考：`imagination_nna\CMakeLists.txt`
 
-- 生成的`Imagination NNA`设备的注册信息通过`libimagination_nna.so`暴露给使用者，代码如下所示
+- 生成的`Imagination NNA`设备的注册信息，通过`libimagination_nna.so`暴露给使用者，代码如下所示
 
   ```c++
   NNADAPTER_EXPORT nnadapter::driver::Device NNADAPTER_AS_SYM2(DEVICE_NAME) = {
