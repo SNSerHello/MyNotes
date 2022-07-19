@@ -46,3 +46,7 @@ Notes描述[Onnxruntime](https://github.com/SNSerHello/MyNotes/tree/main/onnxrun
 ## [BLAS](https://github.com/SNSerHello/MyNotes/tree/main/blas)
 
 Notes描述[BLAS](https://github.com/SNSerHello/MyNotes/tree/main/blas)的一些常见的方法。
+
+## [jupyterlab](https://github.com/SNSerHello/MyNotes/tree/main/jupyterlab)
+
+Notes描述[jupyterlab](https://github.com/SNSerHello/MyNotes/tree/main/jupyterlab)的一些常见的方法。
