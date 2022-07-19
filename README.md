@@ -35,6 +35,10 @@ Notes描述[Mxnet](https://github.com/SNSerHello/MyNotes/tree/main/mxnet)的一�
 
 Notes描述[Paddle](https://github.com/SNSerHello/MyNotes/tree/main/paddle)的一些常见的方法。
 
+## [Paddle -Lite](https://github.com/SNSerHello/MyNotes/tree/main/paddlelite)
+
+Notes描述[Paddle-Lite](https://github.com/SNSerHello/MyNotes/tree/main/paddlelite)的一些常见的方法。
+
 ## [TVM](https://github.com/SNSerHello/MyNotes/tree/main/tvm)
 
 Notes描述[TVM](https://github.com/SNSerHello/MyNotes/tree/main/tvm)的一些常见的方法。
