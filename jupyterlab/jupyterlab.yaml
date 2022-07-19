@@ -1,0 +1,23 @@
+name: jupyterlab
+
+# The conda channels to lookup the dependencies
+channels:
+  - anaconda
+  - conda-forge
+
+# The packages to install to the environment
+dependencies:
+  - python=3.8
+  - pip
+  - ipython
+  - black
+  - isort
+  - numpy
+  - pandas
+  - matplotlib
+  - jupyterlab
+#  - jupyterlab-code-formatter
+#  - iplantuml
+
+# pip3 install --upgrade iplantuml jupyterlab-code-formatter
+
