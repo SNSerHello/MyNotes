@@ -19,5 +19,5 @@ dependencies:
 #  - jupyterlab-code-formatter
 #  - iplantuml
 
-# pip3 install --upgrade iplantuml jupyterlab-code-formatter
+# pip3 install --upgrade iplantuml jupyterlab-code-formatter graphviz pydot pydotplus
 
