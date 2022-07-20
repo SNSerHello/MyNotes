@@ -1,6 +1,6 @@
 # Paddle-Lite
 
-![Paddle-Lite Architecture](https://github.com/SNSerHello/Paddle-Lite/blob/develop/docs/images/architecture.png)
+![Paddle-Lite Architecture](images/paddle_lite_with_nnadapter.jpg)
 
 ​                                                   图1 Paddle-Lite框架
 
