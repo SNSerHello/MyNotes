@@ -26,6 +26,29 @@ $ sudo apt install ./backport-iwlwifi-dkms_8324-0ubuntu3~20.04.4_all.deb
 $ sudo reboot
 ```
 
+### Ubuntu失败安装某些资源
+
+比如说我们在安装Ubuntu的某些工具的时候，会出现类似于下面的错误
+
+```bash
+$ sudo apt install texlive-full
+E: Failed to fetch http://cn.archive.ubuntu.com/ubuntu/pool/universe/f/fonts-arphic-bkai00mp/fonts-arphic-bkai00mp_2.10-20_all.deb Connection failed [IP: 91.189.91.38 80]
+```
+
+如何解决？
+
+```bash
+$ sudo nano /etc/resolv.conf
+# 在文件的最后，加入谷歌的DNS服务器地址
+nameserver 8.8.8.8
+```
+
+再安装一下试试
+
+```bash
+$ sudo apt install texlive-full
+```
+
 ## Ubuntu Desktop Images
 
 - [ubuntu-22.04-desktop-amd64.iso](https://releases.ubuntu.com/22.04/ubuntu-22.04-desktop-amd64.iso)
