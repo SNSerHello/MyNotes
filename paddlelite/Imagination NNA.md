@@ -312,6 +312,48 @@ Paddle-Lite对nnadapter设备的注册分为2种
 
     OK，这个不是重点，重点是代码的上下文实现逻辑。
 
+### Imagination NNA Relationships
+
+```mermaid
+classDiagram
+	%% driver: nnadapter/include/nnadapter/driver/device.h
+	class nnadapter_driver_device {
+		+name
+		+vendor
+		+type
+		+version
+		+open_device()
+		+close_device()
+		+create_context()
+		+destroy_context()
+		+validate_program()
+		+create_program()
+		+destroy_program()
+		+execute_program()
+	}
+	nnadapter_driver_device ..> Model
+	nnadapter_driver_device ..> Cache
+	nnadapter_driver_device ..> Argument
+	nnadapter_driver_device ..> Device
+	nnadapter_driver_device ..> Context
+	nnadapter_driver_device ..> Program
+	%% engine: nnadapter/src/driver/imagination_nna/engine.h
+	Program ..> Model
+	Program ..> Cache
+	Program ..> Argument
+	Program --* Operand
+	Program --* Context
+	Program --* IMG_Classes
+	Context --* Device
+    Device --* IMGDevice
+	%% converter: nnadapter/src/driver/imagination_nna/converter/converter.h
+	Converter --* ImgdnnManager
+	Converter --* IMG_CLasses
+	Converter ..> Model
+	Converter ..> Operation
+	Converter ..> Operand
+```
+
 
 
 ## 参考
