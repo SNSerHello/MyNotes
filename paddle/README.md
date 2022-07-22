@@ -14,6 +14,7 @@ $ pip3 install --upgrade paddlepaddle-gpu paddlelite
 
 - paddlelite现在仅仅支持`python3.7`，paddlepaddle也支持`python3.8`，所以搭建paddle环境使用`python3.7`版本。
 - `cuda10.2`和`cudnn7.6.5`搭配`python3.7`版本的paddlepaddle-gpu版本，使用高版本的时候会导致相关动态库找不到。
+- PaddlePaddle的源码编译，请参考：[SNSerHello/Paddle](https://github.com/SNSerHello/Paddle)
 
 ## 检查PaddlePaddle环境
 
