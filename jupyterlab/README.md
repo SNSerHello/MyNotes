@@ -77,17 +77,17 @@ Bob --> Alice: Authentication Response
 plantuml默认方式生成svg图片格式，对于文档工作下png格式会更加的方便，在jupyterlab中输入内容：
 
 ```python
-!java -jar G:/plantuml-1.2022.6.jar -splash:no -tpng demo_web.uml
-# !java -jar G:/plantuml-1.2022.6.jar -splash:no -tpdf demo_web.uml
-# !java -jar G:/plantuml-1.2022.6.jar -splash:no -tlatex demo_web.uml
+!java -jar ./plantuml-1.2022.6.jar -splash:no -tpng demo_web.uml
+# !java -jar ./plantuml-1.2022.6.jar -splash:no -tpdf demo_web.uml
+# !java -jar ./plantuml-1.2022.6.jar -splash:no -tlatex demo_web.uml
 
-!java -jar G:/plantuml-1.2022.6.jar -splash:no -tpng demo_1_2022_6.uml
-# !java -jar G:/plantuml-1.2022.6.jar -splash:no -tpdf demo_1_2022_6.uml
-# !java -jar G:/plantuml-1.2022.6.jar -splash:no -tlatex demo_1_2022_6.uml
+!java -jar ./plantuml-1.2022.6.jar -splash:no -tpng demo_1_2022_6.uml
+# !java -jar ./plantuml-1.2022.6.jar -splash:no -tpdf demo_1_2022_6.uml
+# !java -jar ./plantuml-1.2022.6.jar -splash:no -tlatex demo_1_2022_6.uml
 
-!java -jar G:/plantuml-1.2021.12.jar -splash:no -tpng demo_1_2021_12.uml
-# !java -jar G:/plantuml-1.2021.12.jar -splash:no -tpdf demo_1_2021_12.uml
-# !java -jar G:/plantuml-1.2021.12.jar -splash:no -tlatex demo_1_2021_12.uml
+!java -jar ./plantuml-1.2021.12.jar -splash:no -tpng demo_1_2021_12.uml
+# !java -jar ./plantuml-1.2021.12.jar -splash:no -tpdf demo_1_2021_12.uml
+# !java -jar ./plantuml-1.2021.12.jar -splash:no -tlatex demo_1_2021_12.uml
 ```
 
 其中`*.uml`文件名就是在`%%plantuml`中制定的名字
@@ -95,7 +95,7 @@ plantuml默认方式生成svg图片格式，对于文档工作下png格式会更
 plantuml的其它命令，可以参考如下：
 
 ```bash
-$ java -jar G:/plantuml-1.2021.12.jar -help
+$ java -jar ./plantuml-1.2021.12.jar -help
 Usage: java -jar plantuml.jar [options] -gui
     (to execute the GUI)
     or java -jar plantuml.jar [options] [file/dir] [file/dir] [file/dir]
