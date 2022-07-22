@@ -15,7 +15,7 @@ $ wget https://github.com/plantuml/plantuml/releases/download/v1.2021.12/plantum
 $ ln -s plantuml-1.2021.12.jar plantuml.jar
 $ conda env create --file jupyterlab.yaml
 $ conda activate jupyterlab
-(jupyterlab) $ pip3 install --upgrade iplantuml jupyterlab-code-formatter
+(jupyterlab) $ pip3 install --upgrade iplantuml jupyterlab-code-formatter graphviz pydot pydotplus
 (jupyterlab) $ jupyter lab build
 ```
 
