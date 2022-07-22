@@ -1,3 +1,4 @@
+#!/bin/sh
 sudo update-alternatives --set gcc /usr/bin/gcc-7
 sudo update-alternatives --set g++ /usr/bin/g++-7
 sudo update-alternatives --set cpp /usr/bin/cpp-7
