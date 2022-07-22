@@ -11,7 +11,7 @@ $ conda activate py38-pymc3
 $ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 $ nano $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 文件内容如下：
-export CUDA_ROOT=$CONDA_PREFIX
+CUDA_ROOT=$CONDA_PREFIX
 export LD_LIBRARY_PATH=$CUDA_ROOT/lib:$LD_LIBRARY_PATH
 rm ~/.theanorc
 cp ~/theanorc.pymc3 ~/.theanorc
