@@ -312,7 +312,7 @@ Paddle-Lite对nnadapter设备的注册分为2种
 
     OK，这个不是重点，重点是代码的上下文实现逻辑。
 
-颖脉NNA使用了Imagination NNA方案，如下图1展示了它的使用关系图，其他方案以此类推。
+颖脉NNA使用了Imagination NNA方案，如下图1展示了它的调用关系图，其他方案以此类推。
 
 ```mermaid
 sequenceDiagram
