@@ -312,6 +312,48 @@ Paddle-Lite对nnadapter设备的注册分为2种
 
     OK，这个不是重点，重点是代码的上下文实现逻辑。
 
+颖脉NNA使用了Imagination NNA方案，如下图1展示了它的使用关系图，其他方案以此类推。
+
+```mermaid
+sequenceDiagram
+	participant a as users
+	participant b as Paddlelite
+	participant c as NNAdapter Runtime
+	participant d as NNAdapter HAL
+	participant e as Imagination NNA
+	
+	a ->> b: call APIs of libpaddle_full_api_shared.so/libpaddle_light_api_shared.so
+	activate a
+	b ->> c: call APIs of libnnadapter.so
+	activate b
+	activate c
+	c ->> d: call APIs of libimagination_nna.so
+	activate d
+	d ->> e: call APIs of libimgdnn.so
+	activate e
+	e ->> e: do somethings
+	e ->> d: return result1
+	deactivate e
+	d ->> d: do somethings
+	d ->> c: return result2
+	deactivate d
+	c ->> c: do somethings
+	c ->> b: return result3
+	deactivate c
+	b ->> b: do somethings
+	b ->> a: return result4
+	deactivate b
+	deactivate a
+```
+
+​                                                                                                         图1 Imagination NNA调用关系图
+
+![nnadapter调用关系图](images/paddle_lite_and_nnadapter_dynamic_shared_library.jpg)
+
+​                                                                                                          图2 NNAdapter调用关系图
+
+
+
 ### Imagination NNA Relationships
 
 ```mermaid
@@ -360,4 +402,5 @@ classDiagram
 
 - [Github Paddle-Lite](https://github.com/PaddlePaddle/Paddle-Lite)
 - [Imagination NNA](https://github.com/SNSerHello/Paddle-Lite/blob/develop/docs/demo_guides/imagination_nna.md)
+- [NNAdapter：飞桨推理 AI 硬件统一适配框架](https://paddle-lite.readthedocs.io/zh/develop/develop_guides/nnadapter.html)
 
