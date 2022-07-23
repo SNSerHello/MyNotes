@@ -324,8 +324,8 @@ sequenceDiagram
 	
 	a ->> b: call APIs of libpaddle_full_api_shared.so/libpaddle_light_api_shared.so
 	activate a
-	b ->> c: call APIs of libnnadapter.so
 	activate b
+	b ->> c: call APIs of libnnadapter.so
 	activate c
 	c ->> d: call APIs of libimagination_nna.so
 	activate d
