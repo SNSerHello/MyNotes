@@ -24,7 +24,7 @@
 - bisenet
 - fastscnn
 - bisenet_v2
-- FaceBoxes*
+- FaceBoxes
 - MTCNN
 
 
