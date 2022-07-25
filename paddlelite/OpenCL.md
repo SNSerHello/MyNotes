@@ -543,7 +543,7 @@ Paddle-Lite\lite\backends\opencl\cl_kernel
 
 ### OpenCL Kernel编译
 
-在编译OpenCL的Kernel时候
+在编译OpenCL的Kernel时候，为提高性能，会依次使用Cache，二进制Kernel和源代码Kernel进行编译，如下图1所示
 
 ```mermaid
 flowchart TB
@@ -560,6 +560,8 @@ flowchart TB
 	I -->|No| J[编译Kernel失败]
 	I -->|Yes| G
 ```
+
+​                                              图1 编译OpenCL Kernel算法
 
 
 
