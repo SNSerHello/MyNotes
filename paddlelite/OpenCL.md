@@ -379,6 +379,188 @@
 | write_to_array                    | N              |
 | yolo_box                          | Y              |
 
+## OpenCL Kernel组织结构
+
+### 目录结构
+
+`cl_common.h`是一个公用的头文件，每个`*.cl`文件中都会有`#include <cl_common.h>`
+
+- buffer：包含12个Kernels
+  - concat
+  - depthwise_conv2d
+  - elementwise_add
+  - fc
+  - im2col
+  - matmul
+  - pool
+  - relu
+  - sigmoid
+  - slice
+  - transpose
+  - yolo_box
+- image：58个Kernels
+  - activation
+  - argmax
+  - batch_norm
+  - bilinear_interp
+  - box_coder
+  - channel_add
+  - clip
+  - concat_default
+  - concat
+  - conv2d_1x1_default
+  - conv2d_1x1_default_mali
+  - conv2d_1x1_opt
+  - conv2d_3x3_default
+  - conv2d_3x3
+  - conv2d_5x5
+  - conv2d_5x5_opt
+  - conv2d_7x7
+  - conv2d_7x7_opt
+  - conv2d_common
+  - conv2d_transpose
+  - conv2d_winograd_3x3s1
+  - depthwise_conv2d_basic
+  - depthwise_conv2d
+  - depthwise_conv2d_transpose
+  - dropout
+  - elementwise_add
+  - elementwise_broadcast
+  - elementwise
+  - elementwise_mul
+  - elementwise_sub
+  - expand
+  - fc
+  - gather
+  - greater_than
+  - grid_sampler
+  - instance_norm
+  - layer_norm
+  - layout
+  - lrn
+  - matmul
+  - matmul_opt
+  - matmul_unpersistable_y
+  - matmul_xtranspose
+  - max
+  - nearest_interp
+  - pad2d
+  - pixel_shuffle
+  - pool_deprecated
+  - pool
+  - reduce
+  - reshape
+  - scale
+  - shuffle_channel
+  - slice
+  - softmax
+  - split
+  - transpose
+  - trigonometric
+
+```bash
+Paddle-Lite\lite\backends\opencl\cl_kernel
+|   cl_common.h
+|
++---buffer
+|       concat_kernel.cl
+|       depthwise_conv2d_kernel.cl
+|       elementwise_add_kernel.cl
+|       fc_kernel.cl
+|       im2col_kernel.cl
+|       mat_mul_kernel.cl
+|       pool_kernel.cl
+|       relu_kernel.cl
+|       sigmoid_kernel.cl
+|       slice_kernel.cl
+|       transpose_kernel.cl
+|       yolo_box_kernel.cl
+|
+\---image
+        activation_kernel.cl
+        argmax_kernel.cl
+        batch_norm_kernel.cl
+        bilinear_interp_kernel.cl
+        box_coder_kernel.cl
+        channel_add_kernel.cl
+        clip_kernel.cl
+        concat_default_kernel.cl
+        concat_kernel.cl
+        conv2d_1x1_default_kernel.cl
+        conv2d_1x1_default_mali_kernel.cl
+        conv2d_1x1_opt_kernel.cl
+        conv2d_3x3_default_kernel.cl
+        conv2d_3x3_kernel.cl
+        conv2d_5x5_kernel.cl
+        conv2d_5x5_opt_kernel.cl
+        conv2d_7x7_kernel.cl
+        conv2d_7x7_opt_kernel.cl
+        conv2d_common_kernel.cl
+        conv2d_transpose_kernel.cl
+        conv2d_winograd_3x3s1_kernel.cl
+        depthwise_conv2d_basic_kernel.cl
+        depthwise_conv2d_kernel.cl
+        depthwise_conv2d_transpose_kernel.cl
+        dropout_kernel.cl
+        elementwise_add_kernel.cl
+        elementwise_broadcast_kernel.cl
+        elementwise_kernel.cl
+        elementwise_mul_kernel.cl
+        elementwise_sub_kernel.cl
+        expand_kernel.cl
+        fc_kernel.cl
+        gather_kernel.cl
+        greater_than_kernel.cl
+        grid_sampler_kernel.cl
+        instance_norm_kernel.cl
+        layer_norm_kernel.cl
+        layout_kernel.cl
+        lrn_kernel.cl
+        matmul_kernel.cl
+        matmul_opt_kernel.cl
+        matmul_unpersistable_y_kernel.cl
+        matmul_xtranspose_kernel.cl
+        max_kernel.cl
+        nearest_interp_kernel.cl
+        pad2d_kernel.cl
+        pixel_shuffle_kernel.cl
+        pool_deprecated_kernel.cl
+        pool_kernel.cl
+        reduce_kernel.cl
+        reshape_kernel.cl
+        scale_kernel.cl
+        shuffle_channel_kernel.cl
+        slice_kernel.cl
+        softmax_kernel.cl
+        split_kernel.cl
+        transpose_kernel.cl
+        trigonometric_kernel.cl
+```
+
+### opencl_kernels_files查询表
+
+在编译Paddle-Lite时，Paddle-Lite会通过`lite/tools/cmake_tools/gen_opencl_code.py`工具将上述所有支持的Kernels文件制作成一张`opencl_kernels_files`查询表，将它存在在`lite/backends/opencl/opencl_kernels_source.cc`文件中。在`CLRuntime::CreateProgramFromSource(..., file_name, ...)`运行的时候会根据文件名，比如说`file_name="image/argmax_kernel.cl"`从`opencl_kernels_files`中获取它的kernel内容来创建`cl::Program`对象，详情可以参见：`lite/backends/opencl/cl_runtime.cc`第332行`CLRuntime::CreateProgramFromSource()`。
+
+### OpenCL Kernel编译
+
+在编译OpenCL的Kernel时候
+
+```mermaid
+flowchart TB
+	A[编译Kernel] --> B{Cache中是否已经存在?}
+	B -->|Yes| C[编译完成]
+	B -->|No| D{是否是预编译的二进制Kernel?}
+	D -->|Yes| E[装载预编译二进制Kernel]
+	D -->|No| I
+	E --> F{检查是否是合法预编译二进制Kernel?}
+	F -->|Yes| G[装载Kernel内容并创建Program对象]
+	G --> H[编译Program并存放到Cache中]
+	H --> C
+	F -->|No| I[检查Kernel定义是否已经在opencl_kernels_files表中?]
+	I -->|No| J[编译Kernel失败]
+	I -->|Yes| G
+```
+
 
 
 ## 参考
