@@ -387,7 +387,7 @@
 
 - buffer：包含**12**个Kernels
 
-- image：**58**个Kernels
+- image：包含**58**个Kernels
 
   合计**70**个Kernels
 
@@ -521,11 +521,17 @@ flowchart TB
 - 预编译二进制Kernel文件需要校验`sn_key`，默认值为`lite_opencl_precompiled_binary_identifier`，对应的`value`中依次存放
 
   1. aarch_info
+
   2. lite_version
+
   3. build_options
+
   4. platform_info
+
   5. device_version
+
   6. driver_version
+
   7. string("place_holder")
 
   具体实现详见`CLRuntime::GetSN(const std::string options)`（第485行），这个实现的定义实现中有很奇怪的代码，如下所示
