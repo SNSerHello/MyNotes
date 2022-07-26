@@ -161,7 +161,7 @@
 | lrn                               | Y              |       |       | Y       |         | lrn_image_compute.cc                                         |
 | lstm                              | N              |       |       |         |         |                                                              |
 | match_matrix_tensor               | N              |       |       |         |         |                                                              |
-| matmul                            | Y              |       |       | Y       | Y       | matmul_buffer_compute.cc<br />matmul_image_compute.cc        |
+| matmul                            | Y              |       |       | Y       | Y       | matmul_buffer_compute.cc<br />matmul_image_compute.cc<br />mul_buffer_compute.cc（定义为mul算子，与matmul功能一致，建议忽略此算子） |
 | matmul_v2                         | Y              |       |       | Y       | Y       | matmul_buffer_compute.cc<br />matmul_image_compute.cc        |
 | matrix_nms                        | N              |       |       |         |         |                                                              |
 | max_pool2d_with_index             | N              |       |       |         |         |                                                              |
@@ -169,7 +169,7 @@
 | merge_lod_tensor                  | N              |       |       |         |         |                                                              |
 | meshgrid                          | N              |       |       |         |         |                                                              |
 | mish                              | N              |       |       |         |         |                                                              |
-| mul                               | Y              |       |       |         | Y       | mul_buffer_compute.cc                                        |
+| mul                               | N              |       |       |         |         |                                                              |
 | multiclass_nms                    | N              |       |       |         |         |                                                              |
 | multiclass_nms2                   | N              |       |       |         |         |                                                              |
 | multiclass_nms3                   | N              |       |       |         |         |                                                              |
