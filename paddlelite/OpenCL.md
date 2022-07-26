@@ -31,353 +31,265 @@
 
 ## 支持的AI算子
 
-当前支持86个OpenCl算子，如下所示：
+合计251个算子（包含融合算子），OpenCL支持88个。
 
-- abs
-- acos
-- arg_max
-- asin
-- atan
-- batch_norm
-- bilinear_interp
-- bilinear_interp_v2
-- box_coder
-- clip
-- concat
-- conv2d
-- conv2d_transpose
-- cos
-- depthwise_conv2d
-- depthwise_conv2d_transpose
-- dropout
-- elementwise_add
-- elementwise_div
-- elementwise_floordiv
-- elementwise_max
-- elementwise_min
-- elementwise_mod
-- elementwise_mul
-- elementwise_pow
-- elementwise_sub
-- exp
-- expand
-- fc
-- flatten
-- flatten2
-- fusion_elementwise_add_activation
-- fusion_elementwise_div_activation
-- fusion_elementwise_mul_activation
-- fusion_elementwise_sub_activation
-- gather
-- gelu
-- greater_than
-- grid_sampler
-- hard_sigmoid
-- hard_swish
-- instance_norm
-- io_copy
-- io_copy_once
-- layer_norm
-- layout
-- layout_once
-- leaky_relu
-- log
-- lrn
-- matmul
-- matmul_v2
-- nearest_interp
-- nearest_interp_v2
-- pad2d
-- pixel_shuffle
-- pool2d
-- prelu
-- reduce_max
-- reduce_mean
-- relu
-- relu6
-- reshape
-- reshape2
-- rsqrt
-- scale
-- shape
-- shuffle_channel
-- sigmoid
-- sin
-- slice
-- softmax
-- split
-- sqrt
-- square
-- squeeze
-- squeeze2
-- swish
-- sync_batch_norm
-- tan
-- tanh
-- transpose
-- transpose2
-- unsqueeze
-- unsqueeze2
-- yolo_box
+| 算子名                            | 是否支持OpenCL | int32 | int64 | float16 | float32 | 所属文件                                                     |
+| --------------------------------- | -------------- | ----- | ----- | ------- | ------- | ------------------------------------------------------------ |
+| abs                               | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| acos                              | Y              |       |       | Y       |         | trigonometric_image_compute.cc                               |
+| affine_channel                    | N              |       |       |         |         |                                                              |
+| affine_grid                       | N              |       |       |         |         |                                                              |
+| anchor_generator                  | N              |       |       |         |         |                                                              |
+| arg_max                           | Y              |       |       | Y       |         | argmax_image_compute.cc                                      |
+| arg_min                           | N              |       |       |         |         |                                                              |
+| argsort                           | N              |       |       |         |         |                                                              |
+| asin                              | Y              |       |       | Y       |         | trigonometric_image_compute.cc                               |
+| assign                            | N              |       |       |         |         |                                                              |
+| assign_value                      | N              |       |       |         |         |                                                              |
+| atan                              | Y              |       |       | Y       |         | trigonometric_image_compute.cc                               |
+| attention_padding_mask            | N              |       |       |         |         |                                                              |
+| axpy                              | N              |       |       |         |         |                                                              |
+| batch_norm                        | Y              |       |       | Y       |         | batch_norm_image_compute.cc                                  |
+| beam_search                       | N              |       |       |         |         |                                                              |
+| beam_search_decode                | N              |       |       |         |         |                                                              |
+| bilinear_interp                   | Y              |       |       | Y       |         | bilinear_interp_image_computer.cc                            |
+| bilinear_interp_v2                | Y              |       |       | Y       |         | bilinear_interp_image_computer.cc                            |
+| box_clip                          | N              |       |       |         |         |                                                              |
+| box_coder                         | Y              |       |       | Y       |         | box_coder_image_compute.cc                                   |
+| calib                             | N              |       |       |         |         |                                                              |
+| calib_once                        | N              |       |       |         |         |                                                              |
+| cast                              | N              |       |       |         |         |                                                              |
+| clip                              | Y              |       |       | Y       |         | clip_image_compute.cc                                        |
+| collect_fpn_proposals             | N              |       |       |         |         |                                                              |
+| concat                            | Y              |       |       | Y       | Y       | concat_buffer_compute.cc<br />concat_image_compute.cc        |
+| conditional_block                 | N              |       |       |         |         |                                                              |
+| conv2d                            | Y              |       |       | Y       | Y       | conv_buffer_compute.cc<br />conv_image_compute.cc            |
+| conv2d_transpose                  | Y              |       |       | Y       |         | conv_transpose_image_compute.cc                              |
+| conv3d                            | N              |       |       |         |         |                                                              |
+| correlation                       | N              |       |       |         |         |                                                              |
+| cos                               | Y              |       |       | Y       |         | trigonometric_image_compute.cc                               |
+| cos_sim                           | N              |       |       |         |         |                                                              |
+| crf_decoding                      | N              |       |       |         |         |                                                              |
+| crop                              | N              |       |       |         |         |                                                              |
+| crop_tensor                       | N              |       |       |         |         |                                                              |
+| ctc_align                         | N              |       |       |         |         |                                                              |
+| cumsum                            | N              |       |       |         |         |                                                              |
+| decode_bboxes                     | N              |       |       |         |         |                                                              |
+| deformable_conv                   | N              |       |       |         |         |                                                              |
+| density_prior_box                 | N              |       |       |         |         |                                                              |
+| depthwise_conv2d                  | Y              |       |       | Y       | Y       | conv_image_compute.cc<br />depthwise_conv2d_buffer_compute.cc |
+| depthwise_conv2d_transpose        | Y              |       |       | Y       |         | conv_transpose_image_compute.cc                              |
+| dequantize_linear                 | N              |       |       |         |         |                                                              |
+| distribute_fpn_proposals          | N              |       |       |         |         |                                                              |
+| dropout                           | Y              |       |       | Y       |         | dropout_image_compute.cc                                     |
+| elementwise_add                   | Y              |       |       | Y       | Y       | elementwise_add_buffer_compute.cc<br />elementwise_image_compute.cc |
+| elementwise_div                   | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elementwise_floordiv              | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elementwise_max                   | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elementwise_min                   | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elementwise_mod                   | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elementwise_mul                   | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elementwise_pow                   | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elementwise_sub                   | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| elu                               | N              |       |       |         |         |                                                              |
+| equal                             | N              |       |       |         |         |                                                              |
+| erf                               | N              |       |       |         |         |                                                              |
+| exp                               | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| expand                            | Y              |       |       | Y       |         | expand_image_compute.cc                                      |
+| expand_as                         | N              |       |       |         |         |                                                              |
+| expand_v2                         | N              |       |       |         |         |                                                              |
+| fc                                | Y              |       |       | Y       | Y       | fc_buffer_compute.cc<br />fc_image_compute.cc                |
+| feed                              | N              |       |       |         |         |                                                              |
+| fetch                             | N              |       |       |         |         |                                                              |
+| fill_any_like                     | N              |       |       |         |         |                                                              |
+| fill_constant                     | N              |       |       |         |         |                                                              |
+| fill_constant_batch_size_like     | N              |       |       |         |         |                                                              |
+| fill_zeros_like                   | N              |       |       |         |         |                                                              |
+| flatten                           | Y              |       |       | Y       |         | reshape_image_compute.cc                                     |
+| flatten2                          | Y              |       |       | Y       |         | reshape_image_compute.cc                                     |
+| flatten_contiguous_range          | N              |       |       |         |         |                                                              |
+| flip                              | N              |       |       |         |         |                                                              |
+| floor                             | N              |       |       |         |         |                                                              |
+| fusion_elementwise_add_activation | Y              |       |       | Y       | Y       | elementwise_image_compute.cc<br />fusion_elementwise_add_activation_buffer_compute.cc |
+| fusion_elementwise_div_activation | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| fusion_elementwise_max_activation | N              |       |       |         |         |                                                              |
+| fusion_elementwise_min_activation | N              |       |       |         |         |                                                              |
+| fusion_elementwise_mul_activation | Y              |       |       | Y       |         | elementwise_image_compute.cc                                 |
+| fusion_elementwise_pow_activation | N              |       |       |         |         |                                                              |
+| fusion_elementwise_sub_activation | Y              |       |       | Y       |         | elementwise_image_compute.cc<br />fusion_elementwise_sub_activation_image_compute.cc |
+| gather                            | Y              |       |       | Y       |         | gather_image_compute.cpp                                     |
+| gather_nd                         | N              |       |       |         |         |                                                              |
+| gather_tree                       | N              |       |       |         |         |                                                              |
+| gaussian_random                   | N              |       |       |         |         |                                                              |
+| gelu                              | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| generate_proposals                | N              |       |       |         |         |                                                              |
+| generate_proposals_v2             | N              |       |       |         |         |                                                              |
+| greater_equal                     | N              |       |       |         |         |                                                              |
+| greater_than                      | Y              |       |       | Y       |         | greater_than_image_compute.cc                                |
+| grid_sampler                      | Y              |       |       | Y       |         | grid_sampler_image_compute.cc                                |
+| group_norm                        | N              |       |       |         |         |                                                              |
+| gru                               | N              |       |       |         |         |                                                              |
+| gru_unit                          | N              |       |       |         |         |                                                              |
+| hard_sigmoid                      | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| hard_swish                        | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| im2sequence                       | N              |       |       |         |         |                                                              |
+| increment                         | N              |       |       |         |         |                                                              |
+| index_select                      | N              |       |       |         |         |                                                              |
+| instance_norm                     | Y              |       |       | Y       |         | instance_norm_image_compute.cc                               |
+| inverse                           | N              |       |       |         |         |                                                              |
+| io_copy                           | Y              | Y     | Y     | Y       | Y       | io_copy_buffer_compute.cc，支持所有数据类型                  |
+| io_copy_once                      | Y              | Y     | Y     | Y       | Y       | io_copy_buffer_compute.cc，支持所有数据类型                  |
+| is_empty                          | N              |       |       |         |         |                                                              |
+| layer_norm                        | Y              |       |       | Y       |         | layer_norm_image_compute.cc                                  |
+| layout                            | Y              | Y     | Y     | Y       | Y       | layout_image_compute.cc，支持所有数据类型                    |
+| layout_once                       | Y              | Y     | Y     | Y       | Y       | layout_image_compute.cc，支持所有数据类型                    |
+| leaky_relu                        | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| less_equal                        | N              |       |       |         |         |                                                              |
+| less_than                         | N              |       |       |         |         |                                                              |
+| linspace                          | N              |       |       |         |         |                                                              |
+| lod_array_length                  | N              |       |       |         |         |                                                              |
+| lod_reset                         | N              |       |       |         |         |                                                              |
+| log                               | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| log_softmax                       | N              |       |       |         |         |                                                              |
+| logical_and                       | N              |       |       |         |         |                                                              |
+| logical_not                       | N              |       |       |         |         |                                                              |
+| logical_or                        | N              |       |       |         |         |                                                              |
+| logical_xor                       | N              |       |       |         |         |                                                              |
+| lookup_table                      | N              |       |       |         |         |                                                              |
+| lookup_table_dequant              | N              |       |       |         |         |                                                              |
+| lookup_table_v2                   | N              |       |       |         |         |                                                              |
+| lrn                               | Y              |       |       | Y       |         | lrn_image_compute.cc                                         |
+| lstm                              | N              |       |       |         |         |                                                              |
+| match_matrix_tensor               | N              |       |       |         |         |                                                              |
+| matmul                            | Y              |       |       | Y       | Y       | matmul_buffer_compute.cc<br />matmul_image_compute.cc        |
+| matmul_v2                         | Y              |       |       | Y       | Y       | matmul_buffer_compute.cc<br />matmul_image_compute.cc        |
+| matrix_nms                        | N              |       |       |         |         |                                                              |
+| max_pool2d_with_index             | N              |       |       |         |         |                                                              |
+| mean                              | N              |       |       |         |         |                                                              |
+| merge_lod_tensor                  | N              |       |       |         |         |                                                              |
+| meshgrid                          | N              |       |       |         |         |                                                              |
+| mish                              | N              |       |       |         |         |                                                              |
+| mul                               | Y              |       |       |         | Y       | mul_buffer_compute.cc                                        |
+| multiclass_nms                    | N              |       |       |         |         |                                                              |
+| multiclass_nms2                   | N              |       |       |         |         |                                                              |
+| multiclass_nms3                   | N              |       |       |         |         |                                                              |
+| nearest_interp                    | Y              |       |       | Y       |         | nearest_interp_image_compute.cc                              |
+| nearest_interp_v2                 | Y              |       |       | Y       |         | nearest_interp_image_compute.cc                              |
+| negative                          | N              |       |       |         |         |                                                              |
+| norm                              | N              |       |       |         |         |                                                              |
+| not_equal                         | N              |       |       |         |         |                                                              |
+| one_hot                           | N              |       |       |         |         |                                                              |
+| one_hot_v2                        | N              |       |       |         |         |                                                              |
+| p_norm                            | N              |       |       |         |         |                                                              |
+| pad2d                             | Y              |       |       | Y       |         | pad2d_image_compute.cc                                       |
+| pad3d                             | N              |       |       |         |         |                                                              |
+| pixel_shuffle                     | Y              |       |       | Y       |         | pixel_shuffle_image_compute.cc                               |
+| polygon_box_transform             | N              |       |       |         |         |                                                              |
+| pool2d                            | Y              |       |       | Y       | Y       | pool_buffer_compute.cc<br />pool_image_compute.cc            |
+| pow                               | N              |       |       |         |         |                                                              |
+| prelu                             | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| print                             | N              |       |       |         |         |                                                              |
+| prior_box                         | N              |       |       |         |         |                                                              |
+| quantize_linear                   | N              |       |       |         |         |                                                              |
+| range                             | N              |       |       |         |         |                                                              |
+| read_from_array                   | N              |       |       |         |         |                                                              |
+| reciprocal                        | N              |       |       |         |         |                                                              |
+| reduce_all                        | N              |       |       |         |         |                                                              |
+| reduce_any                        | N              |       |       |         |         |                                                              |
+| reduce_max                        | Y              |       |       | Y       |         | max_image_compute.cc                                         |
+| reduce_mean                       | Y              |       |       | Y       |         | reduce_mean_image_compute.cc                                 |
+| reduce_min                        | N              |       |       |         |         |                                                              |
+| reduce_prod                       | N              |       |       |         |         |                                                              |
+| reduce_sum                        | N              |       |       |         |         |                                                              |
+| relu                              | Y              |       |       | Y       | Y       | activation_buffer_compute.cc<br />activation_image_compute.cc |
+| relu6                             | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| relu_clipped                      | N              |       |       |         |         |                                                              |
+| reshape                           | Y              |       |       | Y       |         | reshape_image_compute.cc                                     |
+| reshape2                          | Y              |       |       | Y       |         | reshape_image_compute.cc                                     |
+| retinanet_detection_output        | N              |       |       |         |         |                                                              |
+| reverse                           | N              |       |       |         |         |                                                              |
+| rnn                               | N              |       |       |         |         |                                                              |
+| roi_align                         | N              |       |       |         |         |                                                              |
+| roi_perspective_transform         | N              |       |       |         |         |                                                              |
+| rsqrt                             | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| sampling_id                       | N              |       |       |         |         |                                                              |
+| scale                             | Y              |       |       | Y       |         | scale_image_compute.cc                                       |
+| scatter                           | N              |       |       |         |         |                                                              |
+| scatter_nd_add                    | N              |       |       |         |         |                                                              |
+| search_aligned_mat_mul            | N              |       |       |         |         |                                                              |
+| search_attention_padding_mask     | N              |       |       |         |         |                                                              |
+| search_fc                         | N              |       |       |         |         |                                                              |
+| search_grnn                       | N              |       |       |         |         |                                                              |
+| search_group_padding              | N              |       |       |         |         |                                                              |
+| search_seq_arithmetic             | N              |       |       |         |         |                                                              |
+| search_seq_depadding              | N              |       |       |         |         |                                                              |
+| search_seq_fc                     | N              |       |       |         |         |                                                              |
+| search_seq_softmax                | N              |       |       |         |         |                                                              |
+| select_input                      | N              |       |       |         |         |                                                              |
+| sequence_arithmetic               | N              |       |       |         |         |                                                              |
+| sequence_concat                   | N              |       |       |         |         |                                                              |
+| sequence_conv                     | N              |       |       |         |         |                                                              |
+| sequence_expand                   | N              |       |       |         |         |                                                              |
+| sequence_expand_as                | N              |       |       |         |         |                                                              |
+| sequence_mask                     | N              |       |       |         |         |                                                              |
+| sequence_pad                      | N              |       |       |         |         |                                                              |
+| sequence_pool                     | N              |       |       |         |         |                                                              |
+| sequence_reshape                  | N              |       |       |         |         |                                                              |
+| sequence_reverse                  | N              |       |       |         |         |                                                              |
+| sequence_softmax                  | N              |       |       |         |         |                                                              |
+| sequence_topk_avg_pooling         | N              |       |       |         |         |                                                              |
+| sequence_unpad                    | N              |       |       |         |         |                                                              |
+| shape                             | Y              | Y     | Y     | Y       | Y       | shape_buffer_compute.cc，支持所有数据类型                    |
+| shuffle_channel                   | Y              |       |       | Y       |         | shuffle_channel_image_compute.cc                             |
+| sigmoid                           | Y              |       |       | Y       | Y       | activation_buffer_compute.cc<br />activation_image_compute.cc |
+| sign                              | N              |       |       |         |         |                                                              |
+| sin                               | Y              |       |       | Y       |         | trigonometric_image_compute.cc                               |
+| slice                             | Y              | Y     | Y     | Y       | Y       | slice_buffer_compute.cc<br />slice_image_compute.cc          |
+| softmax                           | Y              |       |       | Y       |         | softmax_image_compute.cc                                     |
+| softplus                          | N              |       |       |         |         |                                                              |
+| softsign                          | N              |       |       |         |         |                                                              |
+| sparse_conv2d                     | N              |       |       |         |         |                                                              |
+| split                             | Y              |       |       | Y       |         | split_image_compute.cc                                       |
+| split_lod_tensor                  | N              |       |       |         |         |                                                              |
+| sqrt                              | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| square                            | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| squeeze                           | Y              | Y     | Y     | Y       | Y       | squeeze_unsqueeze_buffer_computer.cc，支持所有数据类型       |
+| squeeze2                          | Y              | Y     | Y     | Y       | Y       | squeeze_unsqueeze_buffer_computer.cc，支持所有数据类型       |
+| stack                             | N              |       |       |         |         |                                                              |
+| strided_slice                     | N              |       |       |         |         |                                                              |
+| subgraph                          | N              |       |       |         |         |                                                              |
+| sum                               | N              |       |       |         |         |                                                              |
+| swish                             | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| sync_batch_norm                   | Y              |       |       | Y       |         | batch_norm_image_compute.cc                                  |
+| tan                               | Y              |       |       | Y       |         | trigonometric_image_compute.cc                               |
+| tanh                              | Y              |       |       | Y       |         | activation_image_compute.cc                                  |
+| tensor_array_to_tensor            | N              |       |       |         |         |                                                              |
+| thresholded_relu                  | N              |       |       |         |         |                                                              |
+| tile                              | N              |       |       |         |         |                                                              |
+| top_k                             | N              |       |       |         |         |                                                              |
+| top_k_v2                          | N              |       |       |         |         |                                                              |
+| transpose                         | Y              |       |       | Y       |         | transpose_image_compute.cc                                   |
+| transpose2                        | Y              |       |       | Y       |         | transpose_image_compute.cc                                   |
+| tril_triu                         | N              |       |       |         |         |                                                              |
+| unbind                            | N              |       |       |         |         |                                                              |
+| unfold                            | N              |       |       |         |         |                                                              |
+| uniform_random                    | N              |       |       |         |         |                                                              |
+| unique_with_counts                | N              |       |       |         |         |                                                              |
+| unsqueeze                         | Y              | Y     | Y     | Y       | Y       | squeeze_unsqueeze_buffer_computer.cc，支持所有数据类型       |
+| unsqueeze2                        | Y              | Y     | Y     | Y       | Y       | squeeze_unsqueeze_buffer_computer.cc，支持所有数据类型       |
+| unstack                           | N              |       |       |         |         |                                                              |
+| var_conv_2d                       | N              |       |       |         |         |                                                              |
+| where                             | N              |       |       |         |         |                                                              |
+| where_index                       | N              |       |       |         |         |                                                              |
+| while                             | N              |       |       |         |         |                                                              |
+| write_back                        | N              |       |       |         |         |                                                              |
+| write_to_array                    | N              |       |       |         |         |                                                              |
+| yolo_box                          | Y              | Y     | Y     | Y       | Y       | yolo_box_buffer_compute.cc，支持所有数据类型                 |
+| max                               | Y              |       |       | Y       |         | max_image_compute.cc                                         |
+
+**source**: `lite/kernels/opencl`
 
 
-
-## Paddle-Lite v2.11的算子
-
-合计250个算子（包含融合算子），OpenCL支持86个。
-
-| 算子名                            | 是否支持OpenCL |
-| --------------------------------- | -------------- |
-| abs                               | Y              |
-| acos                              | Y              |
-| affine_channel                    | N              |
-| affine_grid                       | N              |
-| anchor_generator                  | N              |
-| arg_max                           | Y              |
-| arg_min                           | N              |
-| argsort                           | N              |
-| asin                              | Y              |
-| assign                            | N              |
-| assign_value                      | N              |
-| atan                              | Y              |
-| attention_padding_mask            | N              |
-| axpy                              | N              |
-| batch_norm                        | Y              |
-| beam_search                       | N              |
-| beam_search_decode                | N              |
-| bilinear_interp                   | Y              |
-| bilinear_interp_v2                | Y              |
-| box_clip                          | N              |
-| box_coder                         | Y              |
-| calib                             | N              |
-| calib_once                        | N              |
-| cast                              | N              |
-| clip                              | Y              |
-| collect_fpn_proposals             | N              |
-| concat                            | Y              |
-| conditional_block                 | N              |
-| conv2d                            | Y              |
-| conv2d_transpose                  | Y              |
-| conv3d                            | N              |
-| correlation                       | N              |
-| cos                               | Y              |
-| cos_sim                           | N              |
-| crf_decoding                      | N              |
-| crop                              | N              |
-| crop_tensor                       | N              |
-| ctc_align                         | N              |
-| cumsum                            | N              |
-| decode_bboxes                     | N              |
-| deformable_conv                   | N              |
-| density_prior_box                 | N              |
-| depthwise_conv2d                  | Y              |
-| depthwise_conv2d_transpose        | Y              |
-| dequantize_linear                 | N              |
-| distribute_fpn_proposals          | N              |
-| dropout                           | Y              |
-| elementwise_add                   | Y              |
-| elementwise_div                   | Y              |
-| elementwise_floordiv              | Y              |
-| elementwise_max                   | Y              |
-| elementwise_min                   | Y              |
-| elementwise_mod                   | Y              |
-| elementwise_mul                   | Y              |
-| elementwise_pow                   | Y              |
-| elementwise_sub                   | Y              |
-| elu                               | N              |
-| equal                             | N              |
-| erf                               | N              |
-| exp                               | Y              |
-| expand                            | Y              |
-| expand_as                         | N              |
-| expand_v2                         | N              |
-| fc                                | Y              |
-| feed                              | N              |
-| fetch                             | N              |
-| fill_any_like                     | N              |
-| fill_constant                     | N              |
-| fill_constant_batch_size_like     | N              |
-| fill_zeros_like                   | N              |
-| flatten                           | Y              |
-| flatten2                          | Y              |
-| flatten_contiguous_range          | N              |
-| flip                              | N              |
-| floor                             | N              |
-| fusion_elementwise_add_activation | Y              |
-| fusion_elementwise_div_activation | Y              |
-| fusion_elementwise_max_activation | N              |
-| fusion_elementwise_min_activation | N              |
-| fusion_elementwise_mul_activation | Y              |
-| fusion_elementwise_pow_activation | N              |
-| fusion_elementwise_sub_activation | Y              |
-| gather                            | Y              |
-| gather_nd                         | N              |
-| gather_tree                       | N              |
-| gaussian_random                   | N              |
-| gelu                              | Y              |
-| generate_proposals                | N              |
-| generate_proposals_v2             | N              |
-| greater_equal                     | N              |
-| greater_than                      | Y              |
-| grid_sampler                      | Y              |
-| group_norm                        | N              |
-| gru                               | N              |
-| gru_unit                          | N              |
-| hard_sigmoid                      | Y              |
-| hard_swish                        | Y              |
-| im2sequence                       | N              |
-| increment                         | N              |
-| index_select                      | N              |
-| instance_norm                     | Y              |
-| inverse                           | N              |
-| io_copy                           | Y              |
-| io_copy_once                      | Y              |
-| is_empty                          | N              |
-| layer_norm                        | Y              |
-| layout                            | Y              |
-| layout_once                       | Y              |
-| leaky_relu                        | Y              |
-| less_equal                        | N              |
-| less_than                         | N              |
-| linspace                          | N              |
-| lod_array_length                  | N              |
-| lod_reset                         | N              |
-| log                               | Y              |
-| log_softmax                       | N              |
-| logical_and                       | N              |
-| logical_not                       | N              |
-| logical_or                        | N              |
-| logical_xor                       | N              |
-| lookup_table                      | N              |
-| lookup_table_dequant              | N              |
-| lookup_table_v2                   | N              |
-| lrn                               | Y              |
-| lstm                              | N              |
-| match_matrix_tensor               | N              |
-| matmul                            | Y              |
-| matmul_v2                         | Y              |
-| matrix_nms                        | N              |
-| max_pool2d_with_index             | N              |
-| mean                              | N              |
-| merge_lod_tensor                  | N              |
-| meshgrid                          | N              |
-| mish                              | N              |
-| mul                               | N              |
-| multiclass_nms                    | N              |
-| multiclass_nms2                   | N              |
-| multiclass_nms3                   | N              |
-| nearest_interp                    | Y              |
-| nearest_interp_v2                 | Y              |
-| negative                          | N              |
-| norm                              | N              |
-| not_equal                         | N              |
-| one_hot                           | N              |
-| one_hot_v2                        | N              |
-| p_norm                            | N              |
-| pad2d                             | Y              |
-| pad3d                             | N              |
-| pixel_shuffle                     | Y              |
-| polygon_box_transform             | N              |
-| pool2d                            | Y              |
-| pow                               | N              |
-| prelu                             | Y              |
-| print                             | N              |
-| prior_box                         | N              |
-| quantize_linear                   | N              |
-| range                             | N              |
-| read_from_array                   | N              |
-| reciprocal                        | N              |
-| reduce_all                        | N              |
-| reduce_any                        | N              |
-| reduce_max                        | Y              |
-| reduce_mean                       | Y              |
-| reduce_min                        | N              |
-| reduce_prod                       | N              |
-| reduce_sum                        | N              |
-| relu                              | Y              |
-| relu6                             | Y              |
-| relu_clipped                      | N              |
-| reshape                           | Y              |
-| reshape2                          | Y              |
-| retinanet_detection_output        | N              |
-| reverse                           | N              |
-| rnn                               | N              |
-| roi_align                         | N              |
-| roi_perspective_transform         | N              |
-| rsqrt                             | Y              |
-| sampling_id                       | N              |
-| scale                             | Y              |
-| scatter                           | N              |
-| scatter_nd_add                    | N              |
-| search_aligned_mat_mul            | N              |
-| search_attention_padding_mask     | N              |
-| search_fc                         | N              |
-| search_grnn                       | N              |
-| search_group_padding              | N              |
-| search_seq_arithmetic             | N              |
-| search_seq_depadding              | N              |
-| search_seq_fc                     | N              |
-| search_seq_softmax                | N              |
-| select_input                      | N              |
-| sequence_arithmetic               | N              |
-| sequence_concat                   | N              |
-| sequence_conv                     | N              |
-| sequence_expand                   | N              |
-| sequence_expand_as                | N              |
-| sequence_mask                     | N              |
-| sequence_pad                      | N              |
-| sequence_pool                     | N              |
-| sequence_reshape                  | N              |
-| sequence_reverse                  | N              |
-| sequence_softmax                  | N              |
-| sequence_topk_avg_pooling         | N              |
-| sequence_unpad                    | N              |
-| shape                             | Y              |
-| shuffle_channel                   | Y              |
-| sigmoid                           | Y              |
-| sign                              | N              |
-| sin                               | Y              |
-| slice                             | Y              |
-| softmax                           | Y              |
-| softplus                          | N              |
-| softsign                          | N              |
-| sparse_conv2d                     | N              |
-| split                             | Y              |
-| split_lod_tensor                  | N              |
-| sqrt                              | Y              |
-| square                            | Y              |
-| squeeze                           | Y              |
-| squeeze2                          | Y              |
-| stack                             | N              |
-| strided_slice                     | N              |
-| subgraph                          | N              |
-| sum                               | N              |
-| swish                             | Y              |
-| sync_batch_norm                   | Y              |
-| tan                               | Y              |
-| tanh                              | Y              |
-| tensor_array_to_tensor            | N              |
-| thresholded_relu                  | N              |
-| tile                              | N              |
-| top_k                             | N              |
-| top_k_v2                          | N              |
-| transpose                         | Y              |
-| transpose2                        | Y              |
-| tril_triu                         | N              |
-| unbind                            | N              |
-| unfold                            | N              |
-| uniform_random                    | N              |
-| unique_with_counts                | N              |
-| unsqueeze                         | Y              |
-| unsqueeze2                        | Y              |
-| unstack                           | N              |
-| var_conv_2d                       | N              |
-| where                             | N              |
-| where_index                       | N              |
-| while                             | N              |
-| write_back                        | N              |
-| write_to_array                    | N              |
-| yolo_box                          | Y              |
 
 ## OpenCL Kernel组织结构
 
