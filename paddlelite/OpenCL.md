@@ -31,7 +31,7 @@
 
 ## 支持的AI算子
 
-合计251个算子（包含融合算子），OpenCL支持88个。`lite/backends/opencl/cl_kernel`中定义的OpenCL Kernels文件将会被`lite/kernels/opencl`中的'buffer'或者`image`算子使用，来实现AI模型所需要的算子，如下表所示。
+合计250个算子（包含融合算子），OpenCL支持87个。`lite/backends/opencl/cl_kernel`中定义的OpenCL Kernels文件将会被`lite/kernels/opencl`中的'buffer'或者`image`算子使用，来实现AI模型所需要的算子，如下表所示。
 
 | 算子名                            | 是否支持OpenCL | int32 | int64 | float16 | float32 | 所属文件                                                     |
 | --------------------------------- | -------------- | ----- | ----- | ------- | ------- | ------------------------------------------------------------ |
@@ -292,6 +292,7 @@
 **注意**
 
 - `max`与`mul`算在在官方的文档中未说明支持，但是在实现的C/C++文件中我们发现了它的相关实现，所以在使用的时候需要做相关的验证工作，确认它的正确运行。
+- 从kernel的使用情况来看，`mul`与`matmul`使用相同的`buffer/mat_mul_kernel.cl`，所以它们试做相同算子，并且在使用的时候使用`matmul`而非`mul`
 
 
 
