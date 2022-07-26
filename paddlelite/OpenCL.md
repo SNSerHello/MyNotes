@@ -385,78 +385,11 @@
 
 `cl_common.h`是一个公用的头文件，每个`*.cl`文件中都会有`#include <cl_common.h>`
 
-- buffer：包含12个Kernels
-  - concat
-  - depthwise_conv2d
-  - elementwise_add
-  - fc
-  - im2col
-  - matmul
-  - pool
-  - relu
-  - sigmoid
-  - slice
-  - transpose
-  - yolo_box
-- image：58个Kernels
-  - activation
-  - argmax
-  - batch_norm
-  - bilinear_interp
-  - box_coder
-  - channel_add
-  - clip
-  - concat_default
-  - concat
-  - conv2d_1x1_default
-  - conv2d_1x1_default_mali
-  - conv2d_1x1_opt
-  - conv2d_3x3_default
-  - conv2d_3x3
-  - conv2d_5x5
-  - conv2d_5x5_opt
-  - conv2d_7x7
-  - conv2d_7x7_opt
-  - conv2d_common
-  - conv2d_transpose
-  - conv2d_winograd_3x3s1
-  - depthwise_conv2d_basic
-  - depthwise_conv2d
-  - depthwise_conv2d_transpose
-  - dropout
-  - elementwise_add
-  - elementwise_broadcast
-  - elementwise
-  - elementwise_mul
-  - elementwise_sub
-  - expand
-  - fc
-  - gather
-  - greater_than
-  - grid_sampler
-  - instance_norm
-  - layer_norm
-  - layout
-  - lrn
-  - matmul
-  - matmul_opt
-  - matmul_unpersistable_y
-  - matmul_xtranspose
-  - max
-  - nearest_interp
-  - pad2d
-  - pixel_shuffle
-  - pool_deprecated
-  - pool
-  - reduce
-  - reshape
-  - scale
-  - shuffle_channel
-  - slice
-  - softmax
-  - split
-  - transpose
-  - trigonometric
+- buffer：包含**12**个Kernels
+
+- image：**58**个Kernels
+
+  合计**70**个Kernels
 
 ```bash
 Paddle-Lite\lite\backends\opencl\cl_kernel
@@ -539,11 +472,29 @@ Paddle-Lite\lite\backends\opencl\cl_kernel
 
 ### opencl_kernels_files查询表
 
-在编译Paddle-Lite时，Paddle-Lite会通过`lite/tools/cmake_tools/gen_opencl_code.py`工具将上述所有支持的Kernels文件制作成一张`opencl_kernels_files`查询表，将它存在在`lite/backends/opencl/opencl_kernels_source.cc`文件中。在`CLRuntime::CreateProgramFromSource(..., file_name, ...)`运行的时候会根据文件名，比如说`file_name="image/argmax_kernel.cl"`从`opencl_kernels_files`中获取它的kernel内容来创建`cl::Program`对象，详情可以参见：`lite/backends/opencl/cl_runtime.cc`第332行`CLRuntime::CreateProgramFromSource()`。
+在编译Paddle-Lite时，Paddle-Lite会通过`lite/tools/cmake_tools/gen_opencl_code.py`工具将上述所有支持的Kernels文件制作成一张`opencl_kernels_files`查询表，将它存在在`lite/backends/opencl/opencl_kernels_source.cc`文件中，一般的命令行如下所示：
+
+```bash
+$ python3 lite/tools/cmake_tools/gen_opencl_code.py lite/backends/opencl/cl_kernel lite/backends/opencl/opencl_kernels_source.cc
+```
+
+`opencl_kernels_source.cc`中的`opencl_kernels_files`定义样式如下:
+
+```c++
+extern const std::map<std::string, std::vector<unsigned char>> opencl_kernels_files = {
+    {"buffer/concat_kernel.cl", {0x23, 0x70, 0x72, 0x61, ...},
+    {"buffer/depthwise_conv2d_kernel.cl", {0x23, 0x70, 0x72,...},
+    ...
+    {"image/matmul_kernel.cl", {0x23, 0x70, 0x72, 0x61, ...},
+    ...
+}
+```
+
+在`CLRuntime::CreateProgramFromSource(..., file_name, ...)`运行的时候会根据文件名，比如说`file_name="image/argmax_kernel.cl"`从`opencl_kernels_files`中获取它的kernel内容来创建`cl::Program`对象，详情可以参见：`lite/backends/opencl/cl_runtime.cc`第332行`CLRuntime::CreateProgramFromSource()`。
 
 ### OpenCL Kernel编译
 
-在编译OpenCL的Kernel时候，为提高性能，会依次使用Cache，二进制Kernel和源代码Kernel进行编译，如下图1所示
+在编译OpenCL的Kernel时候，为提高性能，会依次使用Cache，预编译二进制Kernel和源代码Kernel进行编译，算法如下图1所示
 
 ```mermaid
 flowchart TB
@@ -562,6 +513,125 @@ flowchart TB
 ```
 
 ​                                              图1 编译OpenCL Kernel算法
+
+**注意**
+
+- 预编译二进制Kernel文件可以通过`CLRuntime::SetBinaryPathName(const std::string& path, const std::string& name)`来设置，在推断C/C++程序中，可以通过上层接口函数`MobileConfig::set_opencl_binary_path_name(const std::string &path, const std::string &name)`或者`CxxConfig::set_opencl_binary_path_name(const std::string &path, const std::string &name)`来进行配置。
+
+- 预编译二进制Kernel文件需要校验`sn_key`，默认值为`lite_opencl_precompiled_binary_identifier`，对应的`value`中依次存放
+
+  1. aarch_info
+  2. lite_version
+  3. build_options
+  4. platform_info
+  5. device_version
+  6. driver_version
+  7. string("place_holder")
+
+  具体实现详见`CLRuntime::GetSN(const std::string options)`（第485行），这个实现的定义实现中有很奇怪的代码，如下所示
+
+  ```c++
+    const std::string aarch =
+  #if defined(__aarch64__)
+        "android_armv8";
+  #else
+        "android_armv7";
+  #endif
+  #if defined(_WIN64)
+    "win64";
+  #elif defined(_WIN32)
+    "win32";
+  #endif
+  ```
+
+  在非Windows平台，arch要么是android_armv8，那么是android_armv7，这个应该没什么问题，但是在Windows平台，它在后面会多出一个win64或者win32，代码能过？
+
+  在使用GetSN的时候（第251行），如下
+
+  ```
+  ...
+        } else if (host::memcmp(((sn_iter->second)[0]).data(),
+                                GetSN(precision_option).data(),
+                                GetSN(precision_option).length())) {
+          std::string sn_str(reinterpret_cast<char*>((sn_iter->second)[0].data()),
+                             (sn_iter->second)[0].size());
+          LOG(INFO) << "\nSN required: " << GetSN(precision_option)
+                    << "\tsize: " << GetSN(precision_option).length()
+                    << "\nSN in bin file: " << sn_str
+                    << "\tsize: " << ((sn_iter->second)[0]).size();
+          LOG(WARNING) << "The precompiled OpenCL binary[" << bin_file
+                       << "] is invalid!";
+  ...
+  ```
+
+  `GetSN(precision_option)`的N次调用的意义就是为了让代码写起来简单一些？可能编译器足够强大，这种代码能够被很好的优化吧？
+
+- 装载一次二进制Kernel文件后，逻辑上网络所需要的Kernels都已经编译Ready并存放在Cache中了，那么对于使用它们性能将会有很大的提高。从这个角度看，可以把网络需要的Kernels在运行之前先制作好一份二进制Kernel文件，然后运行前加载一次即可，它是一个手工活，需要工具配合。如果我们查看Paddle-Lite源代码的话，我们会发现
+
+  - 在`CLRuntime::SaveProgram()`（cl_runtime.cc第364行）能够保存运行过的Kernels
+
+  - 在`RuntimeProgram::~RuntimeProgram()`（program.h第218行）能够保存CLRuntime的两个重要数据
+
+    ```c++
+        // save program kernel cache & tuned params
+        CLRuntime::Global()->SaveProgram();
+        CLRuntime::Global()->SaveTuned();
+    ```
+
+  - `light_api.h`（第141行）定义了`std::unique_ptr<RuntimeProgram> program_`，所以只要使用`MobileConfig`创建`LightPredictor`，运行一下网络后正常退出即可。**切记**：`MobileConfig::set_opencl_binary_path_name(const std::string& path, const std::string& name)`必须被设置，否则无保存路径！为了方便起见，我使用python代码来完成上面的任务，如下：
+
+    ```python
+    from paddlelite import lite
+    
+    config = lite.MobileConfig()
+    config.set_model_from_file("mobilenet_v1_opencl.nb")
+    config.set_opencl_binary_path_name("./opencl_kernel", "kernel_binary")
+    predictor = lite.create_paddle_predictor(config)
+    
+    import numpy as np
+    from PIL import Image
+    
+    img = (
+        (
+            np.asarray(Image.open("cat.jpg").crop((200, 0, 1400, 1200)).resize((224, 224)))
+            / 255.0
+        )
+        .astype(np.float32)
+        .transpose((2, 0, 1))[np.newaxis, ...]
+    )
+    
+    input_tensor = predictor.get_input(0)
+    input_tensor.from_numpy(img)
+    predictor.run()
+    out = predictor.get_output(0).numpy()
+    
+    with open("synset.txt", "r", encoding="utf-8") as f:
+        labels = np.array([line.strip() for line in f if line.strip()])
+    
+    from scipy.special import softmax
+    
+    out = softmax(out, axis=-1)
+    o_index = out.argsort(axis=-1)[..., -5:][..., ::-1]
+    print(o_index.ravel(), out[..., o_index].ravel(), labels[o_index].ravel())
+    ```
+
+    `opencl_kernel`目录中存放二进制kernel文件`kernel_binary`，运行完成后
+
+    ```bash
+    $ cd opencl_kernel
+    $ ls -l
+    -rw-r--r-- 1 292288 kernel_binary
+    ```
+
+    如果查看`kernel_binary`的头部，那么在Windows下就会看见不正确的`android_armv7`信息出现
+
+    ```bash
+    $ cat kernel_binary | head -2
+    ╝□□╝  H□╚□@╚□□h□ □□□}□╝□□□╝4)lite_opencl_precompiled_binary_identifier□□□╝kandroid_armv7; a404b451c; Precision: FP
+    32; NVIDIA CUDA, FULL_PROFILE; OpenCL 1.2 CUDA; 457.09; place_holder□□□╝peimage/softmax_kernel.cl -cl-fast-relaxed-math -cl-mad-
+    enable -DCL_DTYPE_float -DCL_DTYPE_FLOAT_FORCE z□□╝>|//
+    // Generated by NVIDIA NVVM Compiler
+    ```
 
 
 
