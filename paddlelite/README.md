@@ -408,3 +408,4 @@ classDiagram
 - [Imagination NNA](https://github.com/SNSerHello/MyNotes/blob/main/paddlelite/Imagination%20NNA.md)
 - [OpenCL](https://github.com/SNSerHello/MyNotes/blob/main/paddlelite/OpenCL.md)
 - [SNSerHello/Paddle-Lite](https://github.com/SNSerHello/Paddle-Lite)
+- [Add Operation](https://github.com/SNSerHello/Paddle-Lite/blob/develop/docs/develop_guides/add_operation.md)

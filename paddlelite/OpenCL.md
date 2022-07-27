@@ -733,6 +733,142 @@ OpenCL的算子必须继承`paddle::lite::KernelLite`类，它的定义详见：
 
 
 
+## OpenCL算子注册
+
+Paddle-Lite的OpenCL算子都是`KernelLite`的子类，在实现`PrepareForRun()`与`Run()`等相关方法后，算子类需要通过`REGISTER_LITE_KERNEL`进行注册。
+
+```c++
+#define REGISTER_LITE_KERNEL(                                                 \
+    op_type__, target__, precision__, layout__, KernelClass, alias__)         \
+  static paddle::lite::KernelRegistrar                                        \
+      op_type__##target__##precision__##layout__##alias__##_kernel_registry(  \
+          #op_type__,                                                         \
+          TARGET(target__),                                                   \
+          PRECISION(precision__),                                             \
+          DATALAYOUT(layout__),                                               \
+          []() {                                                              \
+            std::unique_ptr<KernelClass> x(new KernelClass);                  \
+            x->set_op_type(#op_type__);                                       \
+            x->set_alias(#alias__);                                           \
+            return x;                                                         \
+          });                                                                 \
+  int touch_##op_type__##target__##precision__##layout__##alias__() {         \
+    op_type__##target__##precision__##layout__##alias__##_kernel_registry     \
+        .touch();                                                             \
+    OpKernelInfoCollector::Global().AddKernel2path(                           \
+        #op_type__ "," #target__ "," #precision__ "," #layout__ "," #alias__, \
+        __FILE__);                                                            \
+    return 0;                                                                 \
+  }                                                                           \
+  ParamTypeRegistry(                                                          \
+      op_type__, target__, precision__, layout__, KernelClass, alias__)
+```
+
+它的注册比较简单，分成三个部分：
+
+- 定义一个静态`paddle::lite::KernelRegistrar`变量，名字由它的target, precision等一堆属性来组成，避免重命名。算子类实例产生方法，通过`KernelFactory::RegisterCreator(...)`注册到`op_registry_`数据结构中，即如下代码块
+
+  ```c++
+            []() {                                                              \
+              std::unique_ptr<KernelClass> x(new KernelClass);                  \
+              x->set_op_type(#op_type__);                                       \
+              x->set_alias(#alias__);                                           \
+              return x;                                                         \
+            }
+  ```
+
+  在`KernelFactory::Create(...)`中会被真正实例化成一个operator
+
+- 定义一个touch函数，它的函数名由op_type，target等组成，避免重命名。在函数中，它做两件事情
+
+  - 调用定义的`paddle::lite::KernelRegistrar`变量的touch()函数
+  - 将kernel_name与kernel_path注册到`kernel2path_`中去，详见：`OpKernelInfoCollector::AddKernel2path(...)`
+
+  这个`touch_`开头的touch函数，会在`USE_LITE_KERNEL(...)`中被使用
+
+  ```c++
+  #define USE_LITE_KERNEL(op_type__, target__, precision__, layout__, alias__) \
+    extern int touch_##op_type__##target__##precision__##layout__##alias__();  \
+    int op_type__##target__##precision__##layout__##alias__##__use_lite_kernel \
+        UNUSED = touch_##op_type__##target__##precision__##layout__##alias__();
+  ```
+
+  **source**: `lite/api/paddle_lite_factory_helper.h`
+
+  所有的Kernels通过`USE_LITE_KERNEL`定义在`inference_lite_lib/cxx/include/paddle_use_kernels.h`。`paddle_use_kernels.h`会被自动包含`lite/api/light_api_impl.cc`中。
+
+  ```c++
+  #ifndef LITE_ON_TINY_PUBLISH
+  #include "lite/api/paddle_use_kernels.h"
+  #include "lite/api/paddle_use_ops.h"
+  #endif
+  ```
+
+  **source**: `lite/api/light_api_impl.cc`
+
+  从demo的C/C++代码看，一般有如下的代码段
+
+  ```c++
+  /////////////////////////////////////////////////////////////////////////
+  // If this demo is linked to static library:libpaddle_api_light_bundled.a
+  // , you should include `paddle_use_ops.h` and `paddle_use_kernels.h` to
+  // avoid linking errors such as `unsupport ops or kernels`.
+  /////////////////////////////////////////////////////////////////////////
+  // #include "paddle_use_kernels.h"  // NOLINT
+  // #include "paddle_use_ops.h"      // NOLINT
+  ```
+
+  当出现链接错误，类似于`unsupport ops or kernels`时候，我们应该将`paddle_use_kernels.h`和`paddle_use_ops.h`包含到C/C++代码中去。从代码上看，touch函数主要是将Kernels/Ops与它的路径管理起来，让编译器容易找到。现在采用的`lite/backends/opencl/opencl_kernels_source.cc`，逻辑上解决了Kernels找不到的尴尬。
+
+- 定义一个静态变量
+
+  - 当LITE_ON_TINY_PUBLISH时候为：`paddle::lite::ParamTypeDummyRegistry::NewInstance()`。这个类仅仅是一个空实现，目的是为了让相关注册部分编译通过，没有实际的价值。
+
+  - 其他时候为：`paddle::lite::ParamTypeRegistry::NewInstance<>(...)`。它是将算子的输入，输出等信息注册到`ParamTypeRegistry`中去，所有的函数（出了Finalize()返回true）都返回`NewInstance`实例，这样就能够通过链式调用来添加所有输入，输出信息，比如说
+
+    ```c++
+    // Relu
+    REGISTER_LITE_KERNEL(relu,
+                         kOpenCL,
+                         kFloat,
+                         kNCHW,
+                         paddle::lite::kernels::opencl::ReluCompute,
+                         def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kOpenCL))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kOpenCL))})
+        .Finalize();
+    ```
+
+    **source**: `lite/kernels/opencl/activation_buffer_compute.cc`
+
+    因为最后返回的永远是true，变量也没有什么用处，所以在变量后面加了`UNUSED`来修饰，告诉编译器它没啥鸟用。
+
+    ```c++
+    #define ParamTypeRegistry(                                                \
+        op_type__, target__, precision__, layout__, KernelClass, alias__)     \
+      static auto                                                             \
+          op_type__##target__##precision__##layout__##alias__##param_register \
+              UNUSED = paddle::lite::ParamTypeRegistry::NewInstance<          \
+                  TARGET(target__),                                           \
+                  PRECISION(precision__),                                     \
+                  DATALAYOUT(layout__)>(#op_type__ "/" #alias__)
+    ```
+
+    **source**: `lite/core/op_registry.h`
+
+    ```c++
+    #if defined(_WIN32)
+    #define UNUSED
+    #define __builtin_expect(EXP, C) (EXP)
+    #else
+    #define UNUSED __attribute__((unused))
+    #endif
+    ```
+
+    **source**: `lite/api/paddle_lite_factory_helper.h`
+
+
+
 ## 参考
 
 - [Github Paddle-Lite](https://github.com/PaddlePaddle/Paddle-Lite)
