@@ -4,28 +4,30 @@
 
 当前OpenCL支持22个网络，如下所示：
 
-- MobileNetV1
-- MobileNetV2
-- MobileNetV3_large
-- MobileNetV3_small
-- EfficientNetB0
-- ResNet18
-- ResNet50
-- VGG16
-- VGG19
-- SSD-MobileNetV3-large
-- ch_ppocr_mobile_v2.0_cls_infer
-- ch_ppocr_mobile_v2.0_det_infer
-- ch_ppocr_mobile_v2.0_rec_infer
-- DB
-- inference_dnn
-- Deeplabv3
-- UNet
-- bisenet
-- fastscnn
-- bisenet_v2
-- FaceBoxes
-- MTCNN
+| 模型                           | 下载地址                                                     |
+| ------------------------------ | ------------------------------------------------------------ |
+| MobileNetV1                    | https://paddlelite-demo.bj.bcebos.com/models/mobilenet_v1_fp32_224_fluid.tar.gz |
+| MobileNetV2                    | https://paddlelite-demo.bj.bcebos.com/models/mobilenet_v2_fp32_224_fluid.tar.gz |
+| MobileNetV3_large              | https://paddle-inference-dist.bj.bcebos.com/AI-Rank/mobile/MobileNetV3_large_x1_0.tar.gz |
+| MobileNetV3_small              | https://paddle-inference-dist.bj.bcebos.com/AI-Rank/mobile/MobileNetV3_small_x1_0.tar.gz |
+| EfficientNetB0                 | https://paddlelite-demo.bj.bcebos.com/models/EfficientNetB0.tar.gz |
+| ResNet18                       | https://paddlelite-demo.bj.bcebos.com/models/resnet18_fp32_224_fluid.tar.gz |
+| ResNet50                       | https://paddlelite-demo.bj.bcebos.com/models/resnet50_fp32_224_fluid.tar.gz |
+| VGG16                          |                                                              |
+| VGG19                          |                                                              |
+| SSD-MobileNetV3-large          | https://paddle-inference-dist.bj.bcebos.com/AI-Rank/mobile/ssdlite_mobilenet_v3_large.tar.gz |
+| ch_ppocr_mobile_v2.0_cls_infer | https://paddleocr.bj.bcebos.com/dygraph_v2.0/ch/ch_ppocr_mobile_v2.0_cls_infer.tar |
+| ch_ppocr_mobile_v2.0_det_infer | https://paddlelite-demo.bj.bcebos.com/NNAdapter/models/PaddleOCR/ch_ppocr_mobile_v2.0_det_infer.tgz<br />https://paddleocr.bj.bcebos.com/PP-OCRv2/chinese/ch_PP-OCRv2_det_infer.tar |
+| ch_ppocr_mobile_v2.0_rec_infer | https://paddlelite-demo.bj.bcebos.com/NNAdapter/models/PaddleOCR/ch_ppocr_mobile_v2.0_rec_infer.tgz<br />https://paddleocr.bj.bcebos.com/PP-OCRv2/chinese/ch_PP-OCRv2_rec_infer.tar |
+| DB                             |                                                              |
+| inference_dnn                  |                                                              |
+| Deeplabv3                      | https://paddlelite-demo.bj.bcebos.com/models/deeplab_mobilenet_fp32_fluid.tar.gz |
+| UNet                           | https://paddlelite-demo.bj.bcebos.com/models/Unet.zip        |
+| bisenet                        |                                                              |
+| fastscnn                       |                                                              |
+| bisenet_v2                     |                                                              |
+| FaceBoxes                      | https://github.com/PaddlePaddle/PaddleDetection/blob/release/0.4/docs/featured_model/FACE_DETECTION.md#FaceBoxes |
+| MTCNN                          | https://paddlelite-demo.bj.bcebos.com/models/mtcnn.zip       |
 
 
 
@@ -598,3 +600,5 @@ flowchart TB
 - [Github Paddle-Lite](https://github.com/PaddlePaddle/Paddle-Lite)
 - [Paddle-Lite Models Supported](https://paddle-lite.readthedocs.io/zh/latest/quick_start/support_model_list.html)
 - [Paddle-Lite Operators Supported](https://paddle-lite.readthedocs.io/zh/latest/quick_start/support_operation_list.html)
+- [支持模型](https://paddle-lite.readthedocs.io/zh/develop/quick_start/support_model_list.html)
+- [SNSerHello/PaddleOCR](https://github.com/SNSerHello/PaddleOCR)
