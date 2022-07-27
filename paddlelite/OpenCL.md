@@ -595,6 +595,144 @@ flowchart TB
 
 
 
+## OpenCL算子开发
+
+OpenCL的算子必须继承`paddle::lite::KernelLite`类，它的定义详见：`lite/core/kernel.h`头文件，在[KernelLite类关系图](https://github.com/SNSerHello/MyNotes/tree/main/paddlelite)中也对它进行了详细的说明。运行一个算子，它至少会运行三个步骤
+
+1. PrepareForRun()，仅仅在第一次中运行
+2. ReInitWhenNeeded()
+3. Run()
+
+在OpenCL算子实现中，PrepareForRun()与Run()是必须被实现的（Relu算子是最常见的OpenCL算子之一，我们用它来做一个例子说明，如下所示）
+
+**PrepareForRun()**一般用于增加Kernel文件进行编译，它的优化策略可以参考**OpenCL Kernel编译**部分。
+
+```c++
+  void PrepareForRun() override {
+    auto& context = ctx_->As<OpenCLContext>();
+    context.cl_context()->AddKernel(kernel_func_name_,
+                                    "buffer/relu_kernel.cl",
+                                    build_options_,
+                                    time_stamp_);
+  }
+```
+
+**source**: `lite/kernels/opencl/activation_buffer_compute.cc`
+
+**Run()**一般用于OpenCL算子的计算过程，请**注意**： 因为`paddle::lite::KernelBase`中使用`event_`来做Profile，所以`EnqueueNDRangeKernel`中也使用它。
+
+```c++
+  void Run() override {
+    auto& param = *param_.get_mutable<param_t>();
+    const auto& x_dims = param.X->dims();
+    size_t count = x_dims.production();
+
+    auto& context = ctx_->As<OpenCLContext>();
+    CHECK(context.cl_context() != nullptr);
+    auto* x_buf = param.X->data<float, cl::Buffer>();
+    auto* out_buf = param.Out->mutable_data<float, cl::Buffer>(TARGET(kOpenCL));
+    STL::stringstream kernel_key;
+    kernel_key << kernel_func_name_ << build_options_ << time_stamp_;
+    auto kernel = context.cl_context()->GetKernel(kernel_key.str());
+    VLOG(4) << TargetToStr(param.X->target());
+    VLOG(4) << TargetToStr(param.Out->target());
+
+    int arg_idx = 0;
+    cl_int status = kernel.setArg(arg_idx, *x_buf);
+    CL_CHECK_FATAL(status);
+    status = kernel.setArg(++arg_idx, (const int)count);
+    CL_CHECK_FATAL(status);
+    status = kernel.setArg(++arg_idx, *out_buf);
+    CL_CHECK_FATAL(status);
+
+    auto global_work_size = cl::NDRange{count};
+
+    status = EnqueueNDRangeKernel(context,
+                                  kernel,
+                                  cl::NullRange,
+                                  global_work_size,
+                                  cl::NullRange,
+                                  nullptr,
+                                  event_);
+    CL_CHECK_FATAL(status);
+  }
+```
+
+**source**: `lite/kernels/opencl/activation_buffer_compute.cc`
+
+在`paddle::lite::KernelBase`中，profile部分的实现如下所示。
+
+```c++
+  virtual void SetProfileRuntimeKernelInfo(
+      paddle::lite::profile::OpCharacter* ch) {
+    ch->kernel_func_name = std::string("NotImpl");
+#ifdef LITE_WITH_OPENCL
+    ch->cl_event = event_;
+#endif
+  }
+```
+
+**source**: `lite/core/kernel.h`
+
+这种实现的主要问题是子类无法重复利用父类的成果，比如说我们希望在子类中的使用方式
+
+```c++
+  virtual void SetProfileRuntimeKernelInfo(
+      paddle::lite::profile::OpCharacter* ch) {
+      KernelBase::SetProfileRuntimeKernelInfo(ch);
+      do_somethings_only_for_sub_classes(); // 如果子类没有特别需求，那么SetProfileRuntimeKernelInfo就不要在子类中进行覆盖(override)了
+  }
+```
+
+因为`paddle::lite::KernelBase`中的奇葩写法，导致了在每个OpenCL算子的实现的时候，都需要重新一遍，一旦父类发生变化，可能就直接影响所有的子类，现在的实现例子如下
+
+- `ReluCompute`类中的写法
+
+  ```c++
+  #ifdef LITE_WITH_PROFILE
+    void SetProfileRuntimeKernelInfo(paddle::lite::profile::OpCharacter* ch) {
+      ch->kernel_func_name = kernel_func_name_;
+      ch->cl_event =
+          event_;  // `event_` defined in `kernel.h`, valid after kernel::Run
+    }
+  #endif
+  ```
+
+  **source**: `lite/kernels/opencl/activation_buffer_compute.cc`
+
+- `SigmoidCompute`类中的写法
+
+  ```c++
+  #ifdef LITE_WITH_PROFILE
+    void SetProfileRuntimeKernelInfo(paddle::lite::profile::OpCharacter* ch) {
+      ch->kernel_func_name = kernel_func_name_;
+      ch->cl_event =
+          event_;  // `event_` defined in `kernel.h`, valid after kernel::Run
+    }
+  #endif
+  ```
+
+  **source**: `lite/kernels/opencl/activation_buffer_compute.cc`
+
+- `ArgmaxComputeImage2D`类中的写法
+
+  ```c++
+  #ifdef LITE_WITH_PROFILE
+    void SetProfileRuntimeKernelInfo(paddle::lite::profile::OpCharacter* ch) {
+      ch->kernel_func_name = kernel_func_name_;
+      ch->global_work_size = ch->NDRangeToStr(gws_);
+      ch->cl_event =
+          event_;  // `event_` defined in `kernel.h`, valid after kernel::Run
+    }
+  #endif
+  ```
+
+  **source**: `lite/kernels/opencl/argmax_image_compute.cc`
+
+在正常情况下，`ReluCompute`和`SigmoidCompute`是无需覆盖`SetProfileRuntimeKernelInfo(...)`，ArgmaxComputeImage2D中只要解决`global_work_size`部分即可，那样的话，代码会看起来很舒服，不是吗？
+
+
+
 ## 参考
 
 - [Github Paddle-Lite](https://github.com/PaddlePaddle/Paddle-Lite)
@@ -602,3 +740,4 @@ flowchart TB
 - [Paddle-Lite Operators Supported](https://paddle-lite.readthedocs.io/zh/latest/quick_start/support_operation_list.html)
 - [支持模型](https://paddle-lite.readthedocs.io/zh/develop/quick_start/support_model_list.html)
 - [SNSerHello/PaddleOCR](https://github.com/SNSerHello/PaddleOCR)
+- [Arch Intro](https://github.com/SNSerHello/Paddle-Lite/blob/develop/docs/develop_guides/architecture-intro.md)
