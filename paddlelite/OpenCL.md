@@ -17,8 +17,8 @@
 | VGG19                          |                                                              |
 | SSD-MobileNetV3-large          | https://paddle-inference-dist.bj.bcebos.com/AI-Rank/mobile/ssdlite_mobilenet_v3_large.tar.gz |
 | ch_ppocr_mobile_v2.0_cls_infer | https://paddleocr.bj.bcebos.com/dygraph_v2.0/ch/ch_ppocr_mobile_v2.0_cls_infer.tar |
-| ch_ppocr_mobile_v2.0_det_infer | https://paddlelite-demo.bj.bcebos.com/NNAdapter/models/PaddleOCR/ch_ppocr_mobile_v2.0_det_infer.tgz<br />https://paddleocr.bj.bcebos.com/PP-OCRv2/chinese/ch_PP-OCRv2_det_infer.tar |
-| ch_ppocr_mobile_v2.0_rec_infer | https://paddlelite-demo.bj.bcebos.com/NNAdapter/models/PaddleOCR/ch_ppocr_mobile_v2.0_rec_infer.tgz<br />https://paddleocr.bj.bcebos.com/PP-OCRv2/chinese/ch_PP-OCRv2_rec_infer.tar |
+| ch_ppocr_mobile_v2.0_det_infer | https://paddleocr.bj.bcebos.com/PP-OCRv2/chinese/ch_PP-OCRv2_det_infer.tar |
+| ch_ppocr_mobile_v2.0_rec_infer | https://paddleocr.bj.bcebos.com/PP-OCRv2/chinese/ch_PP-OCRv2_rec_infer.tar |
 | DB                             |                                                              |
 | inference_dnn                  |                                                              |
 | Deeplabv3                      | https://paddlelite-demo.bj.bcebos.com/models/deeplab_mobilenet_fp32_fluid.tar.gz |
