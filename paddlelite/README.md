@@ -197,6 +197,149 @@ PYBIND11_MODULE(lite, m) {
 
 
 
+### Paddle-Lite编译
+
+#### Windows
+
+```bash
+$ lite\tools\build_windows.bat ^
+	use_vs2017 ^
+	with_profile ^
+	with_precision_profile ^
+	with_extra ^
+	with_static_mkl ^
+	with_opencl
+```
+
+#### Linux
+
+```bash
+$ lite/tools/build_linux.sh --arch=x86 \
+	--toolchain=gcc \
+	--with_extra=ON \
+	--with_python=ON \
+	--python_version=3.7 \
+	--with_log=ON \
+	--with_exception=ON \
+	--with_profile=ON \
+	--with_precision_profile=ON \
+	--with_static_mkl=ON \
+	--with_avx=ON \
+	--with_opencl=ON \
+	full_publish
+```
+
+
+
+### Paddle-Lite 发布结构
+
+```bash
+inference_lite_lib
++---bin
+|       test_model_bin.exe
+|
++---cxx
+|   +---include
+|   |       paddle_api.h
+|   |       paddle_lite_factory_helper.h
+|   |       paddle_place.h
+|   |       paddle_use_kernels.h
+|   |       paddle_use_ops.h
+|   |       paddle_use_passes.h
+|   |
+|   \---lib
+|           libpaddle_api_full_bundled.lib
+|           libpaddle_api_light_bundled.lib
+|
++---demo
+|   +---cxx
+|   |   +---mobilenetv1_full
+|   |   |       build.bat
+|   |   |       build.sh
+|   |   |       CMakeLists.txt
+|   |   |       mobilenet_full_api.cc
+|   |   |
+|   |   \---mobilenetv1_light
+|   |           build.bat
+|   |           build.sh
+|   |           CMakeLists.txt
+|   |           mobilenet_light_api.cc
+|   |
+|   \---python
+|           mobilenetv1_full_api.py
+|           mobilenetv1_light_api.py
+|
++---python
+|   +---install
+|   |   |   setup.py
+|   |   |
+|   |   +---build
+|   |   |   +---bdist.win-amd64
+|   |   |   +---lib.win-amd64-3.7
+|   |   |   |   \---paddlelite
+|   |   |   |           lite.pyd
+|   |   |   |           __init__.py
+|   |   |   |
+|   |   |   \---scripts-3.7
+|   |   |           paddle_lite_opt
+|   |   |
+|   |   +---dist
+|   |   |       paddlelite-c914ca88a-cp37-cp37m-win_amd64.whl
+|   |   |
+|   |   +---libs
+|   |   +---lite
+|   |   |       lite.pyd
+|   |   |       paddle_lite_opt
+|   |   |       __init__.py
+|   |   |
+|   |   \---paddlelite.egg-info
+|   |           dependency_links.txt
+|   |           PKG-INFO
+|   |           SOURCES.txt
+|   |           top_level.txt
+|   |
+|   \---lib
+|           lite.pyd
+|
+\---third_party
+    \---mklml
+        +---include
+        |       i_malloc.h
+        |       mkl.h
+        |       mkl_blas.h
+        |       mkl_cblas.h
+        |       mkl_direct_blas.h
+        |       mkl_direct_blas_kernels.h
+        |       mkl_direct_call.h
+        |       mkl_direct_lapack.h
+        |       mkl_direct_types.h
+        |       mkl_dnn.h
+        |       mkl_dnn_types.h
+        |       mkl_lapack.h
+        |       mkl_lapacke.h
+        |       mkl_service.h
+        |       mkl_trans.h
+        |       mkl_types.h
+        |       mkl_version.h
+        |       mkl_vml.h
+        |       mkl_vml_defines.h
+        |       mkl_vml_functions.h
+        |       mkl_vml_types.h
+        |       mkl_vsl.h
+        |       mkl_vsl_defines.h
+        |       mkl_vsl_functions.h
+        |       mkl_vsl_types.h
+        |
+        \---lib
+                libiomp5md.dll
+                libiomp5md.lib
+                mkl_core.lib
+                mkl_intel_lp64.lib
+                mkl_intel_thread.lib
+```
+
+
+
 ## Paddle-Lite重要组件
 
 ### [OpenCL](https://github.com/SNSerHello/MyNotes/blob/main/paddlelite/OpenCL.md)
