@@ -356,3 +356,4 @@ inference_lite_lib
 
 - [Imagination NNA](https://github.com/SNSerHello/MyNotes/blob/main/paddlelite/Imagination%20NNA.md)
 - [OpenCL](https://github.com/SNSerHello/MyNotes/blob/main/paddlelite/OpenCL.md)
+- [SNSerHello/Paddle-Lite](https://github.com/SNSerHello/Paddle-Lite)
