@@ -573,16 +573,20 @@ flowchart TB
     print(o_index.ravel(), out[..., o_index].ravel(), labels[o_index].ravel())
     ```
 
-    `opencl_kernel`目录中存放二进制kernel文件`kernel_binary`，运行完成后
+    **注**：`cat.jpt`和`synset.txt`被房子在`images`目录下，使用的时候可以拷贝到相应的目录中去
 
+    
+  
+    `opencl_kernel`目录中存放二进制kernel文件`kernel_binary`，运行完成后
+  
     ```bash
     $ cd opencl_kernel
     $ ls -l
     -rw-r--r-- 1 292288 kernel_binary
     ```
-
+  
     如果查看`kernel_binary`的头部，那么在Windows下就会看见不正确的`android_armv7`信息出现
-
+  
     ```bash
     $ cat kernel_binary | head -2
     ╝□□╝  H□╚□@╚□□h□ □□□}□╝□□□╝4)lite_opencl_precompiled_binary_identifier□□□╝kandroid_armv7; a404b451c; Precision: FP
