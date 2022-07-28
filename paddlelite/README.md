@@ -344,7 +344,7 @@ inference_lite_lib
 
 以下内容以CNN网络中最常见的`Conv2d`算子做为例子，展现如何在Paddle-Lite中开发新算子。
 
-1. 在`lite/operators`目录下创建新算子的头文件和C/C++元文件，比如说`Conv2d`的头文件为`lite/operators/conv_op.h`，。源文件为`lite/operators/conv_op.cc`。每个算子都需要继承OpLite类，它的类关系图如下所示
+1. 在`lite/operators`目录下创建新算子的头文件和C/C++元文件，比如说`Conv2d`的头文件为`lite/operators/conv_op.h`，C/C++源文件为`lite/operators/conv_op.cc`。每个算子都需要继承OpLite类，它的类关系图如下所示
 
    ```mermaid
    classDiagram
