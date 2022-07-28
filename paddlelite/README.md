@@ -342,7 +342,7 @@ inference_lite_lib
 
 ## Paddle-Lite算子开发
 
-以下内容以CNN网络中最常见的`Conv2d`算子做为例子，展现如何在Paddle-Lite中开发新算子。
+以下内容以CNN网络中最常见的`Conv2d`算子做为例子，展现如何在Paddle-Lite中开发新算子，步骤如下：
 
 1. 在`lite/operators`目录下创建新算子的头文件和C/C++元文件，比如说`Conv2d`的头文件为`lite/operators/conv_op.h`，C/C++源文件为`lite/operators/conv_op.cc`。每个算子都需要继承OpLite类，它的类关系图如下所示
 
@@ -438,10 +438,126 @@ inference_lite_lib
 
    - 在`lite/kernels/xxx/CMakeLists.txt`中增加Kernel的实现文件，比如说`add_kernel(conv_opencl_image OPENCL basic SRCS conv_image_compute.cc)`，把它们添加到编译系统中去。
 
+3. `lite/backends`目录下的对应硬件目录(arm/cuda/fpga/host/metal/opencl/...)下，比如说opencl子目录，在`lite/backends/opencl/cl_kernel/buffer`和`lite/backends/opencl/cl_kernel/image`目录中增加OpenCL的kernel文件（`*.cl`文件），在适当的时候对`lite/backends/opencl/cl_kernel/cl_common.h`进行修改（提取common部分加入）。
+
+   ```bash
+   lite/backends
+   ├─arm
+   │  └─math
+   │      ├─dotprod
+   │      ├─fp16
+   │      ├─sve
+   │      └─sve2
+   ├─bm
+   ├─cuda
+   │  └─math
+   ├─fpga
+   │  └─KD
+   │      ├─llapi
+   │      └─pes
+   ├─host
+   │  └─math
+   ├─intel_fpga
+   ├─metal
+   │  └─metal_kernel
+   │      └─texture
+   ├─mlu
+   ├─nnadapter
+   │  └─nnadapter
+   │      ├─include
+   │      │  └─nnadapter
+   │      │      ├─core
+   │      │      ├─driver
+   │      │      ├─operation
+   │      │      │  └─math
+   │      │      ├─optimizer
+   │      │      └─utility
+   │      └─src
+   │          ├─core
+   │          ├─driver
+   │          │  ├─amlogic_npu
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─android_nnapi
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─cambricon_mlu
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─eeasytech_npu
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─fake_device
+   │          │  │  ├─converter
+   │          │  │  └─fake_ddk
+   │          │  │      ├─include
+   │          │  │      │  └─fake_ddk
+   │          │  │      └─src
+   │          │  ├─google_xnnpack
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─huawei_ascend_npu
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─huawei_kirin_npu
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─imagination_nna
+   │          │  │  └─converter
+   │          │  ├─intel_openvino
+   │          │  │  └─converter
+   │          │  ├─kunlunxin_xtcl
+   │          │  │  └─converter
+   │          │  ├─mediatek_apu
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  ├─nvidia_tensorrt
+   │          │  │  ├─converter
+   │          │  │  │  └─plugin
+   │          │  │  ├─kernel
+   │          │  │  │  ├─cuda
+   │          │  │  │  └─host
+   │          │  │  ├─operation
+   │          │  │  └─optimizer
+   │          │  ├─rockchip_npu
+   │          │  │  ├─converter
+   │          │  │  └─optimizer
+   │          │  └─verisilicon_timvx
+   │          │      ├─converter
+   │          │      └─optimizer
+   │          ├─operation
+   │          │  └─math
+   │          ├─optimizer
+   │          ├─runtime
+   │          └─utility
+   ├─npu
+   ├─opencl
+   │  ├─cl_kernel
+   │  │  ├─buffer
+   │  │  └─image
+   │  └─utils
+   ├─x86
+   │  ├─fluid
+   │  ├─jit
+   │  │  ├─gen
+   │  │  ├─more
+   │  │  │  ├─intrinsic
+   │  │  │  ├─mix
+   │  │  │  └─mkl
+   │  │  └─refer
+   │  └─math
+   │      ├─avx
+   │      └─sse
+   └─xpu
+   ```
+   
 3. 单元测试
 
-   - Kernels端
    - Operators端
+   - Kernels端
+   - backend端
+
+
 
 
 ## Paddle-Lite重要组件
