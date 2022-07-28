@@ -396,6 +396,90 @@ classDiagram
 	Converter ..> Operand
 ```
 
+## Imagination NNA Sequence Diagram
+
+```mermaid
+sequenceDiagram
+	participant engine as nnadapter engine
+	participant runtime
+	participant driver
+	participant imagination_nna
+	
+	rect rgb(191, 223, 255)
+	Note left of engine: Construct Engine
+	engine ->> runtime: call NNAdapterDevice_acquire(name, ...)
+	activate engine
+	activate runtime
+	runtime ->> runtime: Find(name)
+	runtime ->> driver: call open_device
+	activate driver
+	driver ->> imagination_nna: OpenDevice
+	imagination_nna ->> imagination_nna: new Device()
+	imagination_nna ->> driver: return imagination_device object
+	driver ->> runtime: return driver_device object
+	deactivate driver
+	runtime ->> runtime: check IsValid()
+	runtime ->> engine: return nnadatper_device object
+	deactivate runtime
+	
+	engine ->> runtime: call NNAdapterDevice_getName
+	activate runtime
+	runtime ->> runtime: check IsValid()
+	runtime ->> engine: return nnadapter_device_name
+	deactivate runtime
+	
+	engine ->> runtime: call NNAdapterDevice_getVendor
+	activate runtime
+	runtime ->> runtime: check IsValid()
+	runtime ->> engine: return nnadapter_device_vendor
+	deactivate runtime
+
+	engine ->> runtime: call NNAdapterDevice_getType
+	Note right of runtime: NNADAPTER_ACCELERATOR type for nnadapter
+	activate runtime
+	runtime ->> runtime: check IsValid()
+	runtime ->> engine: return nnadapter_device_type
+	deactivate runtime
+
+	engine ->> runtime: call NNAdapterDevice_getVersion
+	activate runtime
+	runtime ->> runtime: check IsValid()
+	runtime ->> engine: return nnadapter_device_version
+	deactivate runtime
+	
+	engine ->> runtime: call NNAdapterContext_create(...)
+	activate runtime
+	runtime ->> driver: call CreateContext(...)
+	activate driver
+	driver ->> imagination_nna: new Context(...)
+	activate imagination_nna
+	imagination_nna ->> driver: return imagination_nna_context object
+	deactivate imagination_nna
+	driver ->> runtime: return runtime_context object
+	deactivate driver
+	runtime ->> engine: return nnadapter_context object
+	deactivate runtime
+	end
+	deactivate engine
+    
+	rect rgb(200, 150, 255)
+	Note left of engine: Run Engine
+	engine ->> runtime: Run()
+	activate engine
+	runtime ->> runtime: Execute()
+	runtime ->> runtime: NNAdapterExecution_compute(...)
+	runtime ->> driver: call ExecuteProgram(...)
+	activate driver
+	driver ->> imagination_nna: imagination_nna_execute()
+	activate imagination_nna
+	imagination_nna ->> driver: return NNADAPTER_NO_ERROR
+	deactivate imagination_nna
+	driver ->> runtime: return NNADAPTER_NO_ERROR
+	deactivate driver
+	runtime ->> engine: return true
+	deactivate engine
+	end
+```
 
 
 ## 参考
