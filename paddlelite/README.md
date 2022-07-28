@@ -340,56 +340,7 @@ inference_lite_lib
 
 
 
-
-
-## Paddle-Lite算子
-
-### KernelLite类关系图
-
-```mermaid
-classDiagram
-	class KernelLite {
-		+Run() virtual void
-		+..(...)
-	}
-	class KernelBase {
-		+PrepareForRun() virtual void
-		+ReInitWhenNeeded() virtual void
-		+Run() virtual void
-		+Launch() void
-		+...(...)
-	}
-	KernelLite --|> KernelBase
-	KernelLite --> TargetType
-	KernelLite --> PrecisionType
-	KernelLite --> DataLayoutType
-	KernelLite --> Place
-	
-	KernelBase --* KernelContext
-	KernelBase --* profile Profiler
-	KernelBase --* cl Event
-	KernelBase --> TargetType
-	KernelBase --> PrecisionType
-	KernelBase --> DataLayoutType
-	KernelBase --> Place
-	KernelBase --> type_system Type
-```
-
-**source**: `lite/core/kernel.h`
-
-**几点补充**
-
-- `KernelLite`类是`KernelBase`的子类
-- `Run()`方法是`KernelLite`类中最重要的方法
-- `Launch`方法是`KernelBase`中最重要的方法，它的运行顺序如下
-  1. PrepareForRun()，仅仅在第一次的时候才会运行
-  2. ReInitWhenNeeded()
-  3. WorkSpace::Global_Host().AllocReset()
-  4. WorkSpace::Global_X86().AllocReset()/WorkSpace::Global_CUDA().AllocReset()/...，根据运行硬件平台而定
-  5. Run()
-  6. KernelBase::SetProfiler(...), KernelBase::SetIsKernelTest(...)可以来对运行的Kernel进行Profile测试。当算子是OpenCL算子的时候，`event_`事件被用作Profile（详见KernelBase::SetProfileRuntimeKernelInfo(...)），其他两个事件，即`event_1`与`event_2`未在`lite/core/kernel.h`中说明。
-
-### Paddle-Lite算子开发
+## Paddle-Lite算子开发
 
 以下内容以CNN网络中最常见的`Conv2d`算子做为例子，展现如何在Paddle-Lite中开发新算子。
 
