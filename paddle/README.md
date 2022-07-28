@@ -67,6 +67,30 @@ $ sudo docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
 
 使用[py37-paddle-dev](https://github.com/SNSerHello/MyNotes/blob/main/paddle/py37-paddle-dev.yaml)可以搭建PaddlePaddle-GPU编译环境（CUDA10.1+CUDNN7.6，请参考：[Paddle](https://github.com/SNSerHello/Paddle)）部分，[py37-paddle](https://github.com/SNSerHello/MyNotes/blob/main/paddle/py37-paddle.yaml)搭建的环境可以安装官方发布的PaddlePaddle-GPU（CUDA10.2+CUDNN7.6）。因为没有`cudatoolkit-dev=10.2`，采用`cudatoolkit=10.2`后缺乏编译环境，所以无法编译。CUDA11.3支持`compute_86`，`CUDNN≥8.0.2`时候支持`CUDNN_FMA_MATH`，可参考：[cudnnMathType_t](https://docs.nvidia.com/deeplearning/cudnn/api/index.html#cudnnMathType_t)，搭建python3.8编译环境的话，请参考：[py38-paddle-dev.yaml](https://github.com/SNSerHello/MyNotes/blob/main/paddle/py38-paddle-dev.yaml)。
 
+```bash
+$ conda activate py38-paddle-dev
+(py38-paddle-dev) $ git checkout v2.3.1
+(py38-paddle-dev) $ mkdir build
+(py38-paddle-dev) $ cd build
+(py38-paddle-dev) $ export PADDLE_VERSION=2.3.1
+(py38-paddle-dev) $ cmake .. \
+	-DPY_VERSION=`python --version | cut -d ' ' -f 2 | cut -d '.' -f -2` \
+	-DWITH_GPU=ON \
+	-DWITH_TESTING=OFF \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DCUDA_TOOLKIT_ROOT_DIR=$CONDA_PREFIX \
+	-DCUDA_SDK_ROOT_DIR=$CONDA_PREFIX \
+	-DCUDNN_ROOT=$CONDA_PREFIX \
+	-DNCCL_ROOT=$CONDA_PREFIX \
+	-DCUPTI_ROOT=$CONDA_PREFIX/pkgs/cuda-toolkit/extras/CUPTI \
+	-DWITH_ONNXRUNTIME=ON \
+	-DON_INFER=ON \
+	-DCMAKE_CUDA_ARCHITECTURES=86
+(py38-paddle-dev) $ ulimit -n 4096
+(py38-paddle-dev) $ make -j
+```
+
+
 ### Docker环境
 
 ```bash
