@@ -389,6 +389,108 @@ classDiagram
   5. Run()
   6. KernelBase::SetProfiler(...), KernelBase::SetIsKernelTest(...)可以来对运行的Kernel进行Profile测试。当算子是OpenCL算子的时候，`event_`事件被用作Profile（详见KernelBase::SetProfileRuntimeKernelInfo(...)），其他两个事件，即`event_1`与`event_2`未在`lite/core/kernel.h`中说明。
 
+### Paddle-Lite算子开发
+
+以下内容以CNN网络中最常见的`Conv2d`算子做为例子，展现如何在Paddle-Lite中开发新算子。
+
+1. 在`lite/operators`目录下创建新算子的头文件和C/C++元文件，比如说`Conv2d`的头文件为`lite/operators/conv_op.h`，。源文件为`lite/operators/conv_op.cc`。每个算子都需要继承OpLite类，它的类关系图如下所示
+
+   ```mermaid
+   classDiagram
+   	class ConvOpLite {
+   		+CheckShape() bool
+   		+InferShapeImpl() bool
+   		+AttachImpl() bool
+   		+DebugString() string
+   		+...(...)
+   	}
+   	class OpLite {
+   		+Run() bool
+   		+Attach(...) bool
+   		+InferShape() bool
+   		+...(...)
+   	}
+   	class Registry {
+   		+Touch() void
+   	}
+   	ConvOpLite --|> OpLite
+   	ConvOpLite --* ConvParam
+   	ConvOpLite --> OpCharacter
+   	ConvOpLite --> op_desc
+   	ConvOpLite --> Scope
+   	
+   	ConvParam --|> ParamBase
+   	ConvParam --* Tensor
+   
+   	OpLite --|> Registry
+   ```
+
+   **其中**：
+
+   - ConvOpLite是`Conv2d`的实现类，它实现了三个重要方法（Debugging部分不算）
+     - CheckShape()，执行期运行，仅仅做input的shape有效性检查之用，一般用于debugging时期。
+     - InferShapeImpl()，运行期运行，由OpLite::InferShape()激活，将`Conv2d`输出shape计算出来，一般是用于网络shape推断。
+     - AttachImpl()，分析期运行，由OpLite::Attach()激活，将ConvParam中的内容正确的安置好
+     - DebugString()，一般仅仅用于debugging时期
+   - OpLite::Run()是将算子Kernel的Lauch()激活，真正进行算子计算工作。
+
+   **已经实现的新算子还需要做两部分工作**
+
+   - 通过`REGISTER_LITE_OP`将新算子注册，比如说`REGISTER_LITE_OP(conv2d, paddle::lite::operators::ConvOpLite)`将`Conv2d`算子注册入系统中去。
+
+     ```c++
+     #define REGISTER_LITE_OP(op_type__, OpClass)                                   \
+       static paddle::lite::OpLiteRegistrar op_type__##__registry(                  \
+           #op_type__, []() {                                                       \
+             return std::unique_ptr<paddle::lite::OpLite>(new OpClass(#op_type__)); \
+           });                                                                      \
+       int touch_op_##op_type__() {                                                 \
+         op_type__##__registry.touch();                                             \
+         OpKernelInfoCollector::Global().AddOp2path(#op_type__, __FILE__);          \
+         return 0;                                                                  \
+       }
+     ```
+
+     `REGISTER_LITE_OP`注册方法分两步
+
+     1. 定义一个静态`paddle::lite::OpLiteRegistrar`变量和一个`touch_op_`开头的函数，在这个函数中它调用新定义的静态`paddle::lite::OpLiteRegistrar`变量touch()方法，并通过`OpKernelInfoCollector::AddOp2path()`函数将它的新算子的名字与路径注册到`OpLiteFactory`的一个全局实例中去。
+
+     2. `USE_LITE_OP`将会激活`touch_op_`开头的函数，来完成整个注册工作
+
+        ```c++
+        #define USE_LITE_OP(op_type__)       \
+          extern int touch_op_##op_type__(); \
+          int LITE_OP_REGISTER_FAKE(op_type__) UNUSED = touch_op_##op_type__();
+        ```
+
+        这些`USE_LITE_OP`的所激活工作，都被定义在`lite/api/paddle_use_ops.h`中，并且被包含在某个C/C++源文件中进行编译与运行，比如说`lite/api/light_api_impl.cc`。
+
+   - 在`lite/operators/CMakeLists.txt`中加入新算子文件，比如说`add_operator(conv_op basic SRCS conv_op.cc)`，这样新的算子就能够被系统编译进取啦！
+
+2. 在`lite/kernels`下面，比如说`opencl`中，定义相关的算子Kernel实现，所有的算子Kernel都是`KernelLite`的字类，相见[OpenCL Kernel算子注册](https://github.com/SNSerHello/MyNotes/blob/main/paddlelite/OpenCL.md)，其他的后端，比如说arm，cuda，nnadapter方法类似。在完成新Kernel开发后，还需要做两件事情：
+
+   - 使用`REGISTER_LITE_KERNEL`，将Kernel注册到系统中去，比如说
+
+     ```c++
+     REGISTER_LITE_KERNEL(conv2d,
+                          kOpenCL,
+                          kFloat,
+                          kNCHW,
+                          paddle::lite::kernels::opencl::ConvCompute,
+                          def)
+         .BindInput("Input", {LiteType::GetTensorTy(TARGET(kOpenCL))})
+         .BindInput("Bias", {LiteType::GetTensorTy(TARGET(kOpenCL))})
+         .BindInput("Filter", {LiteType::GetTensorTy(TARGET(kOpenCL))})
+         .BindOutput("Output", {LiteType::GetTensorTy(TARGET(kOpenCL))})
+         .Finalize();
+     ```
+
+   - 在`lite/kernels/xxx/CMakeLists.txt`中增加Kernel的实现文件，比如说`add_kernel(conv_opencl_image OPENCL basic SRCS conv_image_compute.cc)`，把它们添加到编译系统中去。
+
+3. 单元测试
+
+   - Kernels端
+   - Operators端
 
 
 ## Paddle-Lite重要组件
