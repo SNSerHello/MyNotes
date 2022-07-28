@@ -646,7 +646,7 @@ classDiagram
   5. Run()
   6. KernelBase::SetProfiler(...), KernelBase::SetIsKernelTest(...)可以来对运行的Kernel进行Profile测试。当算子是OpenCL算子的时候，`event_`事件被用作Profile（详见KernelBase::SetProfileRuntimeKernelInfo(...)），其他两个事件，即`event_1`与`event_2`未在`lite/core/kernel.h`中说明。
 
-OpenCL的Kernels必须继承`paddle::lite::KernelLite`类，它的定义详见：`lite/core/kernel.h`头文件，运行一个算子，它至少会运行三个步骤
+OpenCL的新增Kernel类必须继承`paddle::lite::KernelLite`类，它的定义详见：`lite/core/kernel.h`头文件。运行一个算子Kernel，它至少会运行三个步骤
 
 1. PrepareForRun()，仅仅在第一次中运行
 2. ReInitWhenNeeded()
